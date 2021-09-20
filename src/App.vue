@@ -5,6 +5,7 @@
       :mini-variant.sync="mini"
       permanent
       app
+      dark
     >
       <v-list-item class="px-4"
         @click.stop="mini = !mini"
@@ -60,9 +61,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-main>
-      <router-view/>
-    </v-main>
+    <router-view/>
   </v-app>
 </template>
 
