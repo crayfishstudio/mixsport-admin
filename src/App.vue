@@ -78,7 +78,7 @@
           },
           {
             action: 'mdi-silverware-fork-knife',
-            active: true,
+            // active: true,
             items: [
               { title: 'Все продавцы' },
               { title: 'Продукты' },
