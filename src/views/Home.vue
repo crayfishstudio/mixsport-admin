@@ -1,6 +1,6 @@
 <template>
   <v-main class="grey lighten-4">
-    <v-app-bar app class="white">
+    <v-app-bar app class="white" height="70px">
       <h2>Локации</h2>
       <v-text-field
         v-model="search"
@@ -24,18 +24,29 @@
     </v-app-bar>
     <v-container>
       <v-row>
+        <v-col>
+          <div class="d-flex">
+            <v-btn text>Все места (23)</v-btn>
+            <v-btn text>Опубликованные (13)</v-btn>
+            <v-btn text>Ожидает подтверждения (3)</v-btn>
+            <v-btn text>Черновики (3)</v-btn>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col md="3">
           <div class="d-flex">
             <v-select
               :items="items"
               label="Действия"
               outlined
+              dense
               background-color="white"
               hide-details="true"
             ></v-select>
             <v-btn
               outlined
-              x-large
+              large
               class="ml-3"
             >Применить</v-btn>
           </div>
@@ -48,6 +59,7 @@
               :items="selector.items"
               :label="selector.label"
               outlined
+              dense
               background-color="white"
               hide-details="true"
               class="ml-3"
@@ -65,31 +77,67 @@
             show-select
             :search="search"
           >
-            <template v-slot:item.actions="{ item }">
-              <v-icon
-                small
-                class="mr-2"
-              >
+            <template v-slot:item.actions>
+              <v-icon class="mr-3">
+                mdi-eye
+              </v-icon>
+              <v-icon class="mr-3">
                 mdi-pencil
               </v-icon>
-              <v-icon
-                small
-                @click="deleteItem(item)"
-              >
+              <v-icon class="mr-3">
+                mdi-clock-outline
+              </v-icon>
+              <v-icon>
                 mdi-delete
               </v-icon>
             </template>
-            <v-dialog v-model="dialogDelete" max-width="500px">
-              <v-card>
-                <v-card-title class="text-h5">Удалить элемент с таблицы?</v-card-title>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="closeDelete">Нет</v-btn>
-                  <v-btn color="blue darken-1" text @click="deleteItemConfirm">Да</v-btn>
-                  <v-spacer></v-spacer>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
+            <template v-slot:header.rate>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    mdi-poll
+                  </v-icon>
+                </template>
+                <span>Рейтинг</span>
+              </v-tooltip>
+            </template>
+            <template v-slot:header.img>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    mdi-image-outline
+                  </v-icon>
+                </template>
+                <span>Фотография</span>
+              </v-tooltip>
+            </template>
+            <template v-slot:header.verify>
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on, attrs }">
+                  <v-icon
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    mdi-marker-check
+                  </v-icon>
+                </template>
+                <span>Верифицировано</span>
+              </v-tooltip>
+            </template>
+            <template
+              v-if="'item.top' == true"
+              v-slot:item.top="{}"
+            >
+              <v-icon>
+                mdi-check
+              </v-icon>
+            </template>
           </v-data-table>
         </v-col>
       </v-row>
@@ -145,15 +193,15 @@
         return [
           { text: 'ID', value: 'id', align: 'start' },
           { text: 'rate', value: 'rate' },
-          { text: 'img', value: 'img' },
-          { text: 'Название', value: 'name' },
-          { text: 'Тип', value: 'type' },
-          { text: 'Создал', value: 'create' },
-          { text: 'Статус', value: 'stat' },
-          { text: 'ТОП', value: 'top' },
-          { text: 'verify', value: 'verify' },
-          { text: 'Дата', value: 'date' },
-          { text: 'Действия', value: 'actions', sortable: false },
+          { text: 'img', value: 'img', sortable: false, align: 'center' },
+          { text: 'НАЗВАНИЕ', value: 'name' },
+          { text: 'ТИП', value: 'type' },
+          { text: 'СОЗДАЛ', value: 'create' },
+          { text: 'СТАТУС', value: 'stat' },
+          { text: 'ТОП', value: 'top', sortable: false, align: 'center' },
+          { text: 'verify', value: 'verify', sortable: false, align: 'center' },
+          { text: 'ДАТА', value: 'date' },
+          { text: 'ДЕЙСТВИЯ', value: 'actions', sortable: false, align: 'center' },
         ]
       },
       formTitle () {
@@ -186,7 +234,7 @@
             type: 'Места',
             create: 'futziball.office',
             stat: 'Ожидает подтверждения',
-            top: true,
+            top: false,
             verify: true,
             date: '28.09.2020',
           },
@@ -210,7 +258,7 @@
             type: 'Места',
             create: 'futziball.office',
             stat: 'Ожидает подтверждения',
-            top: true,
+            top: false,
             verify: true,
             date: '28.09.2020',
           },
