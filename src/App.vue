@@ -163,3 +163,9 @@
     },
   }
 </script>
+
+<style scoped>
+  .v-navigation-drawer__content::-webkit-scrollbar {
+    width: 0px;
+  }
+</style>

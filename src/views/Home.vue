@@ -13,7 +13,8 @@
       <v-spacer></v-spacer>
       <v-btn
         elevation="2"
-        x-large
+        large
+        height="45px"
         class="red white--text"
       >
       <v-icon
@@ -26,10 +27,10 @@
       <v-row>
         <v-col>
           <div class="d-flex">
-            <v-btn text>Все места (23)</v-btn>
-            <v-btn text>Опубликованные (13)</v-btn>
-            <v-btn text>Ожидает подтверждения (3)</v-btn>
-            <v-btn text>Черновики (3)</v-btn>
+            <v-btn class="px-0 mr-5" text>Все места (23)</v-btn>
+            <v-btn class="px-0 mr-5" text>Опубликованные (13)</v-btn>
+            <v-btn class="px-0 mr-5" text>Ожидает подтверждения (3)</v-btn>
+            <v-btn class="px-0 mr-5" text>Черновики (3)</v-btn>
           </div>
         </v-col>
       </v-row>
@@ -41,12 +42,14 @@
               label="Действия"
               outlined
               dense
+              height="45px"
               background-color="white"
               hide-details="true"
             ></v-select>
             <v-btn
               outlined
               large
+              height="45px"
               class="ml-3"
             >Применить</v-btn>
           </div>
@@ -60,6 +63,7 @@
               :label="selector.label"
               outlined
               dense
+              height="45px"
               background-color="white"
               hide-details="true"
               class="ml-3"
