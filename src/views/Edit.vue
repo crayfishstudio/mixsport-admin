@@ -50,6 +50,9 @@
         <template v-if="item.content==1">
           <Info></Info>
         </template>
+        <template v-if="item.content==2">
+          <Photos></Photos>
+        </template>
       </v-tab-item>
     </v-tabs-items>
   </v-main>
@@ -57,10 +60,12 @@
 
 <script>
   import Info from '../components/Info.vue';
+  import Photos from '../components/Photos.vue';
 
   export default {
     components: {
       Info,
+      Photos,
     },
     data () {
       return {
