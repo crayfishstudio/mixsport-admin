@@ -53,6 +53,9 @@
         <template v-if="item.content==2">
           <Photos></Photos>
         </template>
+        <template v-if="item.content==3">
+          <Services></Services>
+        </template>
       </v-tab-item>
     </v-tabs-items>
   </v-main>
@@ -61,11 +64,13 @@
 <script>
   import Info from '../components/Info.vue';
   import Photos from '../components/Photos.vue';
+  import Services from '../components/Services.vue';
 
   export default {
     components: {
       Info,
       Photos,
+      Services,
     },
     data () {
       return {
