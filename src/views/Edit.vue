@@ -48,13 +48,16 @@
         :key="item.tab"
       >
         <template v-if="item.content==1">
-          <Info></Info>
+          <Info/>
         </template>
         <template v-if="item.content==2">
-          <Photos></Photos>
+          <Photos/>
         </template>
         <template v-if="item.content==3">
-          <Services></Services>
+          <Services/>
+        </template>
+        <template v-if="item.content==4">
+          <Affiche/>
         </template>
       </v-tab-item>
     </v-tabs-items>
@@ -65,12 +68,14 @@
   import Info from '../components/Info.vue';
   import Photos from '../components/Photos.vue';
   import Services from '../components/Services.vue';
+  import Affiche from '../components/Affiche.vue';
 
   export default {
     components: {
       Info,
       Photos,
       Services,
+      Affiche,
     },
     data () {
       return {

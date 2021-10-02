@@ -291,6 +291,16 @@
               Не доступно
             </span>
           </template>
+          <template v-slot:item.img="{ item }">
+            <div class="d-flex justify-center">
+              <v-img
+                lazy-src="https://picsum.photos/id/11/10/6"
+                max-height="45"
+                max-width="45"
+                :src="item.img"
+              ></v-img>
+            </div>
+          </template>
 				</v-data-table>
 			</v-col>
 		</v-row>

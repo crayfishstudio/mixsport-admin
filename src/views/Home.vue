@@ -134,13 +134,38 @@
                 <span>Верифицировано</span>
               </v-tooltip>
             </template>
-            <template
-              v-if="'item.top' == true"
-              v-slot:item.top="{}"
-            >
-              <v-icon>
+            <template v-slot:item.top="{ item }">
+              <v-icon v-if="item.top">
                 mdi-check
               </v-icon>
+              <v-icon v-else>
+                mdi-close
+              </v-icon>
+            </template>
+            <template v-slot:item.verify="{ item }">
+              <v-icon v-if="item.verify">
+                mdi-check
+              </v-icon>
+              <v-icon v-else>
+                mdi-close
+              </v-icon>
+            </template>
+            <template v-slot:item.name="{ item }">
+              <div class="d-flex flex-column">
+                <span>Спортивная школа</span>
+                <span>{{ item.name }}</span>
+                <span>50.4169642, 30.5364866</span>
+              </div>
+            </template>
+            <template v-slot:item.img="{ item }">
+              <div class="d-flex justify-center">
+                <v-img
+                  lazy-src="https://picsum.photos/id/11/10/6"
+                  max-height="45"
+                  max-width="45"
+                  :src="item.img"
+                ></v-img>
+              </div>
             </template>
           </v-data-table>
         </v-col>
