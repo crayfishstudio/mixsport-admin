@@ -24,6 +24,12 @@
             <v-card>
               <v-card-title>
                 <span class="text-h5">{{ formBlockTitle }}</span>
+                <v-btn
+                  v-if="editedBlockIndex > -1"
+                  @click="deleteBlock"
+                >
+                  Удалить
+                </v-btn>
               </v-card-title>
 
               <v-card-text>
@@ -315,24 +321,7 @@
         type: '',
         services: [],
       },
-      defaultBlock: {
-        id: '',
-        title: '',
-        desc: '',
-        type: '',
-        services: [],
-      },
       editedItem: {
-        id: '',
-        img: '',
-				name: '',
-				price: 0,
-				reservation: false,
-        cash: false,
-        card: false,
-				stat: 'Ожидает подтверждения',
-      },
-      defaultItem: {
         id: '',
         img: '',
 				name: '',
@@ -380,7 +369,7 @@
               stat: 'Ожидает подтверждения',
             },
           ]
-        }
+        },
       ]
     }),
 
@@ -421,6 +410,27 @@
     },
 
     methods: {
+      setDefaultBlock () {
+        this.editedBlock = {
+          id: '',
+          title: '',
+          desc: '',
+          type: '',
+          services: [],
+        }
+      },
+      setDefaultItem () {
+        this.editedItem = {
+          id: '',
+          img: '',
+          name: '',
+          price: 0,
+          reservation: false,
+          cash: false,
+          card: false,
+          stat: 'Ожидает подтверждения',
+        }
+      },
       editBlock (block) {
         this.editedBlockIndex = this.blocks.indexOf(block)
         this.editedBlock = Object.assign({}, block)
@@ -437,10 +447,15 @@
         }
         this.closeBlock()
       },
+      deleteBlock() {
+        this.blocks.splice(this.editedBlockIndex, 1)
+        this.oldId.splice(this.editedBlockIndex, 1)
+        this.closeBlock()
+      },
       closeBlock () {
         this.dialogBlock = false
         this.$nextTick(() => {
-          this.editedBlock = Object.assign({}, this.defaultBlock)
+          this.setDefaultBlock()
           this.editedBlockIndex = -1
           this.editedItemIndex = -1
         })
@@ -493,7 +508,7 @@
       close () {
         this.dialog = false
         this.$nextTick(() => {
-          this.editedItem = Object.assign({}, this.defaultItem)
+          this.setDefaultItem()
           this.editedBlockIndex = -1
           this.editedItemIndex = -1
         })
