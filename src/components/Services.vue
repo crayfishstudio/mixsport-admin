@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="container-top">
 		<v-row>
 			<v-col md="4">
 				<div class="d-flex">
@@ -21,7 +21,7 @@
                 Добавить блок услуг
               </v-btn>
             </template>
-            <v-card>
+            <v-card class="dialog-wrap">
               <v-card-title>
                 <span class="text-h5">{{ formBlockTitle }}</span>
                 <v-btn
@@ -45,8 +45,8 @@
                       <v-textarea
                       v-model="editedBlock.desc"
                         outlined
-                        hide-details="auto"
                         label="Короткое описание"
+                        class="atributes-textarea"
                       ></v-textarea>
                       <v-select
                         :items="items"
@@ -54,17 +54,17 @@
                       ></v-select>
                       <v-checkbox
                         label="Активний"
-                        color="red"
+                        color="primary"
                         hide-details
                       ></v-checkbox>
                       <v-checkbox
                         label="Оплата готівкою"
-                        color="red"
+                        color="primary"
                         hide-details
                       ></v-checkbox>
                       <v-checkbox
                         label="Оплата онлайн"
-                        color="red"
+                        color="primary"
                         hide-details
                       ></v-checkbox>
                     </v-col>
@@ -82,7 +82,7 @@
                   Отменить
                 </v-btn>
                 <v-btn
-                  color="red white--text"
+                  color="primary white--text"
                   large
                   @click="saveBlock"
                   class="px-5 ml-4"
@@ -96,7 +96,7 @@
             v-model="dialog"
             max-width="500px"
           >
-            <v-card>
+            <v-card class="dialog-wrap">
               <v-card-title>
                 <span class="text-h5">{{ formTitle }}</span>
               </v-card-title>
@@ -116,28 +116,28 @@
                         hide-details="auto"
                         label="Цена"
                       ></v-text-field>
-                      <div class="d-flex justify-space-between align-center">
+                      <div class="info-wrap">
                         <span>Общая цена: 1030 грн.</span>
-                        <v-btn text color="red">
+                        <v-btn text color="primary">
                           Подробнее о цене
                         </v-btn>
                       </div>
                       <v-checkbox
                         v-model="editedItem.reservation"
                         label="Активний"
-                        color="red"
+                        color="primary"
                         hide-details
                       ></v-checkbox>
                       <v-checkbox
                         v-model="editedItem.cash"
                         label="Оплата готівкою"
-                        color="red"
+                        color="primary"
                         hide-details
                       ></v-checkbox>
                       <v-checkbox
                         v-model="editedItem.card"
                         label="Оплата онлайн"
-                        color="red"
+                        color="primary"
                         hide-details
                       ></v-checkbox>
                       <!-- <template>
@@ -160,7 +160,7 @@
                   Отменить
                 </v-btn>
                 <v-btn
-                  color="red white--text"
+                  color="primary white--text"
                   large
                   @click="save"
                   class="px-5 ml-4"
@@ -171,12 +171,12 @@
             </v-card>
           </v-dialog>
           <v-dialog v-model="dialogDelete" max-width="500px">
-            <v-card>
+            <v-card class="dialog-wrap">
               <v-card-title class="text-h5 d-flex justify-center">Удалить?</v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeDelete">Нет</v-btn>
-                <v-btn color="blue darken-1" text @click="deleteItemConfirm">Да</v-btn>
+                <v-btn color="primary" text @click="closeDelete">Нет</v-btn>
+                <v-btn color="primary" text @click="deleteItemConfirm">Да</v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
@@ -217,6 +217,7 @@
 					<template v-slot:top>
 						<v-toolbar
 							flat
+              class="toolbar"
 						>
 							<v-toolbar-title>
 								{{ block.title }}
@@ -526,3 +527,59 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .container-top {
+    margin-top: 8px!important;
+  }
+
+  .toolbar {
+    border-bottom: 1px solid #ECECEC;
+  }
+
+  .dialog-wrap {
+    &::v-deep {
+      .v-card__title {
+        padding: 20px 20px 0px;
+
+        .text-h5 {
+          font-weight: 700;
+        }
+      }
+
+      .v-card__text {
+        padding: 0px 8px;
+
+        .info-wrap {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 5px;
+
+          button {
+            text-transform: inherit;
+          }
+        }
+
+        .atributes-textarea {
+          margin-top: 20px;
+        }
+      }
+
+      .v-card__actions {
+        padding: 20px;
+      }
+    }
+  }
+
+  #inspire {
+    &::v-deep {
+      .v-dialog {
+        &::-webkit-scrollbar {
+          width: 0px;
+        }
+      }
+    }
+  }
+  
+</style>

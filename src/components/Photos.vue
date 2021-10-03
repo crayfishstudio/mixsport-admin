@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="container-top">
     <v-row>
       <v-col md="3">
         <div class="d-flex">
@@ -112,6 +112,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .container-top {
+    margin-top: 8px!important;
+  }
 
   .gallery-wrap {
     padding: 20px;
@@ -119,11 +122,12 @@ export default {
     border-radius: 5px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
   }
+
   .gallery-image {
     &::v-deep {
       &.v-item--active {
         i {
-          color: red;
+          color: #E01F30;
         }
       }
     }

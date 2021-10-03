@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="container-top">
     <v-row>
       <v-col>
         <v-btn
@@ -149,3 +149,9 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .container-top {
+    margin-top: 8px!important;
+  }
+</style>

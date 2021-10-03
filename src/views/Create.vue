@@ -46,7 +46,7 @@
             <v-btn
               large
               height="45px"
-              class="red white--text ml-3"
+              class="primary white--text ml-3"
             >
               Создать
             </v-btn>

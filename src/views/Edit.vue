@@ -23,14 +23,15 @@
         elevation="2"
         large
         height="45px"
-        class="red white--text"
+        class="primary white--text"
       >
         Сохранить
       </v-btn>
       <template v-slot:extension>
-        <v-tabs
+        <v-tabs 
           v-model="tab"
           align-with-title
+          class="tabs"
         >
           <v-tab
             v-for="item in items"
@@ -94,3 +95,9 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .tabs {
+    border-top: 1px solid #EFEFEF;
+  }
+</style>

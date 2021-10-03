@@ -15,7 +15,7 @@
         elevation="2"
         large
         height="45px"
-        class="red white--text"
+        class="primary white--text"
       >
       <v-icon
         color="white"
@@ -23,7 +23,7 @@
       Создать
       </v-btn>
     </v-app-bar>
-    <v-container>
+    <v-container class="container-top">
       <v-row>
         <v-col>
           <div class="d-flex">
@@ -51,14 +51,16 @@
               large
               height="45px"
               class="ml-3"
+              style="background-color: white;"
             >Применить</v-btn>
           </div>
         </v-col>
-        <v-col md="9">
+        <v-col md="2"
+          v-for="selector in selectors"
+          :key="selector.label"
+        >
           <div class="d-flex">
             <v-select
-              v-for="selector in selectors"
-              :key="selector.label"
               :items="selector.items"
               :label="selector.label"
               outlined
@@ -315,3 +317,9 @@
     },
   }
 </script>
+
+<style lang="scss" scoped>
+  .container-top {
+    margin-top: 8px!important;
+  }
+</style>

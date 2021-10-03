@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="container-top">
     <v-row>
       <v-col md="1">
         <v-select
@@ -39,6 +39,7 @@
               <v-textarea
                 outlined
                 label="Короткое описание"
+                class="atributes-textarea"
               ></v-textarea>
               <editor />
             </v-expansion-panel-content>
@@ -179,6 +180,7 @@
                       outlined
                       hide-details="auto"
                       label="Meta descriptopn"
+                      class="atributes-textarea"
                     ></v-textarea>
                   </template>
                   <template v-else-if="ceo.content==2">
@@ -448,6 +450,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .container-top {
+    margin-top: 8px!important;
+  }
+
   .stat-wrap {
     display: flex;
     justify-content: flex-end;
