@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
 import vuetify from './plugins/vuetify'
-import RichTextEditor from 'rich-text-editor-vuetify'
+import router from './router'
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
   vuetify,
+  router,
   render: h => h(App)
 }).$mount('#app')
-
-Vue.use(RichTextEditor)
