@@ -1,13 +1,13 @@
 module.exports = {
-  /* css: {
+  css: {
     loaderOptions: {
-      sass: {
+      scss: {
         additionalData: `
           @import "@/scss/_global.scss";
         `
       }
     }
-  }, */
+  },
   transpileDependencies: [
     'vuetify'
   ]
