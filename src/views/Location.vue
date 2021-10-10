@@ -1,14 +1,17 @@
 <template lang="html">
-  <div class="price">
-    <p>sdfghjkjhgfd</p>
+  <div class="location">
 
     <v-btn
       color="primary"
-      elevation="2"
-      x-large
-    >
+      elevation="3"
+      class="ma-2"
+      large>
+        <v-icon left>
+          mdi-plus
+        </v-icon>
       Создать
     </v-btn>
+
   </div>
 </template>
 
