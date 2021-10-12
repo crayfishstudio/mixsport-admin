@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app id="app">
     <v-navigation-drawer
       app
       v-model="drawer"
@@ -45,11 +45,14 @@
             :key="child.title"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="child.title"></v-list-item-title>
+              <v-list-item-title
+                v-text="child.title"
+                class="pointer"
+                @click="changeRoute(child.link)"
+              >
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-
-          <!--  <v-subheader>Контент</v-subheader>  -->
         </v-list-group>
         <v-subheader class="subheader" :class="{ hidden: mini }">Контент</v-subheader>
         <v-list-group
@@ -70,7 +73,12 @@
             :key="child.title"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="child.title"></v-list-item-title>
+              <v-list-item-title
+                v-text="child.title"
+                class="pointer"
+                @click="changeRoute(child.link)"
+              >
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
@@ -93,10 +101,16 @@
             :key="child.title"
           >
             <v-list-item-content>
-              <v-list-item-title v-text="child.title"></v-list-item-title>
+              <v-list-item-title
+                v-text="child.title"
+                class="pointer"
+                @click="changeRoute(child.link)"
+              >
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
+
         <v-list-item>
           <v-list-item-icon>
             <v-icon>mdi-help-circle</v-icon>
@@ -119,11 +133,6 @@
       </div>
     </v-navigation-drawer>
 
-
-    <v-app-bar app>
-      <!-- -->
-    </v-app-bar>
-
     <!-- Sizes your content based upon application components -->
     <v-main>
 
@@ -139,6 +148,11 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+  import VueRouter from 'vue-router'
+
+  Vue.use(VueRouter)
+
   export default {
     data () {
       return {
@@ -200,7 +214,14 @@
           {
             action: 'mdi-map-marker',
             items: [
-              { title: 'Все локации' },
+              {
+                title: 'Все локации',
+                link: '/places/list',
+              },
+              {
+                title: 'Нова Локація',
+                link: '/places/create',
+              },
             ],
             title: 'Локации',
           },
@@ -250,10 +271,19 @@
         ]
       }
     },
+    methods: {
+      changeRoute(route) {
+        this.$router.push(route);
+      }
+    }
   }
 </script>
 
 <style lang="scss">
+#app {
+  background-color: #F9F9F9;
+}
+
 .subheader {
   padding: 0px 16px !important;
   font-size: 13px;
@@ -294,6 +324,15 @@
 
   &.minified {
     padding: 14px 14px;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    color: #BBB;
   }
 }
 </style>

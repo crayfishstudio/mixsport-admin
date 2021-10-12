@@ -11,8 +11,6 @@ export default {
 
 <style lang="scss" scoped>
 .about {
-  p {
-    color: $test;
-  }
+  
 }
 </style>
