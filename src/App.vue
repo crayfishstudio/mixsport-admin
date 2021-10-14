@@ -19,7 +19,7 @@
         </v-img>
       </v-list-item>
 
-      <v-list dense class="text-left">
+      <v-list dense class="sidebar-list">
         <v-list-item>
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
@@ -284,6 +284,11 @@
   background-color: #F9F9F9;
 }
 
+.sidebar-list {
+  text-align: left;
+  padding-bottom: 72px !important;
+}
+
 .subheader {
   padding: 0px 16px !important;
   font-size: 13px;
@@ -306,6 +311,7 @@
   padding: 12px 22px;
   justify-content: space-between;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.15);
+  background-color: #2B2B2B;
 
   &-info {
     p {
