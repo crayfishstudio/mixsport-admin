@@ -30,6 +30,18 @@
         Создать
       </v-btn>
     </v-app-bar>
+    <v-row>
+      <v-col>
+        <v-breadcrumbs
+          :items="titles"
+          large
+          color="grey"
+        >
+          <template v-slot:divider>
+          </template>
+        </v-breadcrumbs>
+      </v-col>
+    </v-row>
     <v-row
       justify="space-between"
       class="mx-3"
@@ -375,6 +387,29 @@
 export default {
   data() {
     return {
+      titles: [
+        {
+          text: 'Все места',
+          disabled: false,
+          exact: true,
+          href: 'breadcrumbs_dashboard',
+        },
+        {
+          text: 'Опубликованные',
+          disabled: true,
+          href: 'breadcrumbs_link_1',
+        },
+        {
+          text: 'Ожидает подтверждения',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+        {
+          text: 'Черновики',
+          disabled: true,
+          href: 'breadcrumbs_link_2',
+        },
+      ],
       creationSidebar: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],

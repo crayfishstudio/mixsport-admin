@@ -5,14 +5,13 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Создать место</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium"> Локация №412</v-toolbar-title>
     </v-app-bar>
-    <v-row
-      class="create-form"
-      justify="center"
-    >
-
-    </v-row>
+    <template>
+      <v-card>
+        <!-- тут має бутти -->
+      </v-card>
+    </template>
   </div>
 </template>
 
