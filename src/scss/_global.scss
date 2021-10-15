@@ -1,6 +1,8 @@
 $m-grey: #979797;
 $graydark: #2B2B2B;
 $graylight: #767676;
+$white: #FFF;
+$grey: #6C6C6C;
 
 .tooltip {
   display: block !important;
@@ -117,10 +119,24 @@ $graylight: #767676;
 
 th {
   white-space: nowrap;
-  padding: 0 8px !important;
+  padding: 0 12px !important;
   text-transform: uppercase;
 }
 
 td {
-  padding: 12px 8px !important;
+  padding: 12px 12px !important;
+}
+
+.bg-white {
+  background-color: $white !important;
+}
+
+
+.d-grid {
+  display: grid;
+  grid-gap: 12px;
+
+  &.cols-3-3-2-4 {
+    grid-template-columns: 3fr 3fr 2fr 4fr;
+  }
 }

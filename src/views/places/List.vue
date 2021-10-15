@@ -30,6 +30,73 @@
         Создать
       </v-btn>
     </v-app-bar>
+    <v-row
+      justify="space-between"
+      class="mx-3"
+    >
+      <v-col
+        cols="3"
+        class="d-flex"
+      >
+        <v-select
+          :items="types"
+          label="Действия"
+          background-color="white"
+          dense
+          outlined
+          class="mr-3"
+          hide-details
+        ></v-select>
+        <v-btn
+        depressed
+        outlined
+        color="graylight"
+        background-color="white"
+        class="bg-white"
+        height="40px"
+        small
+        >
+          Применить
+        </v-btn>
+      </v-col>
+      <v-col
+        cols="8"
+        class="d-grid cols-3-3-2-4"
+      >
+        <v-select
+          :items="types"
+          label="Все города"
+          background-color="white"
+          dense
+          outlined
+          hide-details
+        ></v-select>
+        <v-select
+          :items="types"
+          label="Категория"
+          background-color="white"
+          dense
+          outlined
+          hide-details
+        ></v-select>
+        <v-select
+          :items="types"
+          label="Тип"
+          background-color="white"
+          dense
+          outlined
+          hide-details
+        ></v-select>
+        <v-select
+          :items="types"
+          label="Фильтровать по дате"
+          background-color="white"
+          dense
+          outlined
+          hide-details
+        ></v-select>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <v-data-table
@@ -37,12 +104,11 @@
           :headers="headers"
           :items="places"
           :single-select="singleSelect"
-          item-key="name"
+          item-key="id"
           show-select
-          sort-by="calories"
-          class="elevation-1 ma-7"
+          class="elevation-1 mx-6"
         >
-          <template v-slot:top>
+          <!--<template v-slot:top>
             <v-toolbar
               flat
             >
@@ -142,19 +208,8 @@
                   </v-card-actions>
                 </v-card>
               </v-dialog>
-              <v-dialog v-model="dialogDelete" max-width="500px">
-                <v-card>
-                  <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                    <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
-                    <v-spacer></v-spacer>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
             </v-toolbar>
-          </template>
+          </template>-->
           <template v-slot:header.rating="{ header }">
             <v-icon v-tooltip.bottom-center="header.text" small >
               {{ header.icon }}
@@ -178,28 +233,21 @@
             </div>
           </template>
           <template v-slot:item.top="{ item }">
-            <v-icon v-tooltip.bottom-center="item.top"
-              class="mr-2"
-            >
-              mdi-close
+            <v-icon v-if="item.top" small>
+              mdi-check
             </v-icon>
-          </template>
-
-          <template v-slot:item.top="{ item }">
-            <v-icon v-tooltip.bottom-center="item.top"
-              class="mr-2"
-            >
+            <v-icon v-else small>
               mdi-close
             </v-icon>
           </template>
           <template v-slot:item.verified="{ item }">
-            <v-icon v-tooltip.bottom-center="item.verified"
-              class="mr-2"
-            >
+            <v-icon v-if="item.verified" small>
               mdi-check
             </v-icon>
+            <v-icon v-else small>
+              mdi-close
+            </v-icon>
           </template>
-
           <template v-slot:item.img="{ item }">
             <v-avatar
               size="44px"
@@ -309,6 +357,17 @@
         </v-btn>
       </v-col>
     </v-navigation-drawer>
+    <v-dialog v-model="dialogDelete" max-width="500px">
+      <v-card>
+        <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -427,7 +486,7 @@ export default {
           date: '12.01.2021'
         },
         {
-          id: 1302,
+          id: 1303,
           rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
           kind: 'Спортивная школа',
@@ -436,12 +495,12 @@ export default {
           type: 'Места',
           createdBy: 'futziball.office',
           status: 'Ожидает подтверждения',
-          top: false,
-          verified: true,
+          top: true,
+          verified: false,
           date: '12.01.2021'
         },
         {
-          id: 1302,
+          id: 1301,
           rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
           kind: 'Спортивная школа',
