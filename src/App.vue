@@ -133,14 +133,11 @@
       </div>
     </v-navigation-drawer>
 
-    <!-- Sizes your content based upon application components -->
     <v-main>
-
-      <!-- Provides the application the proper gutter -->
       <v-container fluid>
-
-        <!-- If using vue-router -->
-        <router-view></router-view>
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
       </v-container>
     </v-main>
 
@@ -216,12 +213,8 @@
             items: [
               {
                 title: 'Все локации',
-                link: '/places/list',
-              },
-              {
-                title: 'Нова Локація',
-                link: '/places/create',
-              },
+                link: '/places',
+              }
             ],
             title: 'Локации',
           },

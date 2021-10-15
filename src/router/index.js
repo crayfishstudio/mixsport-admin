@@ -11,14 +11,14 @@ const routes = [
     component: Home
   },
   {
-    path: '/places/list',
+    path: '/places',
     name: 'Places List',
     component: () => import('../views/places/List.vue')
   },
   {
-    path: '/places/create',
-    name: 'Places Create',
-    component: () => import('../views/places/Create.vue')
+    path: '/places/:id',
+    name: 'Place Edit',
+    component: () => import('../views/places/Edit.vue')
   }
 ]
 

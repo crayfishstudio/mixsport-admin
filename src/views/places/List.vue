@@ -274,7 +274,6 @@
             <v-icon
               small
               class="mr-2"
-              @click="editItem(item)"
             >
               mdi-eye
             </v-icon>
@@ -288,7 +287,6 @@
             <v-icon
               small
               class="mr-2"
-              @click="editItem(item)"
             >
               mdi-clock-outline
             </v-icon>
@@ -548,13 +546,25 @@ export default {
           verified: true,
           date: '12.01.2021'
         },
+        {
+          id: 3545,
+          rating: 2,
+          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
+          kind: 'Спортивная школа',
+          name: 'Осмислена назва',
+          coordinates: '50.4169642, 30.5364866',
+          type: 'Места',
+          createdBy: 'futziball.office',
+          status: 'Ожидает подтверждения',
+          top: false,
+          verified: true,
+          date: '12.01.2021'
+        },
       ]
     },
 
     editItem (item) {
-      this.editedIndex = this.places.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialog = true
+      this.$router.push('places/' + item.id);
     },
 
     deleteItem (item) {

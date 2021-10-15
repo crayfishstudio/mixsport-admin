@@ -127,10 +127,17 @@ td {
   padding: 12px 12px !important;
 }
 
+tbody {
+  tr {
+    &:nth-of-type(odd) {
+      background: rgba(0, 0, 0, 0.04);
+    }
+  }
+}
+
 .bg-white {
   background-color: $white !important;
 }
-
 
 .d-grid {
   display: grid;
@@ -139,4 +146,12 @@ td {
   &.cols-3-3-2-4 {
     grid-template-columns: 3fr 3fr 2fr 4fr;
   }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
 }
