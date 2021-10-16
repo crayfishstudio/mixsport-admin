@@ -11,6 +11,26 @@ const routes = [
     component: Home
   },
   {
+    path: '/customers',
+    name: 'Customers List',
+    component: () => import('../views/customers/List.vue')
+  },
+  {
+    path: '/customers/:id',
+    name: 'Client Edit',
+    component: () => import('../views/customers/Edit.vue')
+  },
+  {
+    path: '/events',
+    name: 'Events List',
+    component: () => import('../views/events/List.vue')
+  },
+  {
+    path: '/events/:id',
+    name: 'Event Edit',
+    component: () => import('../views/events/Edit.vue')
+  },
+  {
     path: '/places',
     name: 'Places List',
     component: () => import('../views/places/List.vue')
@@ -29,16 +49,6 @@ const routes = [
     path: '/articles/:id',
     name: 'Article Edit',
     component: () => import('../views/articles/Edit.vue')
-  },
-  {
-    path: '/events',
-    name: 'Events List',
-    component: () => import('../views/events/List.vue')
-  },
-  {
-    path: '/events/:id',
-    name: 'Event Edit',
-    component: () => import('../views/events/Edit.vue')
   },
 
 ]

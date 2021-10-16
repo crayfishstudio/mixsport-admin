@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Статьи</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">Клиенты</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -18,6 +18,16 @@
       </v-col>
 
       <v-spacer></v-spacer>
+      <v-btn
+        depressed
+        outlined
+        color="graylight"
+        class="bg-white mr-3"
+        height="36px"
+        small
+      >
+        экспорт
+      </v-btn>
       <v-btn
         depressed
         color="primary"
@@ -48,7 +58,7 @@
     >
       <v-col
         cols="3"
-        class="d-flex mr-10"
+        class="d-flex mr-8"
       >
         <v-select
           :items="types"
@@ -72,17 +82,9 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="8"
-        class="d-grid cols-2-3-3"
+        cols="6"
+        class="d-flex"
       >
-        <v-select
-          :items="types"
-          label="Рубрика"
-          background-color="white"
-          dense
-          outlined
-          hide-details
-        ></v-select>
         <v-select
           :items="types"
           label="Фильтровать по типу"
@@ -90,10 +92,11 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="types"
-          label="Фильтровать по дате"
+          label="Фильтровать по статусу"
           background-color="white"
           dense
           outlined
@@ -214,57 +217,21 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:header.rating="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.img="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text"  >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.views="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text"  >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.showphone="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text"  >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:item.name="{ item }">
-            <div class="name-col">
-              <small>{{ item.kind }}</small>
-              <span>{{ item.name }}</span>
-            </div>
+          <template v-slot:item.status="{ item }">
+            <v-chip
+              :color="getColor(item.status)"
+              dark
+            >
+              {{ item.status }}
+            </v-chip>
           </template>
           <template v-slot:item.top="{ item }">
             <v-icon v-if="item.top" small>
-              mdi-star
-            </v-icon>
-            <v-icon v-else small>
-              mdi-star-outline
-            </v-icon>
-          </template>
-          <template v-slot:item.showphone="{ item }">
-            <v-icon v-if="item.showphone" small>
               mdi-check
             </v-icon>
             <v-icon v-else small>
               mdi-close
             </v-icon>
-          </template>
-          <template v-slot:item.img="{ item }">
-            <v-avatar
-              size="44px"
-              rounded
-            >
-              <img
-                :src="item.img"
-              >
-            </v-avatar>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
@@ -273,6 +240,12 @@
               @click="editItem(item)"
             >
               mdi-pencil
+            </v-icon>
+            <v-icon
+              small
+              class="mr-2"
+            >
+              mdi-account-circle
             </v-icon>
             <v-icon
               small
@@ -302,35 +275,63 @@
       <v-col
         class="pt-5 text-right pa-5"
       >
-        <v-subheader insset class="pl-0" >Введите данные о локации
+        <v-subheader
+          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+        >
+          Введите данные о клиенте
         </v-subheader>
+        <v-text-field
+          label="Имя"
+          outlined
+          background-color="white"
+          hide-details
+          class="mb-3"
+        ></v-text-field>
+        <v-text-field
+          label="Email"
+          outlined
+          background-color="white"
+          hide-details
+          class="mb-3"
+        ></v-text-field>
         <v-select
           :items="types"
-          label="Тип"
+          label="Группа"
           background-color="white"
           outlined
+          hide-details
+          class="mb-3"
         ></v-select>
-        <v-text-field
-          label="Название"
-          outlined
-          background-color="white"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Город"
-          background-color="white"
-          outlined
-        ></v-select>
-        <v-text-field
-          label="Адрес"
-          outlined
-          background-color="white"
-        ></v-text-field>
         <v-text-field
           label="Телефон"
           outlined
           background-color="white"
+          hide-details
+          class="mb-3"
         ></v-text-field>
+        <v-select
+          :items="cities"
+          label="Пол"
+          background-color="white"
+          outlined
+          hide-details
+          class="mb-3"
+        ></v-select>
+        <v-text-field
+          label="Сумма"
+          outlined
+          background-color="white"
+          hide-details
+          class="mb-3"
+        ></v-text-field>
+        <v-select
+          :items="cities"
+          label="Статус"
+          background-color="white"
+          outlined
+          hide-details
+          class="mb-7"
+        ></v-select>
         <v-btn
           depressed
           outlined
@@ -371,7 +372,7 @@ export default {
     return {
       titles: [
         {
-          text: 'Все статьи',
+          text: 'Все клиенты',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
@@ -400,49 +401,32 @@ export default {
           value: 'id',
         },
         {
-          icon: 'mdi-image-outline',
-          text: 'Изображение',
-          sortable: false,
-          value: 'img',
-          align: 'center'
-        },
-        {
-          text: 'Заголовок',
+          text: 'Имя ',
           value: 'name'
         },
         {
-          text: 'Тип',
-          value: 'type'
+          text: 'Email',
+          value: 'email'
         },
         {
-          text: 'Автор',
-          value: 'createdBy',
+          text: 'Группа',
+          value: 'group'
         },
         {
-          icon: 'mdi-eye',
-          text: 'Перегляди',
-          value: 'views',
+          text: 'Телефон',
+          value: 'tellnumber'
+        },
+        {
+          text: 'Пол',
+          value: 'sex'
+        },
+        {
+          text: 'Сумма',
+          value: 'sum'
         },
         {
           text: 'Статус',
           value: 'status'
-        },
-        {
-          text: 'Топ',
-          sortable: false,
-          value: 'top',
-          align: 'center'
-        },
-        {
-          icon: 'mdi-cellphone',
-          text: 'Показывать в приложении',
-          sortable: false,
-          value: 'showphone',
-          align: 'center'
-        },
-        {
-          text: 'Дата',
-          value: 'date'
         },
         {
           text: 'Действия',
@@ -479,52 +463,39 @@ export default {
   },
 
   methods: {
+    getColor (calories) {
+        if (calories > 400) return 'red'
+        else if (calories > 200) return 'orange'
+        else return 'green'
+      },
     initialize () {
       this.places = [
         {
-          id: '382',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Стиль ',
-          name: 'Индустриальный стиль в интерьере',
-          type: 'Блог',
-          createdBy: 'Anna Krivko',
-          views: '1100',
-          status: 'Опубликовано',
-          top: false,
-          showphone: true,
-          date: '12.01.2021'
+          id: 2842,
+          name: 'Bubella Alexey',
+          email: 'bubella@gmail.com',
+          group: 'Пользователь',
+          tellnumber: '+380503834455',
+          sex: 'Мужской',
+          sum: '25000',
+          status: 'Активен',
         },
         {
-          id: '667',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Стиль ',
-          name: 'Сквош как стиль жизни: новый выпуск Mixsport Skills',
-          type: 'Блог',
-          createdBy: 'Anna Krivko',
-          views: '12',
-          status: 'Черновик',
-          top: true,
-          showphone: false,
-          date: '12.01.2021'
+          id: 4381,
+          name: 'Bubella Alexey',
+          email: 'bubella@gmail.com',
+          group: 'Пользователь',
+          tellnumber: '+380503834455',
+          sex: 'Мужской',
+          sum: '31000',
+          status: 'Активен',
         },
-        {
-          id: '293',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Стиль',
-          name: 'Индустриальный стиль в интерьере',
-          type: 'Блог',
-          createdBy: 'Anna Krivko',
-          views: '555',
-          status: 'Опубликовано',
-          top: false,
-          showphone: true,
-          date: '12.01.2021'
-        },
+
       ]
     },
 
     editItem (item) {
-      this.$router.push('articles/' + item.id);
+      this.$router.push('customers/' + item.id);
     },
 
     deleteItem (item) {

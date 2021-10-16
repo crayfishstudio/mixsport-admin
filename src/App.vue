@@ -190,7 +190,10 @@
           {
             action: 'mdi-account-circle',
             items: [
-              { title: 'Все пользователи' },
+              {
+                title: 'Все пользователи',
+                link: '/customers',
+              },
               { title: 'Настройки' },
               { title: 'Категории' },
               { title: 'Метки' },

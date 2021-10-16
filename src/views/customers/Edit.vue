@@ -5,35 +5,18 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium"> Cтатья № {{ $route.params.id }}</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium"> Клиент: {{ $route.params.id }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
-        height="36px"
-        small
-      >
-        Удалить
-      </v-btn>
-      <v-btn
-        depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
-        height="36px"
-        small
-      >
-        Посмотреть
-      </v-btn>
       <v-btn
         depressed
         color="primary"
         class="font-weight-medium"
         @click="creationSidebar = !creationSidebar"
       >
-        Сохранить
+        <v-icon dark class="mr-2">
+          mdi-plus
+        </v-icon>
+        Создать
       </v-btn>
     </v-app-bar>
     <v-tabs
@@ -60,10 +43,9 @@
     data: () => ({
       tab: null,
       tabs: [
-        'Общая информация',
-        'Фото',
-        'Файлы',
-        'Связанные места',
+        'информация',
+        'Адреса',
+        'Настройки',
       ],
     }),
   }
