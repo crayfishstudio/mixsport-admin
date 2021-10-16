@@ -19,7 +19,28 @@ const routes = [
     path: '/places/:id',
     name: 'Place Edit',
     component: () => import('../views/places/Edit.vue')
-  }
+  },
+  {
+    path: '/articles',
+    name: 'Articles List',
+    component: () => import('../views/articles/List.vue')
+  },
+  {
+    path: '/articles/:id',
+    name: 'Article Edit',
+    component: () => import('../views/articles/Edit.vue')
+  },
+  {
+    path: '/events',
+    name: 'Events List',
+    component: () => import('../views/events/List.vue')
+  },
+  {
+    path: '/events/:id',
+    name: 'Event Edit',
+    component: () => import('../views/events/Edit.vue')
+  },
+
 ]
 
 const router = new VueRouter({

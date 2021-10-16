@@ -202,7 +202,10 @@
           {
             action: 'mdi-calendar',
             items: [
-              { title: 'Все события' },
+              {
+                title: 'Все события',
+                link: '/events',
+              },
               { title: 'Категории' },
               { title: 'Теги' },
             ],
@@ -221,7 +224,10 @@
           {
             action: 'mdi-note-text',
             items: [
-              { title: 'Все статьи' },
+              {
+                title: 'Все статьи',
+                link: '/articles',
+              },
               { title: 'Категории' },
               { title: 'Метки' },
             ],

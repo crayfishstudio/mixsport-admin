@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Локации</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">События</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -63,7 +63,6 @@
         depressed
         outlined
         color="graylight"
-        background-color="white"
         class="bg-white"
         height="40px"
         small
@@ -72,17 +71,20 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="8"
+        cols="7"
         class="d-grid cols-3-3-2-4"
       >
-        <v-select
-          :items="types"
-          label="Все города"
-          background-color="white"
-          dense
-          outlined
-          hide-details
-        ></v-select>
+        <v-btn
+        depressed
+        outlined
+        color="graylight"
+        background-color="white"
+        class="bg-white"
+        height="40px"
+        small
+        >
+          Категории
+        </v-btn>
         <v-select
           :items="types"
           label="Категория"
@@ -93,7 +95,7 @@
         ></v-select>
         <v-select
           :items="types"
-          label="Тип"
+          label="По типу"
           background-color="white"
           dense
           outlined
@@ -241,7 +243,6 @@
             <div class="name-col">
               <small>{{ item.kind }}</small>
               <span>{{ item.name }}</span>
-              <small>{{ item.coordinates }}</small>
             </div>
           </template>
           <template v-slot:item.top="{ item }">
@@ -271,12 +272,6 @@
             </v-avatar>
           </template>
           <template v-slot:item.actions="{ item }">
-            <v-icon
-              small
-              class="mr-2"
-            >
-              mdi-eye
-            </v-icon>
             <v-icon
               small
               class="mr-2"
@@ -315,68 +310,120 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 text-right pa-5"
+      <v-row
+        class="pt-5 text-right mx-3"
       >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+        <v-col cols="12" class="pb-0" >
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          >Основная информация
+          </v-subheader>
+          <v-select
+            :items="types"
+            label="Тип"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+          <v-text-field
+            label="Название"
+            outlined
+            background-color="white"
+            hide-details
+            class="mb-3"
+          ></v-text-field>
+          <v-select
+            :items="cities"
+            label="Орагнизатор"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+        </v-col>
+        <v-col
+          cols="6"
+          class="pt-0"
         >
-          Введите данные о локации
-        </v-subheader>
-        <v-select
-          :items="types"
-          label="Тип"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-3"
-        ></v-select>
-        <v-text-field
-          label="Название"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Город"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-3"
-        ></v-select>
-        <v-text-field
-          label="Адрес"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-text-field
-          label="Телефон"
-          outlined
-          background-color="white"
-        ></v-text-field>
-        <v-btn
-          depressed
-          outlined
-          color="graylight"
-          large
-          width="33%"
-          class="mr-3"
+          <v-select
+            :items="cities"
+            label="Город"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+        </v-col>
+        <v-col
+          cols="6"
+          class="pt-0"
         >
-          Отмена
-        </v-btn>
-        <v-btn
-          depressed
-          color="primary"
-          large
-          width="33%"
-        >
-          Создать
-        </v-btn>
-      </v-col>
+          <v-select
+            :items="cities"
+            label="Категория"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-row
+        class="text-right mx-3"
+      >
+        <v-col cols="12">
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          >Место проведения
+          </v-subheader>
+          <v-text-field
+            prepend-inner-icon="mdi-magnify"
+            color="graylight"
+            class="mt-5"
+            label="Поиск..."
+            outlined
+          >
+          </v-text-field>
+        </v-col>
+      </v-row>
+      <v-row class="text-right mx-3">
+        <v-col cols="12">
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          ><v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          >Основная информация
+          </v-subheader>
+          </v-subheader>
+          <v-btn
+            depressed
+            outlined
+            color="graylight"
+            large
+            width="33%"
+            class="mr-3"
+          >
+            Отменить
+          </v-btn>
+          <v-btn
+            depressed
+            color="primary"
+            large
+            width="33%"
+          >
+            Сохранить
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-navigation-drawer>
     <v-dialog v-model="dialogDelete" max-width="500px">
       <v-card>
@@ -398,7 +445,7 @@ export default {
     return {
       titles: [
         {
-          text: 'Все места',
+          text: 'Все события',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
@@ -409,7 +456,7 @@ export default {
           href: 'breadcrumbs_link_1',
         },
         {
-          text: 'Ожидает подтверждения',
+          text: 'На подтверждение',
           disabled: true,
           href: 'breadcrumbs_link_2',
         },
@@ -454,29 +501,21 @@ export default {
           value: 'type'
         },
         {
-          text: 'Создал',
-          value: 'createdBy',
+          text: 'Начало',
+          value: 'start'
+        },
+
+        {
+          text: 'Дата',
+          value: 'date'
+        },
+        {
+          text: 'Автор',
+          value: 'autor',
         },
         {
           text: 'Статус',
           value: 'status'
-        },
-        {
-          text: 'Топ',
-          sortable: false,
-          value: 'top',
-          align: 'center'
-        },
-        {
-          icon: 'mdi-marker-check',
-          text: 'Верифицировано',
-          sortable: false,
-          value: 'verified',
-          align: 'center'
-        },
-        {
-          text: 'Дата',
-          value: 'date'
         },
         {
           text: 'Действия',
@@ -516,66 +555,34 @@ export default {
     initialize () {
       this.places = [
         {
-          id: 1302,
+          id: 11786,
           rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Futziball - Печерськ',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
+          kind: 'Концерт',
+          name: 'Незабутні 12 км засніженого лісу',
+          type: 'События',
+          start: '12.01.2021',
+          date: '02.01.2022',
+          autor: 'Master2020',
           status: 'Ожидает подтверждения',
-          top: false,
-          verified: true,
-          date: '12.01.2021'
         },
         {
-          id: 1303,
+          id: 11785,
           rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Futziball - Печерськ',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
+          kind: 'Концерт',
+          name: 'Студія танцю Studio Dance+',
+          type: 'События',
+          start: '22.06.2021',
+          date: '13.05.2022',
+          autor: 'Master2020',
           status: 'Ожидает подтверждения',
-          top: true,
-          verified: false,
-          date: '12.01.2021'
-        },
-        {
-          id: 1301,
-          rating: 2,
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Futziball - Печерськ',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
-          status: 'Ожидает подтверждения',
-          top: false,
-          verified: true,
-          date: '12.01.2021'
-        },
-        {
-          id: 3545,
-          rating: 2,
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Осмислена назва',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
-          status: 'Ожидает подтверждения',
-          top: false,
-          verified: true,
-          date: '12.01.2021'
         },
       ]
     },
 
     editItem (item) {
-      this.$router.push('places/' + item.id);
+      this.$router.push('events/' + item.id);
     },
 
     deleteItem (item) {

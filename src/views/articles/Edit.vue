@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium"> Локация № {{ $route.params.id }}</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium"> Cтатья № {{ $route.params.id }}</v-toolbar-title>
     </v-app-bar>
     <v-tabs
       v-model="tab"

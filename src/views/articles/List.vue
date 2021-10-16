@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Локации</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">Статьи</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -43,12 +43,12 @@
       </v-col>
     </v-row>
     <v-row
-      justify="space-between"
+      justify="space-start"
       class="mx-3"
     >
       <v-col
         cols="3"
-        class="d-flex"
+        class="d-flex mr-10"
       >
         <v-select
           :items="types"
@@ -73,11 +73,11 @@
       </v-col>
       <v-col
         cols="8"
-        class="d-grid cols-3-3-2-4"
+        class="d-grid cols-2-3-3"
       >
         <v-select
           :items="types"
-          label="Все города"
+          label="Рубрика"
           background-color="white"
           dense
           outlined
@@ -85,15 +85,7 @@
         ></v-select>
         <v-select
           :items="types"
-          label="Категория"
-          background-color="white"
-          dense
-          outlined
-          hide-details
-        ></v-select>
-        <v-select
-          :items="types"
-          label="Тип"
+          label="Фильтровать по типу"
           background-color="white"
           dense
           outlined
@@ -318,40 +310,29 @@
       <v-col
         class="pt-5 text-right pa-5"
       >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
-        >
-          Введите данные о локации
+        <v-subheader insset class="pl-0" >Введите данные о локации
         </v-subheader>
         <v-select
           :items="types"
           label="Тип"
           background-color="white"
           outlined
-          hide-details
-          class="mb-3"
         ></v-select>
         <v-text-field
           label="Название"
           outlined
           background-color="white"
-          hide-details
-          class="mb-3"
         ></v-text-field>
         <v-select
           :items="cities"
           label="Город"
           background-color="white"
           outlined
-          hide-details
-          class="mb-3"
         ></v-select>
         <v-text-field
           label="Адрес"
           outlined
           background-color="white"
-          hide-details
-          class="mb-3"
         ></v-text-field>
         <v-text-field
           label="Телефон"
@@ -398,7 +379,7 @@ export default {
     return {
       titles: [
         {
-          text: 'Все места',
+          text: 'Все статьи',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
@@ -407,11 +388,6 @@ export default {
           text: 'Опубликованные',
           disabled: true,
           href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Ожидает подтверждения',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
         },
         {
           text: 'Черновики',
@@ -428,17 +404,6 @@ export default {
       selected: [],
       headers: [
         {
-          text: 'ID',
-          value: 'id',
-        },
-        {
-          icon: 'mdi-poll',
-          text: 'Рейтинг',
-          value: 'rating',
-          sortable: false,
-          align: 'center',
-        },
-        {
           icon: 'mdi-image-outline',
           text: 'Изображение',
           sortable: false,
@@ -446,7 +411,7 @@ export default {
           align: 'center'
         },
         {
-          text: 'Название',
+          text: 'Заголовок',
           value: 'name'
         },
         {
@@ -454,7 +419,7 @@ export default {
           value: 'type'
         },
         {
-          text: 'Создал',
+          text: 'Автор',
           value: 'createdBy',
         },
         {
@@ -516,56 +481,33 @@ export default {
     initialize () {
       this.places = [
         {
-          id: 1302,
-          rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Futziball - Печерськ',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
+          kind: 'Стиль ',
+          name: 'Индустриальный стиль в интерьере',
+          type: 'Блог',
+          createdBy: 'Anna Krivko',
           status: 'Ожидает подтверждения',
           top: false,
           verified: true,
           date: '12.01.2021'
         },
         {
-          id: 1303,
-          rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Futziball - Печерськ',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
+          kind: 'Стиль ',
+          name: 'Сквош как стиль жизни: новый выпуск Mixsport Skills',
+          type: 'Блог',
+          createdBy: 'Anna Krivko',
           status: 'Ожидает подтверждения',
           top: true,
           verified: false,
           date: '12.01.2021'
         },
         {
-          id: 1301,
-          rating: 2,
           img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Futziball - Печерськ',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
-          status: 'Ожидает подтверждения',
-          top: false,
-          verified: true,
-          date: '12.01.2021'
-        },
-        {
-          id: 3545,
-          rating: 2,
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Спортивная школа',
-          name: 'Осмислена назва',
-          coordinates: '50.4169642, 30.5364866',
-          type: 'Места',
-          createdBy: 'futziball.office',
+          kind: 'Стиль',
+          name: 'Индустриальный стиль в интерьере',
+          type: 'Блог',
+          createdBy: 'Anna Krivko',
           status: 'Ожидает подтверждения',
           top: false,
           verified: true,
@@ -575,7 +517,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('places/' + item.id);
+      this.$router.push('articles/' + item.id);
     },
 
     deleteItem (item) {
