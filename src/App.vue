@@ -191,8 +191,12 @@
             action: 'mdi-account-circle',
             items: [
               {
-                title: 'Все пользователи',
+                title: 'Все клиенты',
                 link: '/customers',
+              },
+              {
+                title: 'Все пользователи',
+                link: '/users',
               },
               { title: 'Настройки' },
               { title: 'Категории' },

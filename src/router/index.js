@@ -21,6 +21,16 @@ const routes = [
     component: () => import('../views/customers/Edit.vue')
   },
   {
+    path: '/users',
+    name: 'Users List',
+    component: () => import('../views/users/List.vue')
+  },
+  {
+    path: '/users/:id',
+    name: 'Users Edit',
+    component: () => import('../views/users/Edit.vue')
+  },
+  {
     path: '/events',
     name: 'Events List',
     component: () => import('../views/events/List.vue')
