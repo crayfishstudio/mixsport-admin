@@ -109,7 +109,7 @@
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="places"
+          :items="customers"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -221,6 +221,7 @@
             <v-chip
               :color="getColor(item.status)"
               dark
+              label
             >
               {{ item.status }}
             </v-chip>
@@ -435,7 +436,7 @@ export default {
           align: 'center',
         }
       ],
-      places: [],
+      customers: [],
       editedIndex: -1,
       editedItem: {
       },
@@ -463,13 +464,12 @@ export default {
   },
 
   methods: {
-    getColor (calories) {
-        if (calories > 400) return 'red'
-        else if (calories > 200) return 'orange'
-        else return 'green'
-      },
+    getColor (status) {
+      if (status === 'Активен') return 'green'
+      else return 'red'
+    },
     initialize () {
-      this.places = [
+      this.customers = [
         {
           id: 2842,
           name: 'Bubella Alexey',
@@ -499,13 +499,13 @@ export default {
     },
 
     deleteItem (item) {
-      this.editedIndex = this.places.indexOf(item)
+      this.editedIndex = this.customers.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.places.splice(this.editedIndex, 1)
+      this.customers.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -527,9 +527,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.places[this.editedIndex], this.editedItem)
+        Object.assign(this.customers[this.editedIndex], this.editedItem)
       } else {
-        this.places.push(this.editedItem)
+        this.customers.push(this.editedItem)
       }
       this.close()
     },

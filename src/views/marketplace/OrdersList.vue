@@ -408,11 +408,11 @@ export default {
   },
 
   methods: {
-    getColor (calories) {
-        if (calories > 400) return 'red'
-        else if (calories > 200) return 'orange'
-        else return 'green'
-      },
+    getColor (status) {
+      if (status === 'Оплачен') return 'green'
+      else if (status === 'На рассмотрении') return 'orange'
+      else return 'red'
+    },
     initialize () {
       this.orders = [
         {

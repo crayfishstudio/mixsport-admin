@@ -179,7 +179,10 @@
           {
             action: 'mdi-trending-up',
             items: [
-              { title: 'Все заказы' },
+              {
+                title: 'Все заказы',
+                link: '/sales',
+              },
               { title: 'Отчеты' },
               { title: 'Настройки' },
             ],

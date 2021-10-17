@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Статьи</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">Заказы</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -48,7 +48,7 @@
     >
       <v-col
         cols="3"
-        class="d-flex mr-10"
+        class="d-flex mr-8"
       >
         <v-select
           :items="types"
@@ -72,24 +72,17 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="8"
-        class="d-grid cols-2-3-3"
+        cols="6"
+        class="d-flex"
       >
         <v-select
           :items="types"
-          label="Рубрика"
+          label="Фильтровать по статусу"
           background-color="white"
           dense
           outlined
           hide-details
-        ></v-select>
-        <v-select
-          :items="types"
-          label="Фильтровать по типу"
-          background-color="white"
-          dense
-          outlined
-          hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="types"
@@ -106,7 +99,7 @@
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="articles"
+          :items="sales"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -214,71 +207,25 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:header.rating="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.img="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text"  >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.views="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text"  >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.showphone="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text"  >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:item.name="{ item }">
-            <div class="name-col">
-              <small>{{ item.kind }}</small>
-              <span>{{ item.name }}</span>
-            </div>
-          </template>
-          <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
-              mdi-star
-            </v-icon>
-            <v-icon v-else small>
-              mdi-star-outline
-            </v-icon>
-          </template>
-          <template v-slot:item.showphone="{ item }">
-            <v-icon v-if="item.showphone" small>
-              mdi-check
-            </v-icon>
-            <v-icon v-else small>
-              mdi-close
-            </v-icon>
-          </template>
-          <template v-slot:item.img="{ item }">
-            <v-avatar
-              size="44px"
-              rounded
+          <template v-slot:item.status="{ item }">
+            <v-chip
+              :color="getColor(item.status)"
+              dark
+              label
             >
-              <img
-                :src="item.img"
-              >
-            </v-avatar>
+              {{ item.status }}
+            </v-chip>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-2"
-              @click="editItem(item)"
+              class="mr-4"
             >
-              mdi-pencil
+              mdi-clock-time-four-outline
             </v-icon>
             <v-icon
-              small
-              @click="deleteItem(item)"
+              @click="editItem(item)"
             >
-              mdi-delete
+              mdi-check
             </v-icon>
           </template>
           <template v-slot:no-data>
@@ -302,35 +249,63 @@
       <v-col
         class="pt-5 text-right pa-5"
       >
-        <v-subheader insset class="pl-0" >Введите данные о локации
+        <v-subheader
+          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+        >
+          Введите данные о клиенте
         </v-subheader>
+        <v-text-field
+          label="Имя"
+          outlined
+          background-color="white"
+          hide-details
+          class="mb-3"
+        ></v-text-field>
+        <v-text-field
+          label="Email"
+          outlined
+          background-color="white"
+          hide-details
+          class="mb-3"
+        ></v-text-field>
         <v-select
           :items="types"
-          label="Тип"
+          label="Группа"
           background-color="white"
           outlined
+          hide-details
+          class="mb-3"
         ></v-select>
-        <v-text-field
-          label="Название"
-          outlined
-          background-color="white"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Город"
-          background-color="white"
-          outlined
-        ></v-select>
-        <v-text-field
-          label="Адрес"
-          outlined
-          background-color="white"
-        ></v-text-field>
         <v-text-field
           label="Телефон"
           outlined
           background-color="white"
+          hide-details
+          class="mb-3"
         ></v-text-field>
+        <v-select
+          :items="cities"
+          label="Пол"
+          background-color="white"
+          outlined
+          hide-details
+          class="mb-3"
+        ></v-select>
+        <v-text-field
+          label="Сумма"
+          outlined
+          background-color="white"
+          hide-details
+          class="mb-3"
+        ></v-text-field>
+        <v-select
+          :items="cities"
+          label="Статус"
+          background-color="white"
+          outlined
+          hide-details
+          class="mb-7"
+        ></v-select>
         <v-btn
           depressed
           outlined
@@ -371,13 +346,13 @@ export default {
     return {
       titles: [
         {
-          text: 'Все статьи',
+          text: 'Все заказы',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
         },
         {
-          text: 'Опубликованные',
+          text: 'Выполненые',
           disabled: true,
           href: 'breadcrumbs_link_1',
         },
@@ -396,62 +371,41 @@ export default {
       selected: [],
       headers: [
         {
-          text: 'ID',
-          value: 'id',
+          text: 'Заказ',
+          value: 'order',
         },
         {
-          icon: 'mdi-image-outline',
-          text: 'Изображение',
-          sortable: false,
-          value: 'img',
-          align: 'center'
-        },
-        {
-          text: 'Заголовок',
-          value: 'name'
-        },
-        {
-          text: 'Тип',
-          value: 'type'
-        },
-        {
-          text: 'Автор',
-          value: 'createdBy',
-        },
-        {
-          icon: 'mdi-eye',
-          text: 'Перегляди',
-          value: 'views',
-        },
-        {
-          text: 'Статус',
-          value: 'status'
-        },
-        {
-          text: 'Топ',
-          sortable: false,
-          value: 'top',
-          align: 'center'
-        },
-        {
-          icon: 'mdi-cellphone',
-          text: 'Показывать в приложении',
-          sortable: false,
-          value: 'showphone',
-          align: 'center'
+          text: 'Клиент ',
+          value: 'client'
         },
         {
           text: 'Дата',
           value: 'date'
         },
         {
-          text: 'Действия',
+          text: 'ID',
+          value: 'id',
+        },
+        {
+          text: 'Статус',
+          value: 'status'
+        },
+        {
+          text: 'Доставка',
+          value: 'delivery'
+        },
+        {
+          text: 'Итого',
+          value: 'sum'
+        },
+        {
+          text: '',
           value: 'actions',
           sortable: false,
           align: 'center',
         }
       ],
-      articles: [],
+      sales: [],
       editedIndex: -1,
       editedItem: {
       },
@@ -479,62 +433,73 @@ export default {
   },
 
   methods: {
+    getColor (status) {
+      if (status === 'Оплачен') return 'green'
+      else if (status === 'На рассмотрении') return 'orange'
+      else return 'red'
+    },
     initialize () {
-      this.articles = [
+      this.sales = [
         {
-          id: '382',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Стиль ',
-          name: 'Индустриальный стиль в интерьере',
-          type: 'Блог',
-          createdBy: 'Anna Krivko',
-          views: '1100',
-          status: 'Опубликовано',
-          top: false,
-          showphone: true,
-          date: '12.01.2021'
+          order: '#400',
+          client: 'игорь манжул',
+          date: '12.01.2021',
+          id: 'J1c5OulnFm',
+          status: 'Оплачен',
+          delivery: '',
+          sum: '800 грн.',
         },
         {
-          id: '667',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Стиль ',
-          name: 'Сквош как стиль жизни: новый выпуск Mixsport Skills',
-          type: 'Блог',
-          createdBy: 'Anna Krivko',
-          views: '12',
-          status: 'Черновик',
-          top: true,
-          showphone: false,
-          date: '12.01.2021'
+          order: '#401',
+          client: 'игорь манжул',
+          date: '12.01.2021',
+          id: 'gdjwefgjk',
+          status: 'На рассмотрении',
+          delivery: '',
+          sum: '800 грн.',
         },
         {
-          id: '293',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          kind: 'Стиль',
-          name: 'Индустриальный стиль в интерьере',
-          type: 'Блог',
-          createdBy: 'Anna Krivko',
-          views: '555',
-          status: 'Опубликовано',
-          top: false,
-          showphone: true,
-          date: '12.01.2021'
+          order: '#402',
+          client: 'игорь манжул',
+          date: '12.01.2021',
+          id: 'bjhrejfrn',
+          status: 'Оплачен',
+          delivery: '',
+          sum: '800 грн.',
+        },
+        {
+          order: '#403',
+          client: 'игорь манжул',
+          date: '12.01.2021',
+          id: 'rhbjrver',
+          status: 'На рассмотрении',
+          delivery: '',
+          sum: '800 грн.',
+        },
+        {
+          order: '#404',
+          client: 'игорь манжул',
+          date: '12.01.2021',
+          id: 'vrjerjkkl',
+          status: 'Отклонено',
+          delivery: '',
+          sum: '800 грн.',
         },
       ]
     },
 
     editItem (item) {
-      this.$router.push('articles/' + item.id);
+      this.$router.push('sales/' + item.id);
     },
 
     deleteItem (item) {
-      this.editedIndex = this.articles.indexOf(item)
+      this.editedIndex = this.sales.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.articles.splice(this.editedIndex, 1)
+      this.sales.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -556,9 +521,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.articles[this.editedIndex], this.editedItem)
+        Object.assign(this.sales[this.editedIndex], this.editedItem)
       } else {
-        this.articles.push(this.editedItem)
+        this.sales.push(this.editedItem)
       }
       this.close()
     },

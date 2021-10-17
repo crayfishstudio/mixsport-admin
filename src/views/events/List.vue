@@ -1,4 +1,4 @@
-<template lang="html">
+events<template lang="html">
   <div class="list">
     <v-app-bar
       app
@@ -116,7 +116,7 @@
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="places"
+          :items="events"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -524,7 +524,7 @@ export default {
           align: 'center',
         }
       ],
-      places: [],
+      events: [],
       editedIndex: -1,
       editedItem: {
       },
@@ -553,7 +553,7 @@ export default {
 
   methods: {
     initialize () {
-      this.places = [
+      this.events = [
         {
           id: 11786,
           rating: 2,
@@ -586,13 +586,13 @@ export default {
     },
 
     deleteItem (item) {
-      this.editedIndex = this.places.indexOf(item)
+      this.editedIndex = this.events.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.places.splice(this.editedIndex, 1)
+      this.events.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -614,9 +614,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.places[this.editedIndex], this.editedItem)
+        Object.assign(this.events[this.editedIndex], this.editedItem)
       } else {
-        this.places.push(this.editedItem)
+        this.events.push(this.editedItem)
       }
       this.close()
     },
