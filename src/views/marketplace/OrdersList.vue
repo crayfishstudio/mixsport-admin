@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Пользователи</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">Заказы</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -20,19 +20,8 @@
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
-        height="36px"
-        small
-      >
-        экспорт
-      </v-btn>
-      <v-btn
-        depressed
         color="primary"
         class="font-weight-medium"
-        @click="creationSidebar = !creationSidebar"
       >
         <v-icon dark class="mr-2">
           mdi-plus
@@ -82,12 +71,12 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="6"
+        cols="5"
         class="d-flex"
       >
         <v-select
           :items="types"
-          label="Роль"
+          label="Статус"
           background-color="white"
           dense
           outlined
@@ -96,7 +85,7 @@
         ></v-select>
         <v-select
           :items="types"
-          label="Фильтровать по дате"
+          label="Фильтровать по оплате"
           background-color="white"
           dense
           outlined
@@ -109,7 +98,7 @@
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="users"
+          :items="orders"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -217,47 +206,21 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:item.username="{ item }">
-            <div class="name-col d-flex align-center">
-              <v-avatar
-                size="44px"
-                rounded
-                class="mr-3"
-              >
-                <img
-                  :src="item.img"
-                >
-              </v-avatar>
-              <span>{{ item.username }}</span>
-            </div>
+          <template v-slot:item.status="{ item }">
+            <v-chip
+              :color="getColor(item.status)"
+              dark
+              label
+            >
+              {{ item.status }}
+            </v-chip>
           </template>
-          <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
-              mdi-star
-            </v-icon>
-            <v-icon v-else small>
-              mdi-star-outline
-            </v-icon>
-          </template>
-          <template v-slot:item.actions="{ item }">
+          <template v-slot:item.actions="{  }">
             <v-icon
               small
-              class="mr-2"
-              @click="editItem(item)"
+              @click="creationSidebar = !creationSidebar"
             >
-              mdi-pencil
-            </v-icon>
-            <v-icon
-              small
-              class="mr-2"
-            >
-              mdi-account-circle
-            </v-icon>
-            <v-icon
-              small
-              @click="deleteItem(item)"
-            >
-              mdi-delete
+              mdi-check
             </v-icon>
           </template>
           <template v-slot:no-data>
@@ -284,52 +247,32 @@
         <v-subheader
           class="font-weight-medium text-lg-h6 pl-0 mb-2"
         >
-          Введите данные о пользователе
+          Просмотр заказа
         </v-subheader>
         <v-text-field
-          label="Имя"
-          outlined
-          background-color="white"
+          label="Название билета"
           hide-details
-          class="mb-3"
+          class="mb-5"
+          :rules="rules"
         ></v-text-field>
         <v-text-field
-          label="Фамилия"
-          outlined
-          background-color="white"
+          label="Количество"
           hide-details
-          class="mb-3"
+          class="mb-5"
+          :rules="rules"
         ></v-text-field>
         <v-text-field
-          label="Email"
-          outlined
-          background-color="white"
+          label="Цена"
           hide-details
-          class="mb-3"
+          class="mb-5"
+          :rules="rules"
         ></v-text-field>
         <v-text-field
-          label="Телефон"
-          outlined
-          background-color="white"
+          label="Сумма"
+          hide-details
+          class="mb-5"
+          :rules="rules"
         ></v-text-field>
-        <v-btn
-          depressed
-          outlined
-          color="graylight"
-          large
-          width="33%"
-          class="mr-3"
-        >
-          Отмена
-        </v-btn>
-        <v-btn
-          depressed
-          color="primary"
-          large
-          width="33%"
-        >
-          Создать
-        </v-btn>
       </v-col>
     </v-navigation-drawer>
     <v-dialog v-model="dialogDelete" max-width="500px">
@@ -352,18 +295,18 @@ export default {
     return {
       titles: [
         {
-          text: 'Все пользователи',
+          text: 'Все Заказы',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
         },
         {
-          text: 'Активные',
+          text: 'Неоплачено',
           disabled: true,
           href: 'breadcrumbs_link_1',
         },
         {
-          text: 'Заблокированые',
+          text: 'На модерации',
           disabled: true,
           href: 'breadcrumbs_link_2',
         },
@@ -381,43 +324,63 @@ export default {
           value: 'id',
         },
         {
-          text: 'Имя пользователя',
-          value: 'username'
+          text: 'Итого',
+          value: 'sum',
         },
         {
-          text: 'Имя ',
-          value: 'name'
+          text: 'Счет',
+          value: 'check',
         },
         {
-          text: 'Фамилия',
-          value: 'surname'
-        },
-        {
-          text: 'Email',
-          value: 'email'
-        },
-        {
-          text: 'Роль',
-          value: 'role'
-        },
-        {
-          text: 'Топ',
+          text: 'Статус',
+          value: 'status',
           sortable: false,
-          value: 'top',
-          align: 'center'
         },
         {
-          text: 'Дата',
-          value: 'date'
+          text: 'Дата заказа',
+          value: 'date',
+        },
+        {
+          text: 'Продавец',
+          value: 'seller'
+        },
+        {
+          text: 'Комиссия',
+          value: 'commission'
+        },
+        {
+          text: 'Скидка',
+          value: 'discount'
+        },
+        {
+          text: 'Итого продавцу',
+          value: 'totalforsell'
+        },
+        {
+          text: 'Счет',
+          value: 'checknum'
+        },
+        {
+          text: 'Оплачено',
+          value: 'paidup'
+        },
+        {
+          text: 'Доплата',
+          value: 'excessfare'
+        },
+        {
+          text: 'Оплата',
+          value: 'payment',
+          sortable: false,
         },
         {
           text: 'Действия',
           value: 'actions',
           sortable: false,
           align: 'center',
-        }
+        },
       ],
-      users: [],
+      orders: [],
       editedIndex: -1,
       editedItem: {
       },
@@ -445,45 +408,59 @@ export default {
   },
 
   methods: {
+    getColor (calories) {
+        if (calories > 400) return 'red'
+        else if (calories > 200) return 'orange'
+        else return 'green'
+      },
     initialize () {
-      this.users = [
+      this.orders = [
         {
-          id: 299,
-          username:'Bubella',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          name: 'Андрей',
-          surname: 'Бубела',
-          email: 'bubella@gmail.com',
-          role: 'Пользователь',
-          top: true,
-          date: '12.01.2021'
+          id: 21,
+          sum: '2100 грн.',
+          check: 'demo webkul',
+          status: 'Оплачен',
+          date: '12.01.2021',
+          seller: 'demo webku',
+          commission: '200 грн.',
+          discount: '0 грн.',
+          totalforsell: '1900 грн.',
+          checknum: '1900 грн.',
+          paidup: '1900 грн.',
+          excessfare: '0 грн.',
+          payment: 'Оплачено',
         },
         {
-          id: 347,
-          username:'Anasteisha',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          name: 'Анастасія',
-          surname: 'Бубенко',
-          email: 'bubenko@gmail.com',
-          role: 'Пользователь',
-          top: true,
-          date: '13.06.2021'
+          id: 23,
+          sum: '3100 грн.',
+          check: 'demo webkul',
+          status: 'Оплачен',
+          date: '18.01.2021',
+          seller: 'demo webku',
+          commission: '500 грн.',
+          discount: '0 грн.',
+          totalforsell: '1900 грн.',
+          checknum: '1900 грн.',
+          paidup: '1900 грн.',
+          excessfare: '0 грн.',
+          payment: 'Оплачено',
         },
+
       ]
     },
 
     editItem (item) {
-      this.$router.push('users/' + item.id);
+      this.$router.push('customers/' + item.id);
     },
 
     deleteItem (item) {
-      this.editedIndex = this.users.indexOf(item)
+      this.editedIndex = this.orders.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.users.splice(this.editedIndex, 1)
+      this.orders.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -505,9 +482,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.users[this.editedIndex], this.editedItem)
+        Object.assign(this.orders[this.editedIndex], this.editedItem)
       } else {
-        this.users.push(this.editedItem)
+        this.orders.push(this.editedItem)
       }
       this.close()
     },

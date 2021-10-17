@@ -159,11 +159,20 @@
           {
             action: 'mdi-store',
             items: [
-              { title: 'Все продавцы' },
+              {
+                title: 'Все продавцы',
+                link: '/marketplace/sellers',
+              },
               { title: 'Продукты' },
               { title: 'Отзывы продавца' },
-              { title: 'Заказы' },
-              { title: 'Сделки' },
+              {
+                title: 'Заказы',
+                link: '/marketplace/orders',
+              },
+              {
+                title: 'Сделки',
+                link: '/marketplace/deals',
+              },
             ],
             title: 'Маркетплейс',
           },

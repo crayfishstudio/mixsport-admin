@@ -5,7 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Пользователи</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">Продавцы</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -18,16 +18,6 @@
       </v-col>
 
       <v-spacer></v-spacer>
-      <v-btn
-        depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
-        height="36px"
-        small
-      >
-        экспорт
-      </v-btn>
       <v-btn
         depressed
         color="primary"
@@ -82,21 +72,12 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="6"
+        cols="3"
         class="d-flex"
       >
         <v-select
           :items="types"
-          label="Роль"
-          background-color="white"
-          dense
-          outlined
-          hide-details
-          class="mr-3"
-        ></v-select>
-        <v-select
-          :items="types"
-          label="Фильтровать по дате"
+          label="Фильтровать по статусу"
           background-color="white"
           dense
           outlined
@@ -109,7 +90,7 @@
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="users"
+          :items="places"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -217,27 +198,15 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:item.username="{ item }">
-            <div class="name-col d-flex align-center">
-              <v-avatar
-                size="44px"
-                rounded
-                class="mr-3"
-              >
-                <img
-                  :src="item.img"
-                >
-              </v-avatar>
-              <span>{{ item.username }}</span>
-            </div>
-          </template>
-          <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
-              mdi-star
-            </v-icon>
-            <v-icon v-else small>
-              mdi-star-outline
-            </v-icon>
+          <template v-slot:item.product="{  }">
+            <v-btn
+              depressed
+              color="primary"
+              class="font-weight-medium"
+              @click="creationSidebar = !creationSidebar"
+            >
+              Добавить
+            </v-btn>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
@@ -246,12 +215,6 @@
               @click="editItem(item)"
             >
               mdi-pencil
-            </v-icon>
-            <v-icon
-              small
-              class="mr-2"
-            >
-              mdi-account-circle
             </v-icon>
             <v-icon
               small
@@ -284,34 +247,24 @@
         <v-subheader
           class="font-weight-medium text-lg-h6 pl-0 mb-2"
         >
-          Введите данные о пользователе
+          Введите данные о продавце
         </v-subheader>
         <v-text-field
-          label="Имя"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
+          label="Название организации"
+          :rules="rules"
         ></v-text-field>
-        <v-text-field
-          label="Фамилия"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-text-field
-          label="Email"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-text-field
-          label="Телефон"
-          outlined
-          background-color="white"
-        ></v-text-field>
+        <v-select
+          :items="items"
+          label="Организация"
+        ></v-select>
+        <v-select
+          :items="items"
+          label="Город"
+        ></v-select>
+        <v-select
+          :items="items"
+          label="Категория"
+        ></v-select>
         <v-btn
           depressed
           outlined
@@ -328,7 +281,7 @@
           large
           width="33%"
         >
-          Создать
+          Cохранить 
         </v-btn>
       </v-col>
     </v-navigation-drawer>
@@ -352,18 +305,18 @@ export default {
     return {
       titles: [
         {
-          text: 'Все пользователи',
+          text: 'Все продавцы',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
         },
         {
-          text: 'Активные',
+          text: 'Утвержденные',
           disabled: true,
           href: 'breadcrumbs_link_1',
         },
         {
-          text: 'Заблокированые',
+          text: 'На модерации',
           disabled: true,
           href: 'breadcrumbs_link_2',
         },
@@ -381,43 +334,35 @@ export default {
           value: 'id',
         },
         {
-          text: 'Имя пользователя',
-          value: 'username'
-        },
-        {
-          text: 'Имя ',
-          value: 'name'
-        },
-        {
-          text: 'Фамилия',
-          value: 'surname'
+          text: 'Название ',
+          value: 'name',
         },
         {
           text: 'Email',
-          value: 'email'
+          value: 'email',
         },
         {
-          text: 'Роль',
-          value: 'role'
+          text: 'Создан',
+          value: 'date',
         },
         {
-          text: 'Топ',
+          text: 'Продукт',
+          value: 'product',
           sortable: false,
-          value: 'top',
-          align: 'center'
         },
         {
-          text: 'Дата',
-          value: 'date'
+          text: 'Статус',
+          value: 'status',
+          sortable: false,
         },
         {
           text: 'Действия',
           value: 'actions',
           sortable: false,
           align: 'center',
-        }
+        },
       ],
-      users: [],
+      places: [],
       editedIndex: -1,
       editedItem: {
       },
@@ -446,44 +391,36 @@ export default {
 
   methods: {
     initialize () {
-      this.users = [
+      this.places = [
         {
-          id: 299,
-          username:'Bubella',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          name: 'Андрей',
-          surname: 'Бубела',
+          id: 111,
+          name: 'XPARK',
           email: 'bubella@gmail.com',
-          role: 'Пользователь',
-          top: true,
-          date: '12.01.2021'
+          date: '12.01.2021',
+          status: 'Утвержден',
         },
         {
-          id: 347,
-          username:'Anasteisha',
-          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
-          name: 'Анастасія',
-          surname: 'Бубенко',
-          email: 'bubenko@gmail.com',
-          role: 'Пользователь',
-          top: true,
-          date: '13.06.2021'
+          id: 121,
+          name: 'XPARK',
+          email: 'bubella@gmail.com',
+          date: '12.01.2021',
+          status: 'Утвержден',
         },
       ]
     },
 
     editItem (item) {
-      this.$router.push('users/' + item.id);
+      this.$router.push('sellers/' + item.id);
     },
 
     deleteItem (item) {
-      this.editedIndex = this.users.indexOf(item)
+      this.editedIndex = this.places.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.users.splice(this.editedIndex, 1)
+      this.places.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -505,9 +442,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.users[this.editedIndex], this.editedItem)
+        Object.assign(this.places[this.editedIndex], this.editedItem)
       } else {
-        this.users.push(this.editedItem)
+        this.places.push(this.editedItem)
       }
       this.close()
     },

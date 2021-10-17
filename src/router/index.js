@@ -11,6 +11,26 @@ const routes = [
     component: Home
   },
   {
+    path: '/marketplace/sellers',
+    name: 'Seller List',
+    component: () => import('../views/marketplace/SellerList.vue')
+  },
+  {
+    path: '/marketplace/sellers/:id',
+    name: 'Seller Edit',
+    component: () => import('../views/marketplace/SellerEdit.vue')
+  },
+  {
+    path: '/marketplace/orders',
+    name: 'Orders List',
+    component: () => import('../views/marketplace/OrdersList.vue')
+  },
+  {
+    path: '/marketplace/deals',
+    name: 'Deals List',
+    component: () => import('../views/marketplace/DealsList.vue')
+  },
+  {
     path: '/customers',
     name: 'Customers List',
     component: () => import('../views/customers/List.vue')
