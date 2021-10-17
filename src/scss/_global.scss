@@ -150,6 +150,14 @@ tbody {
   &.cols-2-3-3 {
     grid-template-columns: 2fr 3fr 3fr;
   }
+
+  &.cols-2-3-3-3 {
+    grid-template-columns: 2fr 3fr 3fr 3fr;
+  }
+
+  &.cols-3-2-2 {
+    grid-template-columns: 3fr 2fr 2fr;
+  }
 }
 
 .fade-enter-active, .fade-leave-active {

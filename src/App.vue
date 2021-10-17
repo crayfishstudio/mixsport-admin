@@ -191,7 +191,10 @@
           {
             action: 'mdi-cart',
             items: [
-              { title: 'Все продукты' },
+              {
+                title: 'Все продукты',
+                link: '/products',
+              },
               { title: 'Атрибуты' },
               { title: 'Настройки' },
               { title: 'Категории' },
