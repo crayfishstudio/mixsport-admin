@@ -495,10 +495,6 @@ export default {
       selected: [],
       headers: [
         {
-          text: 'ID',
-          value: 'id',
-        },
-        {
           icon: 'mdi-image-outline',
           text: 'Изображение',
           sortable: false,

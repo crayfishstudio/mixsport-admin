@@ -13,22 +13,22 @@ const routes = [
   {
     path: '/marketplace/sellers',
     name: 'Seller List',
-    component: () => import('../views/marketplace/SellerList.vue')
+    component: () => import('../views/marketplace/Sellers.vue')
   },
   {
     path: '/marketplace/sellers/:id',
     name: 'Seller Edit',
-    component: () => import('../views/marketplace/SellerEdit.vue')
+    component: () => import('../views/marketplace/SellersEdit.vue')
   },
   {
     path: '/marketplace/orders',
     name: 'Orders List',
-    component: () => import('../views/marketplace/OrdersList.vue')
+    component: () => import('../views/marketplace/Orders.vue')
   },
   {
     path: '/marketplace/deals',
     name: 'Deals List',
-    component: () => import('../views/marketplace/DealsList.vue')
+    component: () => import('../views/marketplace/Deals.vue')
   },
   {
     path: '/sales',
@@ -49,6 +49,36 @@ const routes = [
     path: '/products/:id',
     name: 'Products Edit',
     component: () => import('../views/products/Edit.vue')
+  },
+  {
+    path: '/products-attributes',
+    name: 'Attributes List',
+    component: () => import('../views/products/Attributes.vue')
+  },
+  {
+    path: '/products-attributes/:id',
+    name: 'Attributes Edit',
+    component: () => import('../views/products/AttributesEdit.vue')
+  },
+  {
+    path: '/products-attribute-family',
+    name: 'Attribute family List',
+    component: () => import('../views/products/AttributeFamily.vue')
+  },
+  {
+    path: '/products-attribute-family/:id',
+    name: 'Attribute family Edit',
+    component: () => import('../views/products/AttributeFamilyEdit.vue')
+  },
+  {
+    path: '/products-categories',
+    name: 'Categories List',
+    component: () => import('../views/products/Categories.vue')
+  },
+  {
+    path: '/products-categories/:id',
+    name: 'Categories Edit',
+    component: () => import('../views/products/CategoriesEdit.vue')
   },
   {
     path: '/customers',
@@ -79,6 +109,11 @@ const routes = [
     path: '/events/:id',
     name: 'Event Edit',
     component: () => import('../views/events/Edit.vue')
+  },
+  {
+    path: '/events-tags',
+    name: 'Tags List',
+    component: () => import('../views/events/Tags.vue')
   },
   {
     path: '/places',

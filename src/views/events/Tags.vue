@@ -1,11 +1,11 @@
-<template lang="html">
+events<template lang="html">
   <div class="list">
     <v-app-bar
       app
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Заказы</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium">Теги</v-toolbar-title>
       <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
@@ -43,12 +43,11 @@
       </v-col>
     </v-row>
     <v-row
-      justify="space-start"
-      class="mx-3"
+      class="mx-3 justify-start"
     >
       <v-col
         cols="3"
-        class="d-flex mr-8"
+        class="d-flex mr-12"
       >
         <v-select
           :items="types"
@@ -63,30 +62,37 @@
         depressed
         outlined
         color="graylight"
-        background-color="white"
         class="bg-white"
         height="40px"
-        small
         >
           Применить
         </v-btn>
       </v-col>
       <v-col
-        cols="6"
-        class="d-flex"
+        cols="7"
+        class="d-grid cols-2-2-3"
       >
+        <v-btn
+        depressed
+        outlined
+        color="graylight"
+        background-color="white"
+        class="bg-white"
+        height="40px"
+        >
+          Структура
+        </v-btn>
         <v-select
           :items="types"
-          label="Фильтровать по статусу"
+          label="Контекст"
           background-color="white"
           dense
           outlined
           hide-details
-          class="mr-3"
         ></v-select>
         <v-select
           :items="types"
-          label="Фильтровать по дате"
+          label="Фильтровать по статусу"
           background-color="white"
           dense
           outlined
@@ -99,7 +105,7 @@
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="sales"
+          :items="events"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -207,37 +213,47 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:item.order="{ item }">
-            <p class="font-weight-medium">
-              {{ item.order }}
-            </p>
+          <template v-slot:header.img="{ header }">
+            <v-icon v-tooltip.bottom-center="header.text" small >
+              {{ header.icon }}
+            </v-icon>
           </template>
-          <template v-slot:item.status="{ item }">
-            <v-chip
-              :color="getColor(item.status)"
-              dark
-              label
+          <template v-slot:item.top="{ item }">
+            <v-icon v-if="item.top" small>
+              mdi-check
+            </v-icon>
+            <v-icon v-else small>
+              mdi-close
+            </v-icon>
+          </template>
+          <template v-slot:item.img="{ item }">
+            <v-avatar
+              size="44px"
+              rounded
             >
-              {{ item.status }}
-            </v-chip>
+              <img
+                :src="item.img"
+              >
+            </v-avatar>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              class="mr-4"
               small
+              class="mr-3"
+              @click="editTegs = !editTegs"
             >
-              mdi-clock-time-four-outline
+              mdi-pencil
             </v-icon>
             <v-icon
-              @click="editItem(item)"
+              small
+              @click="deleteItem(item)"
             >
-              mdi-check
+              mdi-delete
             </v-icon>
           </template>
           <template v-slot:no-data>
             <v-btn
               color="primary"
-              small
               @click="initialize"
             >
               Reset
@@ -247,92 +263,197 @@
       </v-col>
     </v-row>
     <v-navigation-drawer
+      v-model="editTegs"
+      absolute
+      right
+      width="512px"
+      temporary
+    >
+      <v-row
+        class="pt-5 text-right mx-3"
+      >
+        <v-col cols="12" class="pb-0" >
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0 mb-6"
+          >Редактор тега
+          </v-subheader>
+          <v-text-field
+            v-model="nameru"
+            :rules="[rules.required, rules.counter]"
+            label="Название (RU)"
+            counter
+            maxlength="191"
+            class="mb-5"
+          ></v-text-field>
+          <v-text-field
+            v-model="nameua"
+            :rules="[rules.required, rules.counter]"
+            label="Название (UA)"
+            counter
+            maxlength="191"
+            class="mb-5"
+          ></v-text-field>
+          <v-text-field
+            v-model="nameen"
+            :rules="[rules.required, rules.counter]"
+            label="Название (EN)"
+            counter
+            maxlength="191"
+            class="mb-5"
+          ></v-text-field>
+          <p class="text--disabled text-start mb-2">
+            Короткое описание
+          </p>
+          <v-textarea
+              color="primary"
+              outlined
+            >
+          </v-textarea>
+          <v-btn
+            depressed
+            outlined
+            color="graylight"
+            large
+            width="33%"
+            class="mr-3"
+          >
+            Отменить
+          </v-btn>
+          <v-btn
+            depressed
+            color="primary"
+            large
+            width="33%"
+          >
+            Сохранить
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-navigation-drawer>
+<!--    <v-navigation-drawer
       v-model="creationSidebar"
       absolute
       right
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 text-right pa-5"
+      <v-row
+        class="pt-5 text-right mx-3"
       >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+        <v-col cols="12" class="pb-0" >
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          >Основная информация
+          </v-subheader>
+          <v-select
+            :items="types"
+            label="Тип"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+          <v-text-field
+            label="Название"
+            outlined
+            background-color="white"
+            hide-details
+            class="mb-3"
+          ></v-text-field>
+          <v-select
+            :items="cities"
+            label="Орагнизатор"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+        </v-col>
+        <v-col
+          cols="6"
+          class="pt-0"
         >
-          Введите данные о клиенте
-        </v-subheader>
-        <v-text-field
-          label="Имя"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-text-field
-          label="Email"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-select
-          :items="types"
-          label="Группа"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-3"
-        ></v-select>
-        <v-text-field
-          label="Телефон"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Пол"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-3"
-        ></v-select>
-        <v-text-field
-          label="Сумма"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Статус"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-7"
-        ></v-select>
-        <v-btn
-          depressed
-          outlined
-          color="graylight"
-          large
-          width="33%"
-          class="mr-3"
+          <v-select
+            :items="cities"
+            label="Город"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+        </v-col>
+        <v-col
+          cols="6"
+          class="pt-0"
         >
-          Отмена
-        </v-btn>
-        <v-btn
-          depressed
-          color="primary"
-          large
-          width="33%"
-        >
-          Создать
-        </v-btn>
-      </v-col>
-    </v-navigation-drawer>
+          <v-select
+            :items="cities"
+            label="Категория"
+            background-color="white"
+            outlined
+            hide-details
+            class="mb-3"
+          ></v-select>
+        </v-col>
+      </v-row>
+      <v-row
+        class="text-right mx-3"
+      >
+        <v-col cols="12">
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          >Место проведения
+          </v-subheader>
+          <v-text-field
+            prepend-inner-icon="mdi-magnify"
+            color="graylight"
+            class="mt-5"
+            label="Поиск..."
+            outlined
+          >
+          </v-text-field>
+        </v-col>
+      </v-row>
+      <v-row class="text-right mx-3">
+        <v-col cols="12">
+          <v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          ><v-subheader
+            class="font-weight-medium
+            text-lg-h6
+            pl-0"
+          >Основная информация
+          </v-subheader>
+          </v-subheader>
+          <v-btn
+            depressed
+            outlined
+            color="graylight"
+            large
+            width="33%"
+            class="mr-3"
+          >
+            Отменить
+          </v-btn>
+          <v-btn
+            depressed
+            color="primary"
+            large
+            width="33%"
+          >
+            Сохранить
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-navigation-drawer> -->
     <v-dialog v-model="dialogDelete" max-width="500px">
       <v-card>
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -353,13 +474,13 @@ export default {
     return {
       titles: [
         {
-          text: 'Все заказы',
+          text: 'Все теги',
           disabled: false,
           exact: true,
           href: 'breadcrumbs_dashboard',
         },
         {
-          text: 'Выполненые',
+          text: 'Опубликованные',
           disabled: true,
           href: 'breadcrumbs_link_1',
         },
@@ -369,6 +490,7 @@ export default {
           href: 'breadcrumbs_link_2',
         },
       ],
+      editTegs: false,
       creationSidebar: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
@@ -378,45 +500,63 @@ export default {
       selected: [],
       headers: [
         {
-          text: 'Заказ',
-          value: 'order',
-        },
-        {
-          text: 'Клиент ',
-          value: 'client'
-        },
-        {
-          text: 'Дата',
-          value: 'date'
-        },
-        {
           text: 'ID',
           value: 'id',
+        },
+        {
+          icon: 'mdi-image-outline',
+          text: 'Изображение',
+          sortable: false,
+          value: 'img',
+          align: 'center'
+        },
+        {
+          text: 'Слаг',
+          value: 'slag'
+        },
+        {
+          text: 'Название (RU)',
+          value: 'nameru'
+        },
+        {
+          text: 'Название (UA)',
+          value: 'nameua'
+        },
+        {
+          text: 'Название (EN)',
+          value: 'nameen'
+        },
+        {
+          text: 'КОнтекст',
+          value: 'context'
+        },
+        {
+          text: 'ТОп',
+          value: 'top',
         },
         {
           text: 'Статус',
           value: 'status'
         },
         {
-          text: 'Доставка',
-          value: 'delivery'
-        },
-        {
-          text: 'Итого',
-          value: 'sum'
-        },
-        {
-          text: '',
+          text: 'Действия',
           value: 'actions',
           sortable: false,
           align: 'center',
         }
       ],
-      sales: [],
+      events: [],
       editedIndex: -1,
       editedItem: {
       },
       defaultItem: {
+      },
+      nameru: 'Alt тег',
+      nameua: 'Название фотографии',
+      nameen: 'Описание фотографии',
+      rules: {
+        required: value => !!value || 'Required.',
+        counter: value => value.length <= 191 || 'Max 191 characters',
       },
     }
   },
@@ -440,73 +580,45 @@ export default {
   },
 
   methods: {
-    getColor (status) {
-      if (status === 'Оплачен') return 'green'
-      else if (status === 'На рассмотрении') return 'orange'
-      else return 'red'
-    },
     initialize () {
-      this.sales = [
+      this.events = [
         {
-          order: '#400',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'J1c5OulnFm',
-          status: 'Оплачен',
-          delivery: '',
-          sum: '800 грн.',
+          id: 55,
+          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
+          slag: 'greppling',
+          nameru: 'Грэпплинг',
+          nameua: 'Грепплінг',
+          nameen: 'Grappling',
+          context: 'Articles',
+          top: true,
+          status: 'Активно',
         },
         {
-          order: '#401',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'gdjwefgjk',
-          status: 'На рассмотрении',
-          delivery: '',
-          sum: '800 грн.',
-        },
-        {
-          order: '#402',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'bjhrejfrn',
-          status: 'Оплачен',
-          delivery: '',
-          sum: '800 грн.',
-        },
-        {
-          order: '#403',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'rhbjrver',
-          status: 'На рассмотрении',
-          delivery: '',
-          sum: '800 грн.',
-        },
-        {
-          order: '#404',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'vrjerjkkl',
-          status: 'Отклонено',
-          delivery: '',
-          sum: '800 грн.',
+          id: 56,
+          img: 'https://st2.depositphotos.com/1064024/10769/i/600/depositphotos_107694484-stock-photo-little-boy.jpg',
+          slag: 'greppling',
+          nameru: 'Грэпплинг',
+          nameua: 'Грепплінг',
+          nameen: 'Grappling',
+          context: 'Articles',
+          top: false,
+          status: 'Активно',
         },
       ]
     },
 
     editItem (item) {
-      this.$router.push('sales/' + item.id);
+      this.$router.push('events/' + item.id);
     },
 
     deleteItem (item) {
-      this.editedIndex = this.sales.indexOf(item)
+      this.editedIndex = this.events.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.sales.splice(this.editedIndex, 1)
+      this.events.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -528,9 +640,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.sales[this.editedIndex], this.editedItem)
+        Object.assign(this.events[this.editedIndex], this.editedItem)
       } else {
-        this.sales.push(this.editedItem)
+        this.events.push(this.editedItem)
       }
       this.close()
     },

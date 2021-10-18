@@ -195,9 +195,18 @@
                 title: 'Все продукты',
                 link: '/products',
               },
-              { title: 'Атрибуты' },
-              { title: 'Настройки' },
-              { title: 'Категории' },
+              {
+                title: 'Атрибуты',
+                link: '/products-attributes',
+              },
+              {
+                title: 'Настройки',
+                link: '/products-attribute-family',
+              },
+              {
+                title: 'Категории',
+                link: '/products-categories',
+              },
               { title: 'Метки' },
             ],
             title: 'Продукты',
@@ -229,7 +238,10 @@
                 link: '/events',
               },
               { title: 'Категории' },
-              { title: 'Теги' },
+              {
+                title: 'Теги',
+                link: '/events-tags',
+              },
             ],
             title: 'События',
           },

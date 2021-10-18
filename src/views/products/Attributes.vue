@@ -5,17 +5,7 @@
       color="white"
       class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium">Заказы</v-toolbar-title>
-      <v-col cols="12" md="3">
-        <v-text-field
-          append-icon="mdi-magnify"
-          color="graylight"
-          class="ml-5 mt-5"
-          label="Поиск..."
-          single-line
-        >
-        </v-text-field>
-      </v-col>
+      <v-toolbar-title class="font-weight-medium">Атрибуты</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-btn
@@ -30,21 +20,9 @@
         Создать
       </v-btn>
     </v-app-bar>
-    <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
-        >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
-      </v-col>
-    </v-row>
     <v-row
       justify="space-start"
-      class="mx-3"
+      class="mx-3 mt-5"
     >
       <v-col
         cols="3"
@@ -71,35 +49,13 @@
           Применить
         </v-btn>
       </v-col>
-      <v-col
-        cols="6"
-        class="d-flex"
-      >
-        <v-select
-          :items="types"
-          label="Фильтровать по статусу"
-          background-color="white"
-          dense
-          outlined
-          hide-details
-          class="mr-3"
-        ></v-select>
-        <v-select
-          :items="types"
-          label="Фильтровать по дате"
-          background-color="white"
-          dense
-          outlined
-          hide-details
-        ></v-select>
-      </v-col>
     </v-row>
     <v-row>
       <v-col>
         <v-data-table
           v-model="selected"
           :headers="headers"
-          :items="sales"
+          :items="products"
           :single-select="singleSelect"
           item-key="id"
           show-select
@@ -207,37 +163,68 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:item.order="{ item }">
-            <p class="font-weight-medium">
-              {{ item.order }}
-            </p>
-          </template>
-          <template v-slot:item.status="{ item }">
-            <v-chip
-              :color="getColor(item.status)"
-              dark
-              label
+          <template v-slot:item.required="{ item }">
+            <v-icon
+              v-if="item.required"
+              small
             >
-              {{ item.status }}
-            </v-chip>
+              mdi-check
+            </v-icon>
+            <v-icon v-else small>
+              mdi-close
+            </v-icon>
+          </template>
+          <template v-slot:item.unique="{ item }">
+            <v-icon
+              v-if="item.unique"
+              small
+            >
+              mdi-check
+            </v-icon>
+            <v-icon v-else small>
+              mdi-close
+            </v-icon>
+          </template>
+          <template v-slot:item.locbase="{ item }">
+            <v-icon
+              v-if="item.locbase"
+              small
+            >
+              mdi-check
+            </v-icon>
+            <v-icon v-else small>
+              mdi-close
+            </v-icon>
+          </template>
+          <template v-slot:item.chanbase="{ item }">
+            <v-icon
+              v-if="item.chanbase"
+              small
+            >
+              mdi-check
+            </v-icon>
+            <v-icon v-else small>
+              mdi-close
+            </v-icon>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              class="mr-4"
               small
-            >
-              mdi-clock-time-four-outline
-            </v-icon>
-            <v-icon
+              class="mr-4"
               @click="editItem(item)"
             >
-              mdi-check
+              mdi-pencil
+            </v-icon>
+            <v-icon
+              small
+              @click="deleteItem(item)"
+            >
+              mdi-delete
             </v-icon>
           </template>
           <template v-slot:no-data>
             <v-btn
               color="primary"
-              small
               @click="initialize"
             >
               Reset
@@ -246,8 +233,8 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <v-navigation-drawer
-      v-model="creationSidebar"
+    <!-- <v-navigation-drawer
+      v-model="creationSidebarList"
       absolute
       right
       width="512px"
@@ -257,62 +244,27 @@
         class="pt-5 text-right pa-5"
       >
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+          class="font-weight-medium text-lg-h6 pl-0 mb-6"
+          color="graydark"
         >
-          Введите данные о клиенте
+          Семейство атрибутов
         </v-subheader>
         <v-text-field
-          label="Имя"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
+          v-model="title"
+          :rules="[rules.required, rules.counter]"
+          label="Title"
+          counter
+          maxlength="191"
+          class="mb-14"
         ></v-text-field>
         <v-text-field
-          label="Email"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
+          v-model="kod"
+          :rules="[rules.required, rules.counter]"
+          label="Код"
+          counter
+          maxlength="191"
+          class="mb-14"
         ></v-text-field>
-        <v-select
-          :items="types"
-          label="Группа"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-3"
-        ></v-select>
-        <v-text-field
-          label="Телефон"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Пол"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-3"
-        ></v-select>
-        <v-text-field
-          label="Сумма"
-          outlined
-          background-color="white"
-          hide-details
-          class="mb-3"
-        ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Статус"
-          background-color="white"
-          outlined
-          hide-details
-          class="mb-7"
-        ></v-select>
         <v-btn
           depressed
           outlined
@@ -321,7 +273,7 @@
           width="33%"
           class="mr-3"
         >
-          Отмена
+          Отменить
         </v-btn>
         <v-btn
           depressed
@@ -329,10 +281,10 @@
           large
           width="33%"
         >
-          Создать
+          Сохранить
         </v-btn>
       </v-col>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
     <v-dialog v-model="dialogDelete" max-width="500px">
       <v-card>
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -351,25 +303,7 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все заказы',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Выполненые',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
-      creationSidebar: false,
+      creationSidebarList: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
@@ -378,41 +312,45 @@ export default {
       selected: [],
       headers: [
         {
-          text: 'Заказ',
-          value: 'order',
-        },
-        {
-          text: 'Клиент ',
-          value: 'client'
-        },
-        {
-          text: 'Дата',
-          value: 'date'
-        },
-        {
           text: 'ID',
           value: 'id',
         },
         {
-          text: 'Статус',
-          value: 'status'
+          text: 'Код',
+          value: 'kod'
         },
         {
-          text: 'Доставка',
-          value: 'delivery'
+          text: 'Название',
+          value: 'name'
         },
         {
-          text: 'Итого',
-          value: 'sum'
+          text: 'Type',
+          value: 'type',
         },
         {
-          text: '',
+          text: 'Required',
+          value: 'required',
+        },
+        {
+          text: 'Unique',
+          value: 'unique',
+        },
+        {
+          text: 'Locale based	',
+          value: 'locbase',
+        },
+        {
+          text: 'Channel based	',
+          value: 'chanbase',
+        },
+        {
+          text: 'Действия',
           value: 'actions',
           sortable: false,
           align: 'center',
         }
       ],
-      sales: [],
+      products: [],
       editedIndex: -1,
       editedItem: {
       },
@@ -440,73 +378,53 @@ export default {
   },
 
   methods: {
-    getColor (status) {
-      if (status === 'Оплачен') return 'green'
-      else if (status === 'На рассмотрении') return 'orange'
-      else return 'red'
-    },
     initialize () {
-      this.sales = [
+      this.products = [
         {
-          order: '#400',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'J1c5OulnFm',
-          status: 'Оплачен',
-          delivery: '',
-          sum: '800 грн.',
+          id: 81,
+          kod: 'default',
+          name: 'Стандарт',
+          type: 'textarea',
+          required: true,
+          unique: true,
+          locbase: true,
+          chanbase: true,
         },
         {
-          order: '#401',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'gdjwefgjk',
-          status: 'На рассмотрении',
-          delivery: '',
-          sum: '800 грн.',
+          id: 82,
+          kod: 'default',
+          name: 'Стандарт',
+          type: 'textarea',
+          required: true,
+          unique: false,
+          locbase: true,
+          chanbase: false,
         },
         {
-          order: '#402',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'bjhrejfrn',
-          status: 'Оплачен',
-          delivery: '',
-          sum: '800 грн.',
-        },
-        {
-          order: '#403',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'rhbjrver',
-          status: 'На рассмотрении',
-          delivery: '',
-          sum: '800 грн.',
-        },
-        {
-          order: '#404',
-          client: 'игорь манжул',
-          date: '12.01.2021',
-          id: 'vrjerjkkl',
-          status: 'Отклонено',
-          delivery: '',
-          sum: '800 грн.',
+          id: 83,
+          kod: 'default',
+          name: 'Стандарт',
+          type: 'textarea',
+          required: false,
+          unique: true,
+          locbase: false,
+          chanbase: true,
         },
       ]
     },
 
     editItem (item) {
-      this.$router.push('sales/' + item.id);
+      this.$router.push('products-attributes/' + item.id);
     },
 
     deleteItem (item) {
-      this.editedIndex = this.sales.indexOf(item)
+      this.editedIndex = this.products.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.sales.splice(this.editedIndex, 1)
+      this.products.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -528,9 +446,9 @@ export default {
 
     save () {
       if (this.editedIndex > -1) {
-        Object.assign(this.sales[this.editedIndex], this.editedItem)
+        Object.assign(this.products[this.editedIndex], this.editedItem)
       } else {
-        this.sales.push(this.editedItem)
+        this.products.push(this.editedItem)
       }
       this.close()
     },
