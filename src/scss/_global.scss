@@ -144,8 +144,8 @@ tbody {
   display: grid;
   grid-gap: 12px;
 
-  &.cols-3-3-2-4 {
-    grid-template-columns: 3fr 3fr 2fr 4fr;
+  &.cols-3-2-4 {
+    grid-template-columns: 3fr 2fr 4fr;
   }
 
   &.cols-2-3-3 {
@@ -156,12 +156,24 @@ tbody {
     grid-template-columns: 2fr 3fr 3fr 3fr;
   }
 
+  &.cols-3-3-2-4 {
+    grid-template-columns: 3fr 3fr 2fr 4fr;
+  }
+
   &.cols-3-2-2 {
     grid-template-columns: 3fr 2fr 2fr;
   }
 
   &.cols-2-2-3 {
     grid-template-columns: 2fr 2fr 3fr;
+  }
+
+  &.cols-1-2 {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  &.cols-2-2 {
+    grid-template-columns: 2fr 2fr;
   }
 }
 

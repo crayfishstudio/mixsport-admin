@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="create">
+  <div class="edit">
     <v-app-bar
       app
       color="white"
@@ -32,7 +32,6 @@
         depressed
         color="primary"
         class="font-weight-medium"
-        @click="creationSidebar = !creationSidebar"
       >
         сохранить
       </v-btn>

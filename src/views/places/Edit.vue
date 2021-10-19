@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="create">
+  <div class="edit">
     <v-app-bar
       app
       color="white"

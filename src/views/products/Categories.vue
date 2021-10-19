@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="list">
+  <div class="categories">
     <v-app-bar
       app
       color="white"
@@ -16,7 +16,6 @@
         >
         </v-text-field>
       </v-col>
-
       <v-spacer></v-spacer>
       <v-btn
         depressed
@@ -31,7 +30,7 @@
       </v-btn>
     </v-app-bar>
     <v-row
-      class="d-flex justify-start mx-3 mt-5"
+      class="mx-3 mt-5"
     >
       <v-col
         cols="5"
@@ -51,7 +50,7 @@
         outlined
         color="graylight"
         background-color="white"
-        class="bg-white mr-7 "
+        class="bg-white mr-7"
         height="40px"
         small
         >
@@ -300,8 +299,8 @@
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+          <v-btn color="graylight" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm">OK</v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
@@ -315,7 +314,6 @@ export default {
     return {
       creationSidebarList: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,
@@ -483,17 +481,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.name-col {
-  small {
-    display: block;
-    font-size: 12px;
-    line-height: 14px;
-    color: $m-grey;
-  }
 
-  span {
-    display: block;
-    margin: 2px 0;
-  }
-}
 </style>

@@ -67,8 +67,7 @@
       </v-col>
     </v-row>
     <v-row
-      justify="space-start"
-      class="mx-3"
+      class="justify-start mx-3"
     >
       <v-col
         cols="3"
@@ -240,7 +239,7 @@
             </v-toolbar>
           </template>-->
           <template v-slot:header.img="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
@@ -280,14 +279,14 @@
           <template v-slot:item.actions="{ item }">
             <v-icon
               small
-              class="mr-2"
+              class="mr-3"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
               small
-              class="mr-2"
+              class="mr-3"
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -453,8 +452,8 @@
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+          <v-btn color="graylight" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm">OK</v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>

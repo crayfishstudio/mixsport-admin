@@ -53,8 +53,7 @@
       </v-col>
     </v-row>
     <v-row
-      justify="space-start"
-      class="mx-3"
+      class="justify-start mx-3"
     >
       <v-col
         cols="3"
@@ -83,7 +82,7 @@
       </v-col>
       <v-col
         cols="6"
-        class="d-flex"
+        class="d-grid cols-2-2"
       >
         <v-select
           :items="types"
@@ -226,14 +225,6 @@
               {{ item.status }}
             </v-chip>
           </template>
-          <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
-              mdi-check
-            </v-icon>
-            <v-icon v-else small>
-              mdi-close
-            </v-icon>
-          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
               small
@@ -358,8 +349,8 @@
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+          <v-btn color="graylight" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm">OK</v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="create">
+  <div class="edit">
     <v-app-bar
       app
       color="white"
@@ -30,7 +30,6 @@
         Добавить новый заказ
       </v-btn>
     </v-app-bar>
-
 
   </div>
 </template>

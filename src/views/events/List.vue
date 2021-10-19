@@ -1,5 +1,5 @@
 events<template lang="html">
-  <div class="list">
+  <div class="events">
     <v-app-bar
       app
       color="white"
@@ -16,7 +16,6 @@ events<template lang="html">
         >
         </v-text-field>
       </v-col>
-
       <v-spacer></v-spacer>
       <v-btn
         depressed
@@ -43,12 +42,11 @@ events<template lang="html">
       </v-col>
     </v-row>
     <v-row
-      justify="space-between"
-      class="mx-3"
+      class="d-flex justify-start mx-3"
     >
       <v-col
-        cols="3"
-        class="d-flex"
+        cols="5"
+        class="d-flex mr-10"
       >
         <v-select
           :items="types"
@@ -60,31 +58,31 @@ events<template lang="html">
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          outlined
+          color="graylight"
+          class="bg-white mr-5"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
-      </v-col>
-      <v-col
-        cols="7"
-        class="d-grid cols-3-3-2-4"
-      >
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          outlined
+          color="graylight"
+          background-color="white"
+          class="bg-white"
+          height="40px"
+          small
         >
           Категории
         </v-btn>
+      </v-col>
+      <v-col
+        cols="6"
+        class="d-grid cols-3-2-4"
+      >
         <v-select
           :items="types"
           label="Категория"
@@ -230,35 +228,8 @@ events<template lang="html">
             </v-icon>
           </template>
           <template v-slot:header.img="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:header.verified="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
-              {{ header.icon }}
-            </v-icon>
-          </template>
-          <template v-slot:item.name="{ item }">
-            <div class="name-col">
-              <small>{{ item.kind }}</small>
-              <span>{{ item.name }}</span>
-            </div>
-          </template>
-          <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
-              mdi-check
-            </v-icon>
-            <v-icon v-else small>
-              mdi-close
-            </v-icon>
-          </template>
-          <template v-slot:item.verified="{ item }">
-            <v-icon v-if="item.verified" small>
-              mdi-check
-            </v-icon>
-            <v-icon v-else small>
-              mdi-close
             </v-icon>
           </template>
           <template v-slot:item.img="{ item }">
@@ -271,17 +242,23 @@ events<template lang="html">
               >
             </v-avatar>
           </template>
+          <template v-slot:item.name="{ item }">
+            <div class="name-col">
+              <small>{{ item.kind }}</small>
+              <span>{{ item.name }}</span>
+            </div>
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
               small
-              class="mr-2"
+              class="mr-3"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
               small
-              class="mr-2"
+              class="mr-3"
             >
               mdi-clock-outline
             </v-icon>
@@ -430,8 +407,8 @@ events<template lang="html">
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+          <v-btn color="graylight" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm">OK</v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
@@ -468,7 +445,7 @@ export default {
       ],
       creationSidebar: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      cities: ['Тип', 'Структура', 'Форма'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,

@@ -1,5 +1,5 @@
 events<template lang="html">
-  <div class="list">
+  <div class="tegs">
     <v-app-bar
       app
       color="white"
@@ -214,7 +214,7 @@ events<template lang="html">
             </v-toolbar>
           </template>-->
           <template v-slot:header.img="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
@@ -459,8 +459,8 @@ events<template lang="html">
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-          <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+          <v-btn color="graylight" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm">OK</v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
       </v-card>
@@ -493,7 +493,6 @@ export default {
       editTegs: false,
       creationSidebar: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,
@@ -651,17 +650,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.name-col {
-  small {
-    display: block;
-    font-size: 12px;
-    line-height: 14px;
-    color: $m-grey;
-  }
 
-  span {
-    display: block;
-    margin: 2px 0;
-  }
-}
 </style>

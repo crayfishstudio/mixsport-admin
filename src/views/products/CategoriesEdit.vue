@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="create">
+  <div class="categories-edit">
     <v-app-bar
       app
       color="white"
@@ -44,7 +44,7 @@
 
 <script>
   export default {
-    
+
   }
 </script>
 
