@@ -51,11 +51,25 @@
         {{ item }}
       </v-tab>
     </v-tabs>
-
+    <v-tabs-items v-model="tab">
+      <v-tab-item>
+        <Overview/>
+      </v-tab-item>
+      <v-tab-item>
+        <Orders/>
+      </v-tab-item>
+      <v-tab-item>
+        <Certificates/>
+      </v-tab-item>
+    </v-tabs-items>
   </div>
 </template>
 
 <script>
+import Overview from '../../components/products/Overview.vue'
+import Orders from '../../components/products/Orders.vue'
+import Certificates from '../../components/products/Certificates.vue'
+
 export default {
   data: () => ({
     tab: null,
@@ -65,9 +79,16 @@ export default {
       'Погашение сертификатов',
     ],
   }),
+  components: {
+    Overview,
+    Orders,
+    Certificates,
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.edit {
+  padding: 0px;
+}
 </style>

@@ -180,3 +180,7 @@ tbody {
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
 }
+
+.v-expansion-panel-content__wrap {
+  padding: 0px !important;
+}
