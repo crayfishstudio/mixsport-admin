@@ -134,7 +134,7 @@
     </v-navigation-drawer>
 
     <v-main>
-      <v-container fluid>
+      <v-container>
         <transition name="fade">
           <router-view></router-view>
         </transition>

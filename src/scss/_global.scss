@@ -175,12 +175,37 @@ tbody {
   &.cols-2-2 {
     grid-template-columns: 2fr 2fr;
   }
+
+  &.cols-3-2 {
+    grid-template-columns: 3fr 2fr;
+  }
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
   opacity: 0;
 }
 
+.v-toolbar__content {
+  border-bottom: 1px solid #ECECEC;
+}
+
+.v-expansion-panel-header {
+  padding: 0px 20px !important;
+}
+
 .v-expansion-panel-content__wrap {
   padding: 0px !important;
+}
+
+.file-input label {
+  font-size: 12px;
+  line-height: 27px;
+}
+
+.tab-subheader {
+  font-weight: 600 !important;
+  font-size: 16px;
+  line-height: 19px;
+  text-transform: uppercase;
+  color: $grey;
 }

@@ -3,10 +3,8 @@
     <v-app-bar
       app
       color="white"
-      class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium"> Продукт  № {{ $route.params.id }}</v-toolbar-title>
-
+      <v-toolbar-title class="font-weight-medium px-1"> Продукт  № {{ $route.params.id }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         depressed
@@ -35,22 +33,23 @@
       >
         сохранить
       </v-btn>
-    </v-app-bar>
-    <v-tabs
-      v-model="tab"
-      align-with-title
-      class="px-0"
-    >
-      <v-tabs-slider></v-tabs-slider>
+      <template v-slot:extension>
+        <v-tabs
+          v-model="tab"
+          class="px-5"
+        >
+          <v-tabs-slider></v-tabs-slider>
 
-      <v-tab
-        v-for="item in tabs"
-        :key="item"
-        :to="item.component"
-      >
-        {{ item }}
-      </v-tab>
-    </v-tabs>
+          <v-tab
+            v-for="item in tabs"
+            :key="item"
+            :to="item.component"
+          >
+            {{ item }}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-app-bar>
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <Overview/>
