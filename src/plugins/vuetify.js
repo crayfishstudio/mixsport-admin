@@ -13,6 +13,7 @@ export default new Vuetify({
         graydark: '#2B2B2B',
         graylight: '#767676',
         white: '#FFF',
+        grey: '#6C6C6C',
         secondary: colors.red.lighten4, // #FFCDD2
         accent: colors.indigo.base, // #3F51B5
       },

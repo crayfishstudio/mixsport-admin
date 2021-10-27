@@ -42,47 +42,43 @@
 
           <v-tab
             v-for="item in tabs"
-            :key="item"
-            :to="item.component"
+            :key="item.id"
+            :to="item.link"
           >
-            {{ item }}
+            {{ item.title }}
           </v-tab>
         </v-tabs>
       </template>
     </v-app-bar>
     <v-tabs-items v-model="tab">
-      <v-tab-item>
-        <Overview/>
-      </v-tab-item>
-      <v-tab-item>
-        <Orders/>
-      </v-tab-item>
-      <v-tab-item>
-        <Certificates/>
-      </v-tab-item>
+      <router-view></router-view>
     </v-tabs-items>
   </div>
 </template>
 
 <script>
-import Overview from '../../components/products/Overview.vue'
-import Orders from '../../components/products/Orders.vue'
-import Certificates from '../../components/products/Certificates.vue'
 
 export default {
   data: () => ({
     tab: null,
     tabs: [
-      'Общая информация',
-      'Заказы',
-      'Погашение сертификатов',
+      {
+        id: 1,
+        title: 'Общая информация',
+        link: 'overview',
+      },
+      {
+        id: 2,
+        title: 'Заказы',
+        link:  'orders',
+      },
+      {
+        id: 3,
+        title: 'Погашение сертификатов',
+        link: 'certificates',
+      },
     ],
   }),
-  components: {
-    Overview,
-    Orders,
-    Certificates,
-  }
 }
 </script>
 

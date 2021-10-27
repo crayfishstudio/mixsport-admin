@@ -47,8 +47,25 @@ const routes = [
   },
   {
     path: '/products/:id',
-    name: 'Products Edit',
-    component: () => import('../views/products/Edit.vue')
+    name: 'Product Edit',
+    component: () => import('../views/products/Edit.vue'),
+    children: [
+      {
+        path: 'overview',
+        name: 'Product Overview',
+        component: () => import('../components/products/Overview.vue')
+      },
+      {
+        path: 'orders',
+        name: 'Product Orders',
+        component: () => import('../components/products/Orders.vue')
+      },
+      {
+        path: 'certificates',
+        name: 'Product Certificates',
+        component: () => import('../components/products/Certificates.vue')
+      },
+    ],
   },
   {
     path: '/products-attributes',

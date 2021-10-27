@@ -3,6 +3,7 @@ $graydark: #2B2B2B;
 $graylight: #767676;
 $white: #FFF;
 $grey: #6C6C6C;
+$dirtywhite: #FAFAFA;
 
 .tooltip {
   display: block !important;
@@ -179,6 +180,25 @@ tbody {
   &.cols-3-2 {
     grid-template-columns: 3fr 2fr;
   }
+
+  &.cols-3-2-3-2-2 {
+    grid-template-columns: 3fr 2fr 3fr 2fr 2fr;
+  }
+
+  &.cols-2-2-2-1-2-1 {
+    grid-template-columns: 2fr 2fr 2fr 1fr 2fr 1fr;
+  }
+
+  &.cols-4-2-2 {
+    grid-template-columns: 4fr 2fr 2fr;
+  }
+}
+
+.text-filter {
+  font-size: 16px;
+  line-height: 19px;
+  color: $grey;
+  margin: 0px;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
@@ -204,8 +224,25 @@ tbody {
 
 .tab-subheader {
   font-weight: 600 !important;
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 19px;
   text-transform: uppercase;
   color: $grey;
+}
+
+.tabs-subheader {
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  line-height: 15px;
+  text-transform: uppercase;
+  color: $grey;
+}
+
+.card-products {
+  background-color: $dirtywhite !important;
+  color: $graydark !important;
+  text-align: center !important;
+  border-radius: 10px !important;
+  display: flex !important;
+  flex-wrap: nowrap;
 }

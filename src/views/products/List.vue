@@ -55,19 +55,40 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="5"
+        align="center"
+        justify="space-around"
+        class="mt-3"
+      >
+        <v-btn
+          text
+          color="graydark"
+          depressed
+          class="text-capitalize"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все продукты
+        </v-btn>
+        <v-btn
+          text
+          color="graydark"
+          plain
+          class="text-capitalize"
+        >
+          Опубликованные
+        </v-btn>
+        <v-btn
+          text
+          color="graydark"
+          plain
+          class="text-capitalize"
+        >
+          Черновики
+        </v-btn>
       </v-col>
     </v-row>
     <v-row
-      class="justify-start mx-3"
+      class="justify-start align-center mx-3"
     >
       <v-col
         cols="3"
@@ -98,7 +119,7 @@
         cols="7"
         class="d-grid cols-2-3-3-3"
       >
-        <v-subheader>Фильтровать:</v-subheader>
+        <p class="text-filter">Фильтровать:</p>
         <v-select
           :items="types"
           label="по категории"
@@ -269,23 +290,21 @@
             </v-chip>
           </template>
           <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
+            <v-icon v-if="item.top">
               mdi-star
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-star-outline
             </v-icon>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
               class="mr-3"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
               class="mr-3"
               @click="deleteItem(item)"
             >
@@ -316,7 +335,7 @@
       temporary
     >
       <v-col
-        class="pt-5 text-right pa-5"
+        class="pt-5 pa-5"
       >
         <v-subheader
           class="font-weight-medium text-lg-h6 pl-0 mb-4"
@@ -351,29 +370,15 @@
             Создать
           </v-btn>
         </div>
-        <div class="mb-12">
-          <v-checkbox
-            v-model="checkbox"
-            label="Теніс"
-            color="red"
-            value="tennis"
-            hide-details
-          >
-          </v-checkbox>
-          <v-checkbox
-            v-model="checkbox"
-            label="Волейбол"
-            color="red"
-            value="volleyball"
-            hide-details
-          ></v-checkbox>
-          <v-checkbox
-            v-model="checkbox"
-            label="Футбол"
-            color="red"
-            value="football"
-            hide-details
-          ></v-checkbox>
+        <div class="mb-10">
+          <v-treeview
+            selectable
+            selected-color="primary"
+            :items="categoryItems"
+            dense
+            open-all
+            expand-icon="mdi-chevron-down"
+          ></v-treeview>
         </div>
         <v-btn
           depressed
@@ -465,23 +470,29 @@
 export default {
   data() {
     return {
-      checkbox: ['tennis', 'volleyball', 'football'],
-      titles: [
+      categoryItems: [
         {
-          text: 'Все продукты',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
+          id: 1,
+          name: 'Спорт',
+          children: [
+            { id: 2, name: 'Теніс' },
+            { id: 3, name: 'Волейбол' },
+          ],
         },
         {
-          text: 'Опубликованные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
+          id: 4,
+          name: 'Спорт клуб',
+          children: [
+            { id: 5, name: 'Тренадерний зал' },
+            { id: 6, name: 'Аеробіка' },
+          ],
         },
         {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
+          id: 7,
+          name: 'Спорт',
+          children: [
+            { id: 8, name: 'Спорт' },
+          ],
         },
       ],
       creationCategoryEditor: false,
@@ -575,7 +586,7 @@ export default {
   methods: {
     getColor (stocks) {
       if (stocks === 'В наличии') return 'green'
-      else if (stocks === 'Нет на складе') return 'red'
+      else if (stocks === 'Нет на складе') return 'primary'
       else return 'orange'
     },
     initialize () {
@@ -626,7 +637,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('products/' + item.id);
+      this.$router.push('products/' + item.id + '/overview');
     },
 
     deleteItem (item) {
