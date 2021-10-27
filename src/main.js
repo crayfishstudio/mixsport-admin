@@ -3,9 +3,14 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './router'
 import VTooltip from 'v-tooltip'
+import VueQuillEditor from 'vue-quill-editor'
+
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+
 
 Vue.use(VTooltip)
-
+Vue.use(VueQuillEditor, /* { default global options } */)
 Vue.config.productionTip = false
 
 new Vue({
