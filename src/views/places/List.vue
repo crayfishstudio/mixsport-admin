@@ -32,52 +32,45 @@
     </v-app-bar>
     <v-row>
       <v-col
-        cols="7"
-        align="center"
-        justify="space-around"
-        class="mt-3"
+        cols="12"
+        class="pa-0 py-3"
       >
         <v-btn
           text
-          color="graydark"
           depressed
-          class="text-capitalize"
+          class="categories"
         >
-          Все места
+          Все места (56)
         </v-btn>
         <v-btn
           text
-          color="graydark"
           plain
-          class="text-capitalize"
+          class="categories"
         >
-          Опубликованные
+          Опубликованные (49)
         </v-btn>
         <v-btn
           text
-          color="graydark"
           plain
-          class="text-capitalize"
+          class="categories"
         >
-          Ожидает подтверждения
+          Ожидает подтверждения (6)
         </v-btn>
         <v-btn
           text
-          color="graydark"
           plain
-          class="text-capitalize"
+          class="categories"
         >
-          Черновики
+          Черновики (0)
         </v-btn>
       </v-col>
     </v-row>
     <v-row
-      justify="space-between"
-      class="mx-3"
+      class="px-2"
     >
       <v-col
         cols="3"
-        class="d-flex"
+        class="d-flex mr-11"
       >
         <v-select
           :items="types"
@@ -90,10 +83,7 @@
         ></v-select>
         <v-btn
         depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
+        class="btn-main"
         height="40px"
         small
         >
@@ -102,7 +92,7 @@
       </v-col>
       <v-col
         cols="8"
-        class="d-grid cols-3-3-2-4"
+        class="d-grid cols-2-2-2-3"
       >
         <v-select
           :items="types"
@@ -138,7 +128,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -147,7 +137,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -252,17 +242,17 @@
             </v-toolbar>
           </template>-->
           <template v-slot:header.rating="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
           <template v-slot:header.img="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
           <template v-slot:header.verified="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
@@ -604,7 +594,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('places/' + item.id);
+      this.$router.push('places/' + item.id + '/overview');
     },
 
     deleteItem (item) {

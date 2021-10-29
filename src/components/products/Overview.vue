@@ -489,7 +489,7 @@
                                 </v-btn>
                               </v-time-picker>
                             </v-dialog>
-                            <div>
+                            <div class="d-flex justify-start">
                               <v-btn
                                 fab
                                 small
@@ -811,9 +811,7 @@
                           <v-col class="pl-0">
                             <v-btn
                               depressed
-                              outlined
-                              color="graylight"
-                              class="bg-white"
+                              class="btn-main mr-3"
                               height="40px"
                               small
                             >
@@ -930,9 +928,7 @@
                           <v-col class="pl-0">
                             <v-btn
                               depressed
-                              outlined
-                              color="graylight"
-                              class="bg-white"
+                              class="btn-main mr-3"
                               height="40px"
                               small
                             >
@@ -1268,14 +1264,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -1370,14 +1366,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -1472,14 +1468,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -1574,14 +1570,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -1676,14 +1672,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -1778,14 +1774,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -1880,14 +1876,14 @@
                       </v-time-picker>
                     </v-dialog>
                     <v-btn
-                      class="mx-2"
                       fab
-                      dark
                       small
-                      color="primary"
+                      color="graylightsecond"
+                      depressed
+                      class="ml-2"
                     >
-                      <v-icon dark>
-                        mdi-minus
+                      <v-icon color="grey">
+                        mdi-plus
                       </v-icon>
                     </v-btn>
                   </div>
@@ -2070,9 +2066,8 @@
                   dense
                 ></v-text-field>
                 <v-btn
-                  outlined
-                  color="graylight"
-                  class="bg-white"
+                  depressed
+                  class="btn-main"
                   small
                   height="100%"
                 >

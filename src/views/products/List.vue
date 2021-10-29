@@ -20,9 +20,7 @@
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -31,11 +29,10 @@
           mdi-chevron-down
         </v-icon>
       </v-btn>
+
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
         @click="creationCategoryEditor = !creationCategoryEditor"
@@ -68,7 +65,6 @@
         </v-btn>
         <v-btn
           text
-          color="graydark"
           plain
           class="categories"
         >
@@ -76,7 +72,6 @@
         </v-btn>
         <v-btn
           text
-          color="graydark"
           plain
           class="categories"
         >
@@ -100,10 +95,7 @@
         ></v-select>
         <v-btn
         depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
+        class="btn-main"
         height="40px"
         small
         >
@@ -348,19 +340,17 @@
           </v-text-field>
           <v-btn
             depressed
-            outlined
-            color="graylight"
-            class="bg-white"
+            class="btn-main"
             height="56px"
+            small
           >
             Создать
           </v-btn>
           <v-btn
             depressed
-            outlined
-            color="graylight"
-            class="bg-white"
+            class="btn-main"
             height="56px"
+            small
           >
             Создать
           </v-btn>
@@ -386,8 +376,7 @@
         </v-btn>
         <v-btn
           depressed
-          outlined
-          color="graylight"
+          class="btn-main"
           large
           width="33%"
         >
@@ -429,11 +418,9 @@
         ></v-text-field>
         <v-btn
           depressed
-          outlined
-          color="graylight"
+          class="btn-main mr-3"
           large
           width="33%"
-          class="mr-3"
         >
           Отмена
         </v-btn>

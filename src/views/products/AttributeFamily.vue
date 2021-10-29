@@ -20,11 +20,11 @@
       </v-btn>
     </v-app-bar>
     <v-row
-      class="mx-3 mt-5"
+      class="pa-2"
     >
       <v-col
         cols="3"
-        class="d-flex mr-8"
+        class="d-flex"
       >
         <v-select
           :items="types"
@@ -48,7 +48,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -57,7 +57,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -164,25 +164,22 @@
           <template v-slot:item.status="{ item }">
             <v-icon
               v-if="item.status"
-              small
               @click="creationSidebarList = !creationSidebarList"
             >
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-4"
+              class="mr-5"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete

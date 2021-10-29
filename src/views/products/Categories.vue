@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="categories">
+  <div class="categories-list">
     <v-app-bar
       app
       color="white"
@@ -30,7 +30,7 @@
       </v-btn>
     </v-app-bar>
     <v-row
-      class="mx-3 mt-5"
+      class="pa-2"
     >
       <v-col
         cols="5"
@@ -69,7 +69,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -78,7 +78,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1"
         >
           <!--<template v-slot:top>
             <v-toolbar

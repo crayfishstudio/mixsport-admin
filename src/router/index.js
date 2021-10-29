@@ -140,7 +140,49 @@ const routes = [
   {
     path: '/places/:id',
     name: 'Place Edit',
-    component: () => import('../views/places/Edit.vue')
+    component: () => import('../views/places/Edit.vue'),
+    children: [
+      {
+        path: 'overview',
+        name: 'Places Overview',
+        component: () => import('../components/places/Overview.vue')
+      },
+      {
+        path: 'photo',
+        name: 'Places Photo',
+        component: () => import('../components/places/Photo.vue')
+      },
+      {
+        path: 'services',
+        name: 'Places Services',
+        component: () => import('../components/places/Services.vue')
+      },
+      {
+        path: 'poster',
+        name: 'Places Poster',
+        component: () => import('../components/places/Poster.vue')
+      },
+      {
+        path: 'reviews',
+        name: 'Places Reviews',
+        component: () => import('../components/places/Reviews.vue')
+      },
+      {
+        path: 'tours',
+        name: 'Places Tours',
+        component: () => import('../components/places/Tours.vue')
+      },
+      {
+        path: 'pelatedplaces',
+        name: 'Places Pelatedplaces',
+        component: () => import('../components/places/Pelatedplaces.vue')
+      },
+      {
+        path: 'files',
+        name: 'Places Files',
+        component: () => import('../components/places/Files.vue')
+      },
+    ],
   },
   {
     path: '/articles',

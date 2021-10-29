@@ -1,28 +1,54 @@
 <template lang="html">
-  <div class="edit">
+  <div class="edit-places">
     <v-app-bar
       app
       color="white"
-      class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium"> Локация № {{ $route.params.id }}</v-toolbar-title>
-    </v-app-bar>
-    <v-tabs
-      v-model="tab"
-      align-with-title
-      class="px-0"
-    >
-      <v-tabs-slider></v-tabs-slider>
-
-      <v-tab
-        v-for="item in tabs"
-        :key="item"
-        :to="item.component"
+      <v-toolbar-title class="font-weight-medium px-1"> Локация № {{ $route.params.id }}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        depressed
+        class="btn-main mr-3"
+        height="36px"
+        small
       >
-        {{ item }}
-      </v-tab>
-    </v-tabs>
+        Удалить
+      </v-btn>
+      <v-btn
+        depressed
+        class="btn-main mr-3"
+        height="36px"
+        small
+      >
+        Посмотреть
+      </v-btn>
+      <v-btn
+        depressed
+        color="primary"
+        class="font-weight-medium"
+      >
+        сохранить
+      </v-btn>
+      <template v-slot:extension>
+        <v-tabs
+          v-model="tab"
+          class="px-5"
+        >
+          <v-tabs-slider></v-tabs-slider>
 
+          <v-tab
+            v-for="item in tabs"
+            :key="item.id"
+            :to="item.link"
+          >
+            {{ item.title }}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-app-bar>
+    <v-tabs-items v-model="tab">
+      <router-view></router-view>
+    </v-tabs-items>
   </div>
 </template>
 
@@ -31,19 +57,53 @@
     data: () => ({
       tab: null,
       tabs: [
-        'Общая информация',
-        'Фото',
-        'Услуги',
-        'Афиша',
-        'Отзывы',
-        '3D туры',
-        'Связанные места',
-        'Файлы',
+        {
+          id: 1,
+          title: 'Общая информация',
+          link: 'overview',
+        },
+        {
+          id: 2,
+          title: 'Фото',
+          link:  'photo',
+        },
+        {
+          id: 3,
+          title: 'Услуги',
+          link: 'services',
+        },
+        {
+          id: 4,
+          title: 'Афиша',
+          link: 'poster',
+        },
+        {
+          id: 5,
+          title: 'Отзывы',
+          link: 'reviews',
+        },
+        {
+          id: 6,
+          title: '3D туры',
+          link: 'tours',
+        },
+        {
+          id: 7,
+          title: 'Связанные места',
+          link: 'pelatedplaces',
+        },
+        {
+          id: 8,
+          title: 'Файлы',
+          link: 'files',
+        },
       ],
     }),
   }
 </script>
 
 <style lang="scss" scoped>
-
+.edit-places {
+  padding: 0px;
+}
 </style>

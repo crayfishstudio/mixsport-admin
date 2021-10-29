@@ -172,8 +172,8 @@ $dirtywhite: #FAFAFA;
     grid-template-columns: 2fr 3fr 3fr 3fr;
   }
 
-  &.cols-3-3-2-4 {
-    grid-template-columns: 3fr 3fr 2fr 4fr;
+  &.cols-2-2-2-3 {
+    grid-template-columns: 2fr 2fr 2fr 3fr;
   }
 
   &.cols-3-2-2 {
@@ -270,4 +270,18 @@ $dirtywhite: #FAFAFA;
 
 .bordered {
   border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.btn-main {
+  font-size: 14px;
+  line-height: 16px !important;
+  font-weight: 600 !important;
+  color: $grey !important;
+  border: 2px solid $mgrey;
+  background-color: $white !important;
+}
+
+.btn-main:hover {
+  background-color: $mgrey !important;
+  color: $white !important;
 }

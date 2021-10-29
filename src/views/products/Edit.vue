@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="edit">
+  <div class="edit-products">
     <v-app-bar
       app
       color="white"
@@ -8,9 +8,7 @@
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -18,9 +16,7 @@
       </v-btn>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -83,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.edit {
+.edit-products {
   padding: 0px;
 }
 </style>
