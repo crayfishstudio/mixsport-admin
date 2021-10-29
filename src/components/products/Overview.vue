@@ -49,21 +49,11 @@
         <!--Налаштування товару-->
           <v-expansion-panel>
             <v-expansion-panel-header >
-              <v-col class="d-grid cols-2-2 pa-0" cols="6">
                 <v-subheader
                   class="tab-subheader mr-7"
                 >
                   Настройки товара
                 </v-subheader>
-                <v-select
-                  :items="subheaderSelect"
-                  label="Вибір виду товару"
-                  hide-details
-                  dense
-                  small
-                  class="my-2"
-                ></v-select>
-              </v-col>
               <template v-slot:actions>
                 <v-icon >
                   $expand
@@ -100,9 +90,14 @@
                       ></v-text-field>
                     </v-col>
                   </v-row>
-                  <v-expansion-panels class="mb-7" v-model="panel3" multiple>
+                  <v-expansion-panels
+                    class="mb-7"
+                    v-model="panel3"
+                    multiple
+                    flat
+                  >
                     <!-- Дати розпродажу -->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -116,7 +111,7 @@
                         </template>
                       </v-expansion-panel-header>
                       <v-divider></v-divider>
-                      <v-expansion-panel-content class="px-5">
+                      <v-expansion-panel-content class="px-5 pb-5">
                         <v-row>
                           <v-col cols="5">
                             <v-subheader
@@ -136,7 +131,7 @@
                         <v-row>
                           <v-col
                             cols="12"
-                            class="d-grid cols-3-2-3-2-2"
+                            class="d-grid cols-3-2-3-2-2 pt-0"
                           >
                             <!-- Тут дата-1 -->
                             <v-dialog
@@ -146,15 +141,19 @@
                               persistent
                               width="290px"
                               title-date-format
+                              input="string"
                             >
                               <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
                                   v-model="date"
-                                  label="Picker in dialog"
-                                  prepend-icon="mdi-calendar"
+                                  prepend-inner-icon="mdi-calendar"
                                   readonly
                                   v-bind="attrs"
                                   v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                  color="mgrey"
                                 ></v-text-field>
                               </template>
                               <v-date-picker
@@ -193,6 +192,8 @@
                                   v-bind="attrs"
                                   v-on="on"
                                   hide-details
+                                  outlined
+                                  dense
                                 ></v-text-field>
                               </template>
                               <v-time-picker
@@ -217,12 +218,306 @@
                                 </v-btn>
                               </v-time-picker>
                             </v-dialog>
+                            <!-- Тут дата-2 -->
+                            <v-dialog
+                              ref="dialog2"
+                              v-model="saleday2"
+                              :return-value.sync="date2"
+                              persistent
+                              width="290px"
+                              title-date-format
+                              input="string"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="date2"
+                                  prepend-inner-icon="mdi-calendar"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                ></v-text-field>
+                              </template>
+                              <v-date-picker
+                                v-model="date2"
+                                scrollable
+                              >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="saleday2 = false"
+                                >
+                                  Cancel
+                                </v-btn>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="$refs.dialog2.save(date2)"
+                                >
+                                  OK
+                                </v-btn>
+                              </v-date-picker>
+                            </v-dialog>
+                            <!-- Тут година-2 -->
+                            <v-dialog
+                              ref="saletime2"
+                              v-model="menu16"
+                              :return-value.sync="time16"
+                              persistent
+                              width="290px"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="time16"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                ></v-text-field>
+                              </template>
+                              <v-time-picker
+                                v-if="menu16"
+                                v-model="time16"
+                                full-width
+                              >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="menu16 = false"
+                                >
+                                  Cancel
+                                </v-btn>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="$refs.saletime2.save(time16)"
+                                >
+                                  OK
+                                </v-btn>
+                              </v-time-picker>
+                            </v-dialog>
+                            <v-btn
+                              fab
+                              small
+                              color="graylightsecond"
+                              depressed
+                              class="mr-3"
+                            >
+                              <v-icon color="grey">
+                                mdi-plus
+                              </v-icon>
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                        <v-row>
+                          <v-col
+                            cols="12"
+                            class="d-grid cols-3-2-3-2-2"
+                          >
+                            <!-- Тут дата-3 -->
+                            <v-dialog
+                              ref="dialog3"
+                              v-model="saleday3"
+                              :return-value.sync="date3"
+                              persistent
+                              width="290px"
+                              title-date-format
+                              input="string"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="date3"
+                                  prepend-inner-icon="mdi-calendar"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                  color="mgrey"
+                                ></v-text-field>
+                              </template>
+                              <v-date-picker
+                                v-model="date3"
+                                scrollable
+                              >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="saleday3 = false"
+                                >
+                                  Cancel
+                                </v-btn>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="$refs.dialog3.save(date3)"
+                                >
+                                  OK
+                                </v-btn>
+                              </v-date-picker>
+                            </v-dialog>
+                            <!-- Тут година-3 -->
+                            <v-dialog
+                              ref="saletime3"
+                              v-model="menu17"
+                              :return-value.sync="time17"
+                              persistent
+                              width="290px"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="time17"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                ></v-text-field>
+                              </template>
+                              <v-time-picker
+                                v-if="menu17"
+                                v-model="time17"
+                                full-width
+                              >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="menu17 = false"
+                                >
+                                  Cancel
+                                </v-btn>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="$refs.saletime3.save(time17)"
+                                >
+                                  OK
+                                </v-btn>
+                              </v-time-picker>
+                            </v-dialog>
+                            <!-- Тут дата-4 -->
+                            <v-dialog
+                              ref="dialog4"
+                              v-model="saleday4"
+                              :return-value.sync="date4"
+                              persistent
+                              width="290px"
+                              title-date-format
+                              input="string"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="date4"
+                                  prepend-inner-icon="mdi-calendar"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                ></v-text-field>
+                              </template>
+                              <v-date-picker
+                                v-model="date4"
+                                scrollable
+                              >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="saleday4 = false"
+                                >
+                                  Cancel
+                                </v-btn>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="$refs.dialog4.save(date4)"
+                                >
+                                  OK
+                                </v-btn>
+                              </v-date-picker>
+                            </v-dialog>
+                            <!-- Тут година-4 -->
+                            <v-dialog
+                              ref="saletime4"
+                              v-model="menu18"
+                              :return-value.sync="time18"
+                              persistent
+                              width="290px"
+                            >
+                              <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                  v-model="time18"
+                                  readonly
+                                  v-bind="attrs"
+                                  v-on="on"
+                                  hide-details
+                                  outlined
+                                  dense
+                                ></v-text-field>
+                              </template>
+                              <v-time-picker
+                                v-if="menu18"
+                                v-model="time18"
+                                full-width
+                              >
+                                <v-spacer></v-spacer>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="menu18 = false"
+                                >
+                                  Cancel
+                                </v-btn>
+                                <v-btn
+                                  text
+                                  color="primary"
+                                  @click="$refs.saletime4.save(time18)"
+                                >
+                                  OK
+                                </v-btn>
+                              </v-time-picker>
+                            </v-dialog>
+                            <div>
+                              <v-btn
+                                fab
+                                small
+                                color="graylightsecond"
+                                depressed
+                                class="mr-3"
+                              >
+                                <v-icon color="grey">
+                                  mdi-plus
+                                </v-icon>
+                              </v-btn>
+                              <v-btn
+                                fab
+                                small
+                                color="graylightsecond"
+                                depressed
+                              >
+                                <v-icon color="grey">
+                                  mdi-minus
+                                </v-icon>
+                              </v-btn>
+                            </div>
                           </v-col>
                         </v-row>
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- Запаси -->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -324,7 +619,7 @@
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- Доставка -->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -374,7 +669,7 @@
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- Супутні товари -->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -424,7 +719,7 @@
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- Додатково -->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -486,7 +781,7 @@
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- Атрибути продукту-->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -581,7 +876,7 @@
                       </v-expansion-panel-content>
                     </v-expansion-panel>
                     <!-- Варіанти -->
-                    <v-expansion-panel>
+                    <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
                         <v-subheader
                           class="tab-subheader"
@@ -1996,8 +2291,20 @@ export default {
       subheaderSelect: ['Вариативный товар', 'Простой товар', 'Виртуальный товар', 'Партнерский товар'],
       date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
       saleday1: false,
+      date2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday2: false,
+      date3: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday3: false,
+      date4: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday4: false,
       time15: null,
       menu15: false,
+      time16: null,
+      menu16: false,
+      time17: null,
+      menu17: false,
+      time18: null,
+      menu18: false,
       content: '<h2>I am Example</h2>',
       editorOption: {
         // Some Quill options...

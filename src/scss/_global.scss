@@ -1,8 +1,11 @@
-$m-grey: #979797;
+$mgrey: #979797;
 $graydark: #2B2B2B;
 $graylight: #767676;
+$graylightsecond: #ECECEC;
 $white: #FFF;
 $grey: #6C6C6C;
+$graysubmenu: #363636;
+$primary: #E4002B;
 $dirtywhite: #FAFAFA;
 
 .tooltip {
@@ -118,21 +121,23 @@ $dirtywhite: #FAFAFA;
   }
 }
 
-th {
-  white-space: nowrap;
-  padding: 0 12px !important;
-  text-transform: uppercase;
-}
+.table-list{
+  th {
+    white-space: nowrap;
+    padding: 0 12px !important;
+    text-transform: uppercase;
+  }
 
-td {
-  padding: 12px 12px !important;
-  white-space: nowrap;
-}
+  td {
+    padding: 12px 12px !important;
+    white-space: nowrap;
+  }
 
-tbody {
-  tr {
-    &:nth-of-type(odd) {
-      background: rgba(0, 0, 0, 0.04);
+  tbody {
+    tr {
+      &:nth-of-type(odd) {
+        background: rgba(0, 0, 0, 0.04);
+      }
     }
   }
 }
@@ -141,9 +146,19 @@ tbody {
   background-color: $white !important;
 }
 
+.categories {
+  font-size: 14px;
+  line-height: 16px;
+  color: $graydark;
+  text-transform: none;
+  margin: 0px;
+  padding: 0px 18px !important;
+}
+
 .d-grid {
   display: grid;
   grid-gap: 12px;
+  text-align: center;
 
   &.cols-3-2-4 {
     grid-template-columns: 3fr 2fr 4fr;
@@ -199,6 +214,7 @@ tbody {
   line-height: 19px;
   color: $grey;
   margin: 0px;
+  padding-top: 10px;
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
@@ -245,4 +261,13 @@ tbody {
   border-radius: 10px !important;
   display: flex !important;
   flex-wrap: nowrap;
+}
+
+.sale-date {
+  border: 1px solid $mgrey !important;
+  border-radius: 5px;
+}
+
+.bordered {
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }

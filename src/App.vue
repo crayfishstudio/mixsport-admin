@@ -43,6 +43,7 @@
           <v-list-item
             v-for="child in item.items"
             :key="child.title"
+            class="submenu-background"
           >
             <v-list-item-content>
               <v-list-item-title
@@ -71,6 +72,7 @@
           <v-list-item
             v-for="child in item.items"
             :key="child.title"
+            class="submenu-background"
           >
             <v-list-item-content>
               <v-list-item-title
@@ -99,6 +101,7 @@
           <v-list-item
             v-for="child in item.items"
             :key="child.title"
+            class="submenu-background"
           >
             <v-list-item-content>
               <v-list-item-title
@@ -320,6 +323,10 @@
 .sidebar-list {
   text-align: left;
   padding-bottom: 72px !important;
+
+  .v-icon {
+    color: #DADADA !important;
+  }
 }
 
 .subheader {
@@ -364,6 +371,10 @@
   &.minified {
     padding: 14px 14px;
   }
+}
+
+.submenu-background {
+  background-color: $graysubmenu;
 }
 
 .pointer {

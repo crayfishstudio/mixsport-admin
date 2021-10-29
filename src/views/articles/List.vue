@@ -566,7 +566,7 @@ export default {
     display: block;
     font-size: 12px;
     line-height: 14px;
-    color: $m-grey;
+    color: $mgrey;
   }
 
   span {

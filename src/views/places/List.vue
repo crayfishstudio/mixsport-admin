@@ -31,15 +31,44 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="7"
+        align="center"
+        justify="space-around"
+        class="mt-3"
+      >
+        <v-btn
+          text
+          color="graydark"
+          depressed
+          class="text-capitalize"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все места
+        </v-btn>
+        <v-btn
+          text
+          color="graydark"
+          plain
+          class="text-capitalize"
+        >
+          Опубликованные
+        </v-btn>
+        <v-btn
+          text
+          color="graydark"
+          plain
+          class="text-capitalize"
+        >
+          Ожидает подтверждения
+        </v-btn>
+        <v-btn
+          text
+          color="graydark"
+          plain
+          class="text-capitalize"
+        >
+          Черновики
+        </v-btn>
       </v-col>
     </v-row>
     <v-row
@@ -623,7 +652,7 @@ export default {
     display: block;
     font-size: 12px;
     line-height: 14px;
-    color: $m-grey;
+    color: $mgrey;
   }
 
   span {

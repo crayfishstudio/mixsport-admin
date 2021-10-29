@@ -56,43 +56,38 @@
     </v-app-bar>
     <v-row>
       <v-col
-        cols="5"
-        align="center"
-        justify="space-around"
-        class="mt-3"
+        cols="12"
+        class="pa-0 py-3"
       >
         <v-btn
           text
-          color="graydark"
           depressed
-          class="text-capitalize"
+          class="categories"
         >
-          Все продукты
+          Все продукты (23)
         </v-btn>
         <v-btn
           text
           color="graydark"
           plain
-          class="text-capitalize"
+          class="categories"
         >
-          Опубликованные
+          Опубликованные (3)
         </v-btn>
         <v-btn
           text
           color="graydark"
           plain
-          class="text-capitalize"
+          class="categories"
         >
-          Черновики
+          Черновики (9)
         </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="justify-start align-center mx-3"
-    >
+    <v-row class="px-2">
       <v-col
         cols="3"
-        class="d-flex mr-3"
+        class="d-flex"
       >
         <v-select
           :items="types"
@@ -146,7 +141,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -155,7 +150,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -685,7 +680,7 @@ export default {
     display: block;
     font-size: 12px;
     line-height: 14px;
-    color: $m-grey;
+    color: $mgrey;
   }
 
   span {
