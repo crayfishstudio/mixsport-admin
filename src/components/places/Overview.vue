@@ -1,15 +1,58 @@
 <template lang="html">
   <div class="places-overview">
     <!-- Перший рядок -->
-    <v-row class="d-flex justify-space-between">
+    <v-row class="mt-1">
       <v-col
         cols="2"
       >
+        <v-select
+          :items="language"
+          label="язык"
+          class="mr-8"
+          background-color="white"
+          outlined
+          dense
+          height="45px"
+          hide-details
+        ></v-select>
       </v-col>
       <v-col
         cols="10"
+        class="d-flex justify-end align-center"
       >
-
+        <p class="text--secondary my-0 mr-7">
+          Статистика:
+        </p>
+        <p class="my-0 mr-6">
+          <v-icon color="mgrey" class="mr-2" >
+            mdi-eye
+          </v-icon>
+          217805
+        </p>
+        <p class="my-0 mr-6">
+          <v-icon color="mgrey" class="mr-2" >
+            mdi-eye
+          </v-icon>
+          151842
+        </p>
+        <p class="my-0 mr-6">
+          <v-icon color="mgrey" class="mr-2" >
+            mdi-eye
+          </v-icon>
+          77
+        </p>
+        <p class="my-0 mr-6">
+          <v-icon color="mgrey" class="mr-2" >
+            mdi-eye
+          </v-icon>
+          13
+        </p>
+        <p class="my-0 mr-3">
+          <v-icon color="mgrey" class="mr-2" >
+            mdi-star
+          </v-icon>
+          4.8462
+        </p>
       </v-col>
     </v-row>
     <!-- Другий рядок -->
@@ -1358,6 +1401,7 @@ export default {
     return ({
       panel1: [0, 1, 2, 3],
       panel2: [0, 1, 2, 3, 4, 5],
+      language: ['Рус', 'Укр', 'Eng'],
       dropdown_font: [
         { text: 'Arial' },
         { text: 'Calibri' },
