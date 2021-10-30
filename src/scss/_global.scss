@@ -150,8 +150,9 @@ $dirtywhite: #FAFAFA;
   font-size: 14px;
   line-height: 16px;
   color: $graydark;
-  text-transform: none;
+  text-transform: none !important;
   margin: 0px;
+  letter-spacing: normal;
   padding: 0px 18px !important;
 }
 
@@ -227,6 +228,7 @@ $dirtywhite: #FAFAFA;
 
 .v-expansion-panel-header {
   padding: 0px 20px !important;
+  min-height: 50px !important;
 }
 
 .v-expansion-panel-content__wrap {
@@ -244,6 +246,7 @@ $dirtywhite: #FAFAFA;
   line-height: 19px;
   text-transform: uppercase;
   color: $grey;
+  padding: 0px !important;
 }
 
 .tabs-subheader {

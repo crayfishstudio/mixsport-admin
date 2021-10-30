@@ -1053,7 +1053,6 @@
                 Полное описание
               </p>
               <v-textarea
-
                   outlined
                 >
               </v-textarea>
