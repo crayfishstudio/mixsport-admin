@@ -75,7 +75,7 @@
         {
           id: 4,
           title: 'Афиша',
-          link: 'poster',
+          link: 'affiche',
         },
         {
           id: 5,

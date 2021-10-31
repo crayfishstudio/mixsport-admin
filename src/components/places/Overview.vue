@@ -1373,21 +1373,32 @@
         class="pt-5 pa-4"
       >
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-4"
+          class="font-weight-medium text-lg-h6 pl-0 mb-7"
         >
-          Добавить новую категорию
+          Додати категорію
         </v-subheader>
+        <v-text-field
+          v-model="categoryName"
+          :rules="[rules.required, rules.counter]"
+          label="Название услуги"
+          counter
+          maxlength="191"
+        ></v-text-field>
         <div>
-          <v-text-field
-          >
-          </v-text-field>
           <v-btn
             depressed
             class="btn-main"
             height="56px"
             small
           >
-            Создать
+            Отменить
+          </v-btn>
+          <v-btn
+            depressed
+            color="primary"
+            class="font-weight-medium"
+          >
+            ДОДАТИ
           </v-btn>
         </div>
       </v-col>
@@ -1494,6 +1505,7 @@ export default {
       closeForever: false,
       faceControl: false,
       dressCode: true,
+      categoryName: '',
 
       content: '<h2>I am Example</h2>',
       editorOption: {

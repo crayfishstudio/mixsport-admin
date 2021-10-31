@@ -158,9 +158,9 @@ const routes = [
         component: () => import('../components/places/Services.vue')
       },
       {
-        path: 'poster',
-        name: 'Places Poster',
-        component: () => import('../components/places/Poster.vue')
+        path: 'affiche',
+        name: 'Places Affiche',
+        component: () => import('../components/places/Affiche.vue')
       },
       {
         path: 'reviews',
