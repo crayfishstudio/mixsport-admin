@@ -77,6 +77,7 @@
               </v-tabs>
               <v-divider></v-divider>
               <v-tabs-items v-model="tab1" class="px-5">
+                <!-- Основне -->
                 <v-tab-item>
                   <v-row class="d-flex mt-2 mb-1">
                     <v-col cols="3">
@@ -516,108 +517,6 @@
                         </v-row>
                       </v-expansion-panel-content>
                     </v-expansion-panel>
-                    <!-- Запаси -->
-                    <v-expansion-panel class="bordered">
-                      <v-expansion-panel-header >
-                        <v-subheader
-                          class="tab-subheader"
-                        >
-                          Запасы
-                        </v-subheader>
-                        <template v-slot:actions>
-                          <v-icon >
-                            $expand
-                          </v-icon>
-                        </template>
-                      </v-expansion-panel-header>
-                      <v-divider></v-divider>
-                      <v-expansion-panel-content class="px-5 py-4">
-                        <v-row>
-                          <v-col cols="3">
-                            <v-subheader>Артикул  (SKU)</v-subheader>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-text-field hide-details></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col cols="3">
-                            <v-subheader>Управлять запасами?</v-subheader>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-checkbox
-                              v-model="ex4"
-                              label="Включить управление запасами на уровне товаров"
-                              color="primary"
-                              value="primary"
-                              hide-details
-                              small
-                            ></v-checkbox>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col cols="3">
-                            <v-subheader>Количество в запасе</v-subheader>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-text-field hide-details></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col cols="3">
-                            <v-subheader>Разрешить предзаказы?</v-subheader>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-select
-                              :items="permit"
-                              hide-details
-                            ></v-select>
-                          </v-col>
-                        </v-row>
-                        <v-row class="align-center">
-                          <v-col cols="3">
-                            <v-subheader>Граница малых запасов</v-subheader>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-text-field hide-details></v-text-field>
-                          </v-col>
-                        </v-row>
-                        <v-row class="align-center">
-                          <v-col cols="3">
-                            <v-subheader>Статус остатка</v-subheader>
-                          </v-col>
-                          <v-col cols="6">
-                            <v-select
-                              :items="status"
-                              hide-details
-                            ></v-select>
-                          </v-col>
-                        </v-row>
-                        <v-row class="align-center">
-                          <v-col cols="3">
-                            <v-subheader>Продавать индивидуально</v-subheader>
-                          </v-col>
-                          <v-col cols="6" class="pt-0">
-                            <v-checkbox
-                              v-model="ex4"
-                              label="Включить для того чтобы товар продавался индивидуально в одном заказе."
-                              color="primary"
-                              value="primary"
-                              hide-details
-                              small
-                            ></v-checkbox>
-                          </v-col>
-                        </v-row>
-                        <v-row class="align-center">
-                          <v-col cols="3">
-                            <v-subheader>Количество покупок</v-subheader>
-                          </v-col>
-                          <v-col cols="4" class="pt-0">
-                            <v-text-field hide-details label="Количество покупок" ></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
                     <!-- Доставка -->
                     <v-expansion-panel class="bordered">
                       <v-expansion-panel-header >
@@ -664,56 +563,6 @@
                                 cols="2"
                                 label="Выстота"
                             ></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
-                    <!-- Супутні товари -->
-                    <v-expansion-panel class="bordered">
-                      <v-expansion-panel-header >
-                        <v-subheader
-                          class="tab-subheader"
-                        >
-                          Сопутствующие товары
-                        </v-subheader>
-                        <template v-slot:actions>
-                          <v-icon >
-                            $expand
-                          </v-icon>
-                        </template>
-                      </v-expansion-panel-header>
-                      <v-divider></v-divider>
-                      <v-expansion-panel-content class="pa-4">
-                        <v-row class="align-center">
-                          <v-col cols="3">
-                            <v-subheader>Up-sell</v-subheader>
-                          </v-col>
-                          <v-col cols="9" class="pt-0">
-                            <v-select
-                              v-model="upsell"
-                              :items="items"
-                              attach
-                              chips
-                              multiple
-                              deletable-chips
-                              hide-details
-                            ></v-select>
-                          </v-col>
-                        </v-row>
-                        <v-row class="align-center">
-                          <v-col cols="3">
-                            <v-subheader>Cross-sell</v-subheader>
-                          </v-col>
-                          <v-col cols="9" class="pt-0">
-                            <v-select
-                              v-model="crosssell"
-                              :items="items"
-                              attach
-                              chips
-                              multiple
-                              deletable-chips
-                              hide-details
-                            ></v-select>
                           </v-col>
                         </v-row>
                       </v-expansion-panel-content>
@@ -776,99 +625,6 @@
                           </v-col>
                           <v-col cols="8" class="pt-0">
                             <v-text-field hide-details label="Прізвище"></v-text-field>
-                          </v-col>
-                        </v-row>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
-                    <!-- Атрибути продукту-->
-                    <v-expansion-panel class="bordered">
-                      <v-expansion-panel-header >
-                        <v-subheader
-                          class="tab-subheader"
-                        >
-                          Атрибуты Продукта
-                        </v-subheader>
-                        <template v-slot:actions>
-                          <v-icon >
-                            $expand
-                          </v-icon>
-                        </template>
-                      </v-expansion-panel-header>
-                      <v-divider></v-divider>
-                      <v-expansion-panel-content class="ma-4">
-                        <v-row class="mb-3">
-                          <v-col
-                            class="d-flex"
-                            cols="6"
-                          >
-                            <v-select
-                              :items="attributeProduct"
-                              outlined
-                              hide-details
-                              dense
-                            ></v-select>
-                          </v-col>
-                          <v-col class="pl-0">
-                            <v-btn
-                              depressed
-                              class="btn-main mr-3"
-                              height="40px"
-                              small
-                            >
-                              Добавить
-                            </v-btn>
-                          </v-col>
-                        </v-row>
-                        <v-row>
-                          <v-col>
-                            <v-card
-                              class="card-products mb-4 py-3"
-                              elevation="3"
-                            >
-                              <v-list-item>
-                                <v-icon> mdi-view-headline </v-icon>
-                                <p class="mb-0 mx-12">Размер</p>
-                                <p class="mb-0">L, XL, XXXL</p>
-                                <v-spacer></v-spacer>
-                                <v-card-actions>
-                                  <v-icon
-                                    class="mr-5"
-                                    @click="editItem(item)"
-                                  >
-                                    mdi-pencil
-                                  </v-icon>
-                                  <v-icon
-                                    @click="deleteItem(item)"
-                                  >
-                                    mdi-delete
-                                  </v-icon>
-                                </v-card-actions>
-                              </v-list-item>
-                            </v-card>
-                            <v-card
-                              class="card-products py-3"
-                              elevation="3"
-                            >
-                              <v-list-item>
-                                <v-icon> mdi-view-headline </v-icon>
-                                <p class="mb-0 mx-12">Цвета</p>
-                                <p class="mb-0">Белый,    Серый,    Черный</p>
-                                <v-spacer></v-spacer>
-                                <v-card-actions>
-                                  <v-icon
-                                    class="mr-5"
-                                    @click="editItem(item)"
-                                  >
-                                    mdi-pencil
-                                  </v-icon>
-                                  <v-icon
-                                    @click="deleteItem(item)"
-                                  >
-                                    mdi-delete
-                                  </v-icon>
-                                </v-card-actions>
-                              </v-list-item>
-                            </v-card>
                           </v-col>
                         </v-row>
                       </v-expansion-panel-content>
@@ -1026,9 +782,373 @@
                         </v-row>
                       </v-expansion-panel-content>
                     </v-expansion-panel>
+                    <!-- Товари в групі -->
+                    <v-expansion-panel class="bordered">
+                      <v-expansion-panel-header >
+                        <v-subheader
+                          class="tab-subheader"
+                        >
+                          Товары в группе
+                        </v-subheader>
+                        <template v-slot:actions>
+                          <v-icon >
+                            $expand
+                          </v-icon>
+                        </template>
+                      </v-expansion-panel-header>
+                      <v-divider></v-divider>
+                      <v-expansion-panel-content>
+                        <v-row>
+                          <v-col>
+                            <v-data-table
+                              v-model="selected"
+                              :headers="headers"
+                              :items="products"
+                              :single-select="singleSelect"
+                              item-key="id"
+                              show-select
+                              class="elevation-1 table-list"
+                            >
+                              <template v-slot:item.status="{ item }">
+                                <v-icon v-if="item.status">
+                                  mdi-check
+                                </v-icon>
+                                <v-icon v-else>
+                                  mdi-close
+                                </v-icon>
+                              </template>
+                              <template v-slot:item.actions="{ item }">
+                                <v-icon
+                                  @click="deleteItem(item)"
+                                >
+                                  mdi-delete
+                                </v-icon>
+                              </template>
+                              <template v-slot:no-data>
+                                <v-btn
+                                  color="primary"
+                                  @click="initialize"
+                                >
+                                  Reset
+                                </v-btn>
+                              </template>
+                            </v-data-table>
+                          </v-col>
+                        </v-row>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                    <!--  Файли -->
+                    <v-expansion-panel class="bordered">
+                      <v-expansion-panel-header >
+                        <v-subheader
+                          class="tab-subheader"
+                        >
+                          Файлы
+                        </v-subheader>
+                        <template v-slot:actions>
+                          <v-icon >
+                            $expand
+                          </v-icon>
+                        </template>
+                      </v-expansion-panel-header>
+                      <v-divider></v-divider>
+                      <v-expansion-panel-content>
+                        <v-row>
+                          <v-col>
+                            <v-data-table
+                              v-model="selected2"
+                              :headers="headers2"
+                              :items="products2"
+                              :single-select="singleSelect2"
+                              item-key="id"
+                              show-select
+                              class="elevation-1 table-list"
+                            >
+                              <template v-slot:item.status="{ item }">
+                                <v-icon v-if="item.status">
+                                  mdi-check
+                                </v-icon>
+                                <v-icon v-else>
+                                  mdi-close
+                                </v-icon>
+                              </template>
+                              <template v-slot:item.actions="{ item }">
+                                <v-icon
+                                  class="mr-3">
+                                  mdi-download
+                                </v-icon>
+                                <v-icon
+                                  @click="deleteItem(item)"
+                                >
+                                  mdi-delete
+                                </v-icon>
+                              </template>
+                              <template v-slot:no-data>
+                                <v-btn
+                                  color="primary"
+                                  @click="initialize2"
+                                >
+                                  Reset
+                                </v-btn>
+                              </template>
+                            </v-data-table>
+                          </v-col>
+                        </v-row>
+                      </v-expansion-panel-content>
+                    </v-expansion-panel>
+                    <v-row class="py-3 mt-4">
+                      <v-col cols="10">
+                        <div class="d-grid text-directions cols-2-2-4">
+                          <p class="text--secondary ma-0"
+                          >Лимит загрузок</p>
+                          <v-text-field
+                            outlined
+                            dense
+                            label="Без лимита"
+                            hide-details
+                          >
+                          </v-text-field>
+                          <p class="text--secondary text-caption ma-0">Оставьте пустым для неограниченных повторных скачиваний.</p>
+                        </div>
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="10">
+                        <div class="d-grid text-directions cols-2-2-4">
+                          <p class="text--secondary ma-0"
+                          >Истечение срока загрузки</p>
+                          <v-text-field
+                            outlined
+                            dense
+                            label="Никогда"
+                            hide-details
+                          >
+                          </v-text-field>
+                          <p class="text--secondary text-caption ma-0">Введите количество дней, по окончанию которых ссылка на скачивание перестанет работать, или оставьте пустым.</p>
+                        </div>
+                      </v-col>
+                    </v-row>
                   </v-expansion-panels>
                 </v-tab-item>
-                <v-tab-item>
+                <!-- Супутні товари -->
+                <v-tab-item class="py-5">
+                  <v-subheader
+                    class="tab-subheader"
+                  >
+                    Сопутствующие товары
+                  </v-subheader>
+                  <v-row class="align-center">
+                    <v-col cols="3">
+                      <v-subheader>Up-sell</v-subheader>
+                    </v-col>
+                    <v-col cols="9" class="pt-0">
+                      <v-select
+                        v-model="upsell"
+                        :items="items"
+                        attach
+                        chips
+                        multiple
+                        deletable-chips
+                        hide-details
+                      ></v-select>
+                    </v-col>
+                  </v-row>
+                  <v-row class="align-center">
+                    <v-col cols="3">
+                      <v-subheader>Cross-sell</v-subheader>
+                    </v-col>
+                    <v-col cols="9" class="pt-0">
+                      <v-select
+                        v-model="crosssell"
+                        :items="items"
+                        attach
+                        chips
+                        multiple
+                        deletable-chips
+                        hide-details
+                      ></v-select>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Запаси -->
+                <v-tab-item class="py-5">
+                  <v-subheader
+                    class="tab-subheader"
+                  >
+                    Запасы
+                  </v-subheader>
+                  <v-row>
+                    <v-col cols="3">
+                      <v-subheader>Артикул  (SKU)</v-subheader>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-text-field hide-details></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="3">
+                      <v-subheader>Управлять запасами?</v-subheader>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-checkbox
+                        v-model="ex4"
+                        label="Включить управление запасами на уровне товаров"
+                        color="primary"
+                        value="primary"
+                        hide-details
+                        small
+                      ></v-checkbox>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="3">
+                      <v-subheader>Количество в запасе</v-subheader>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-text-field hide-details></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="3">
+                      <v-subheader>Разрешить предзаказы?</v-subheader>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-select
+                        :items="permit"
+                        hide-details
+                      ></v-select>
+                    </v-col>
+                  </v-row>
+                  <v-row class="align-center">
+                    <v-col cols="3">
+                      <v-subheader>Граница малых запасов</v-subheader>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-text-field hide-details></v-text-field>
+                    </v-col>
+                  </v-row>
+                  <v-row class="align-center">
+                    <v-col cols="3">
+                      <v-subheader>Статус остатка</v-subheader>
+                    </v-col>
+                    <v-col cols="6">
+                      <v-select
+                        :items="status"
+                        hide-details
+                      ></v-select>
+                    </v-col>
+                  </v-row>
+                  <v-row class="align-center">
+                    <v-col cols="3">
+                      <v-subheader>Продавать индивидуально</v-subheader>
+                    </v-col>
+                    <v-col cols="6" class="pt-0">
+                      <v-checkbox
+                        v-model="ex4"
+                        label="Включить для того чтобы товар продавался индивидуально в одном заказе."
+                        color="primary"
+                        value="primary"
+                        hide-details
+                        small
+                      ></v-checkbox>
+                    </v-col>
+                  </v-row>
+                  <v-row class="align-center">
+                    <v-col cols="3">
+                      <v-subheader>Количество покупок</v-subheader>
+                    </v-col>
+                    <v-col cols="4" class="pt-0">
+                      <v-text-field hide-details label="Количество покупок" ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Атрибути -->
+                <v-tab-item class="py-5">
+                  <v-subheader
+                    class="tab-subheader"
+                  >
+                    Атрибуты Продукта
+                  </v-subheader>
+                  <template v-slot:actions>
+                    <v-icon >
+                      $expand
+                    </v-icon>
+                  </template>
+                  <v-row class="mb-3">
+                    <v-col
+                      class="d-flex"
+                      cols="6"
+                    >
+                      <v-select
+                        :items="attributeProduct"
+                        outlined
+                        hide-details
+                        dense
+                      ></v-select>
+                    </v-col>
+                    <v-col class="pl-0">
+                      <v-btn
+                        depressed
+                        class="btn-main mr-3"
+                        height="40px"
+                        small
+                      >
+                        Добавить
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col>
+                      <v-card
+                        class="card-products mb-4 py-3"
+                        elevation="3"
+                      >
+                        <v-list-item>
+                          <v-icon> mdi-view-headline </v-icon>
+                          <p class="mb-0 mx-12">Размер</p>
+                          <p class="mb-0">L, XL, XXXL</p>
+                          <v-spacer></v-spacer>
+                          <v-card-actions>
+                            <v-icon
+                              class="mr-5"
+                              @click="editItem(item)"
+                            >
+                              mdi-pencil
+                            </v-icon>
+                            <v-icon
+                              @click="deleteItem(item)"
+                            >
+                              mdi-delete
+                            </v-icon>
+                          </v-card-actions>
+                        </v-list-item>
+                      </v-card>
+                      <v-card
+                        class="card-products py-3"
+                        elevation="3"
+                      >
+                        <v-list-item>
+                          <v-icon> mdi-view-headline </v-icon>
+                          <p class="mb-0 mx-12">Цвета</p>
+                          <p class="mb-0">Белый,    Серый,    Черный</p>
+                          <v-spacer></v-spacer>
+                          <v-card-actions>
+                            <v-icon
+                              class="mr-5"
+                              @click="editItem(item)"
+                            >
+                              mdi-pencil
+                            </v-icon>
+                            <v-icon
+                              @click="deleteItem(item)"
+                            >
+                              mdi-delete
+                            </v-icon>
+                          </v-card-actions>
+                        </v-list-item>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                 </v-tab-item>
               </v-tabs-items>
             </v-expansion-panel-content>
@@ -1048,7 +1168,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="pa-4">
+            <v-expansion-panel-content class="pa-5">
               <p class="text--disabled text-start mb-2">
                 Полное описание
               </p>
@@ -1890,6 +2010,79 @@
               </v-tabs-items>
             </v-expansion-panel-content>
           </v-expansion-panel>
+        <!-- Атрибути -->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Атрибуты
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-5">
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    label="ISBN"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Автор"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Видавець"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Поставщик"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Язык"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Перевод"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Количество страниц"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Рік випуску"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    label="Вік"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
       <v-col
@@ -2173,6 +2366,28 @@
         </v-expansion-panels>
       </v-col>
     </v-row>
+    <v-dialog v-model="dialogDelete" max-width="500px">
+      <v-card>
+        <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="graylight" text @click="closeDelete">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm">OK</v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="dialogDelete2" max-width="500px">
+      <v-card>
+        <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="graylight" text @click="closeDelete2">Cancel</v-btn>
+          <v-btn color="primary" text @click="deleteItemConfirm2">OK</v-btn>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -2180,7 +2395,7 @@
 export default {
   data() {
     return ({
-      panel1: [0, 1, 2, 3],
+      panel1: [0, 1, 2, 3, 4],
       panel2: [0, 1, 2, 3, 4, 5],
       panel3: [0, 1, 2, 3, 4, 5, 6],
       dropdown_font: [
@@ -2302,9 +2517,89 @@ export default {
       content: '<h2>I am Example</h2>',
       editorOption: {
         // Some Quill options...
-      }
+      },
+      dialog: false,
+      dialogDelete: false,
+      singleSelect: false,
+      selected: [],
+      headers: [
+        {
+          text: 'ID',
+          value: 'id'
+        },
+        {
+          text: 'Название товара	',
+          value: 'name'
+        },
+        {
+          text: 'Активно',
+          value: 'status',
+          align: 'center',
+        },
+        {
+          text: 'Действия',
+          value: 'actions',
+          sortable: false,
+          align: 'center',
+        }
+      ],
+      products: [],
+      defaultItem: {
+      },
+      dialog2: false,
+      dialogDelete2: false,
+      singleSelect2: false,
+      selected2: [],
+      headers2: [
+        {
+          text: 'ID',
+          value: 'id'
+        },
+        {
+          text: 'Название товара	',
+          value: 'name'
+        },
+        {
+          text: 'Размер',
+          value: 'size',
+        },
+        {
+          text: 'Активно',
+          value: 'status',
+          align: 'center',
+        },
+        {
+          text: 'Действия',
+          value: 'actions',
+          sortable: false,
+          align: 'center',
+        }
+      ],
+      products2: [],
+      defaultItem2: {
+      },
     })
   },
+  watch: {
+    dialog (val) {
+      val || this.close()
+    },
+    dialogDelete (val) {
+      val || this.closeDelete()
+    },
+    dialog2 (val) {
+      val || this.close()
+    },
+    dialogDelete2 (val) {
+      val || this.closeDelete()
+    },
+  },
+
+  created () {
+    this.initialize(),
+    this.initialize2()
+  },
+
   methods: {
     onEditorBlur(quill) {
       console.log('editor blur!', quill)
@@ -2318,7 +2613,95 @@ export default {
     onEditorChange({ quill, html, text }) {
       console.log('editor change!', quill, html, text)
       this.content = html
-    }
+    },
+    initialize () {
+      this.products = [
+        {
+          id: 1,
+          name: 'bespalov-m-use-shcho-vy-hotily-znaty-pro-irlandiyu.mobi	',
+          status: true,
+        },
+        {
+          id: 2,
+          name: 'bespalov-m-use-shcho-vy-hotily-znaty-pro-irlandiyu.mobi	',
+          status: true,
+        },
+        {
+          id: 3,
+          name: 'bespalov-m-use-shcho-vy-hotily-znaty-pro-irlandiyu.mobi	',
+          status: false,
+        },
+      ]
+    },
+    initialize2 () {
+      this.products2 = [
+        {
+          id: 1,
+          name: 'bespalov-m-use-shcho-vy-hotily-znaty-pro-irlandiyu.mobi	',
+          size: '5971.59 KB	',
+          status: true,
+        },
+        {
+          id: 2,
+          name: 'bespalov-m-use-shcho-vy-hotily-znaty-pro-irlandiyu.mobi	',
+          size: '5971.59 KB	',
+          status: true,
+        },
+        {
+          id: 3,
+          name: 'bespalov-m-use-shcho-vy-hotily-znaty-pro-irlandiyu.mobi	',
+          size: '5971.59 KB	',
+          status: false,
+        },
+      ]
+    },
+
+    deleteItem (item) {
+      this.editedIndex = this.products.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialogDelete = true
+    },
+    deleteItemConfirm () {
+      this.products.splice(this.editedIndex, 1)
+      this.closeDelete()
+    },
+    close () {
+      this.dialog = false
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    },
+    closeDelete () {
+      this.dialogDelete = false
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    },
+    deleteItem2 (item) {
+      this.editedIndex = this.products.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialogDelete = true
+    },
+    deleteItemConfirm2 () {
+      this.products.splice(this.editedIndex, 1)
+      this.closeDelete()
+    },
+    close2 () {
+      this.dialog = false
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    },
+    closeDelete2 () {
+      this.dialogDelete = false
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedIndex = -1
+      })
+    },
   },
   computed: {
     editor() {
@@ -2349,4 +2732,7 @@ export default {
   margin-top: 0 !important;
 }
 
+.text-directions {
+  text-align: left;
+}
 </style>
