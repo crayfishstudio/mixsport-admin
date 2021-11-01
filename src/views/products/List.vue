@@ -94,10 +94,10 @@
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        class="btn-main"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>

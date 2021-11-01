@@ -1,4 +1,4 @@
-events<template lang="html">
+<template lang="html">
   <div class="events">
     <v-app-bar
       app
@@ -30,23 +30,46 @@ events<template lang="html">
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все события (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Опубликованные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          На подтверждение (3)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Черновики (9)
+        </v-btn>
       </v-col>
     </v-row>
     <v-row
-      class="d-flex justify-start mx-3"
+      class="px-2"
     >
       <v-col
         cols="5"
-        class="d-flex mr-10"
+        class="d-grid cols-3-2-2 mr-10"
       >
         <v-select
           :items="types"
@@ -54,14 +77,11 @@ events<template lang="html">
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
           depressed
-          outlined
-          color="graylight"
-          class="bg-white mr-5"
+          class="btn-main"
           height="40px"
           small
         >
@@ -69,10 +89,7 @@ events<template lang="html">
         </v-btn>
         <v-btn
           depressed
-          outlined
-          color="graylight"
-          background-color="white"
-          class="bg-white"
+          class="btn-main"
           height="40px"
           small
         >
@@ -109,7 +126,7 @@ events<template lang="html">
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -118,7 +135,7 @@ events<template lang="html">
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -223,7 +240,7 @@ events<template lang="html">
             </v-toolbar>
           </template>-->
           <template v-slot:header.rating="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
@@ -250,20 +267,17 @@ events<template lang="html">
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
               class="mr-3"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
               class="mr-3"
             >
               mdi-clock-outline
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -294,7 +308,7 @@ events<template lang="html">
           <v-subheader
             class="font-weight-medium
             text-lg-h6
-            pl-0"
+            pl-0 mb-2"
           >Основная информация
           </v-subheader>
           <v-select
@@ -304,6 +318,7 @@ events<template lang="html">
             outlined
             hide-details
             class="mb-3"
+            dense
           ></v-select>
           <v-text-field
             label="Название"
@@ -311,6 +326,7 @@ events<template lang="html">
             background-color="white"
             hide-details
             class="mb-3"
+            dense
           ></v-text-field>
           <v-select
             :items="cities"
@@ -319,6 +335,7 @@ events<template lang="html">
             outlined
             hide-details
             class="mb-3"
+            dense
           ></v-select>
         </v-col>
         <v-col
@@ -332,6 +349,7 @@ events<template lang="html">
             outlined
             hide-details
             class="mb-3"
+            dense
           ></v-select>
         </v-col>
         <v-col
@@ -345,25 +363,48 @@ events<template lang="html">
             outlined
             hide-details
             class="mb-3"
+            dense
           ></v-select>
         </v-col>
       </v-row>
-      <v-row
-        class="text-right mx-3"
-      >
-        <v-col cols="12">
+      <v-row class="mx-3">
+        <v-col>
           <v-subheader
             class="font-weight-medium
             text-lg-h6
-            pl-0"
+            pl-0 mb-3"
           >Место проведения
           </v-subheader>
+          <v-row>
+            <v-col class="d-grid cols-2-2-4">
+              <v-btn
+                class="sidebar-btn"
+                outlined
+              >
+                Локация
+              </v-btn>
+              <v-btn
+                class="sidebar-btn"
+                outlined
+              >
+                Онлайн
+              </v-btn>
+              <v-btn
+                class="sidebar-btn"
+                outlined
+              >
+                Будет объявлено дополнительно
+              </v-btn>
+            </v-col>
+          </v-row>
           <v-text-field
             prepend-inner-icon="mdi-magnify"
             color="graylight"
             class="mt-5"
             label="Поиск..."
             outlined
+            dense
+            hide-details
           >
           </v-text-field>
         </v-col>
@@ -373,14 +414,236 @@ events<template lang="html">
           <v-subheader
             class="font-weight-medium
             text-lg-h6
-            pl-0"
-          ><v-subheader
-            class="font-weight-medium
-            text-lg-h6
-            pl-0"
-          >Основная информация
+            pl-0 mb-3"
+          >Дата и время
           </v-subheader>
-          </v-subheader>
+          <v-row class="mb-4">
+            <v-col cols="6" class="d-grid cols-2-2">
+              <v-btn
+                class="sidebar-btn"
+                outlined
+              >
+                Локация
+              </v-btn>
+              <v-btn
+                class="sidebar-btn"
+                outlined
+              >
+                Локация
+              </v-btn>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              cols="10"
+              class="d-grid cols-3-2-3-2 pt-0 pr-0"
+            >
+              <!-- Тут дата-1 -->
+              <v-dialog
+                ref="dialog"
+                v-model="saleday1"
+                :return-value.sync="date"
+                persistent
+                width="290px"
+                title-date-format
+                input="string"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="date"
+                    prepend-inner-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    hide-details
+                    outlined
+                    dense
+                    color="mgrey"
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="date"
+                  scrollable
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="saleday1 = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.dialog.save(date)"
+                  >
+                    OK
+                  </v-btn>
+                </v-date-picker>
+              </v-dialog>
+              <!-- Тут година-1 -->
+              <v-dialog
+                ref="saletime1"
+                v-model="menu15"
+                :return-value.sync="time15"
+                persistent
+                width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="time15"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    hide-details
+                    outlined
+                    dense
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="menu15"
+                  v-model="time15"
+                  full-width
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="menu15 = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.saletime1.save(time15)"
+                  >
+                    OK
+                  </v-btn>
+                </v-time-picker>
+              </v-dialog>
+              <!-- Тут дата-2 -->
+              <v-dialog
+                ref="dialog2"
+                v-model="saleday2"
+                :return-value.sync="date2"
+                persistent
+                width="290px"
+                title-date-format
+                input="string"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="date2"
+                    prepend-inner-icon="mdi-calendar"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    hide-details
+                    outlined
+                    dense
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  v-model="date2"
+                  scrollable
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="saleday2 = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.dialog2.save(date2)"
+                  >
+                    OK
+                  </v-btn>
+                </v-date-picker>
+              </v-dialog>
+              <!-- Тут година-2 -->
+              <v-dialog
+                ref="saletime2"
+                v-model="menu16"
+                :return-value.sync="time16"
+                persistent
+                width="290px"
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field
+                    v-model="time16"
+                    readonly
+                    v-bind="attrs"
+                    v-on="on"
+                    hide-details
+                    outlined
+                    dense
+                  ></v-text-field>
+                </template>
+                <v-time-picker
+                  v-if="menu16"
+                  v-model="time16"
+                  full-width
+                >
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="menu16 = false"
+                  >
+                    Cancel
+                  </v-btn>
+                  <v-btn
+                    text
+                    color="primary"
+                    @click="$refs.saletime2.save(time16)"
+                  >
+                    OK
+                  </v-btn>
+                </v-time-picker>
+              </v-dialog>
+            </v-col>
+            <div class="">
+              <v-btn
+                fab
+                small
+                color="graylightsecond"
+                depressed
+              >
+                <v-icon color="grey">
+                  mdi-plus
+                </v-icon>
+              </v-btn>
+              <v-btn
+                fab
+                small
+                color="graylightsecond"
+                depressed
+              >
+                <v-icon color="grey">
+                  mdi-minus
+                </v-icon>
+              </v-btn>
+            </div>
+          </v-row>
+          <v-checkbox
+            v-model="showTime1"
+            label="Показывать время начала"
+            color="primary"
+            hide-details
+          ></v-checkbox>
+          <v-checkbox
+            v-model="showTime2"
+            label="Показывать время конца"
+            color="primary"
+            hide-details
+            class="mb-8"
+          ></v-checkbox>
           <v-btn
             depressed
             outlined
@@ -507,6 +770,20 @@ export default {
       },
       defaultItem: {
       },
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday1: false,
+      date2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday2: false,
+      time15: null,
+      menu15: false,
+      time16: null,
+      menu16: false,
+      time17: null,
+      menu17: false,
+      time18: null,
+      menu18: false,
+      showTime1: false,
+      showTime2: false,
     }
   },
   computed: {
@@ -559,7 +836,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('events/' + item.id);
+      this.$router.push('events/' + item.id  + '/overview');
     },
 
     deleteItem (item) {
@@ -614,5 +891,15 @@ export default {
     display: block;
     margin: 2px 0;
   }
+}
+
+.sidebar-btn {
+  font-size: 12px;
+  line-height: 16px;
+  color: $graylight !important;
+  text-transform: none !important;
+  margin: 0px;
+  letter-spacing: normal;
+  padding: 8px 10px !important;
 }
 </style>

@@ -1048,7 +1048,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="ma-4">
+            <v-expansion-panel-content class="pa-4">
               <p class="text--disabled text-start mb-2">
                 Полное описание
               </p>

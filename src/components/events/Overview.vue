@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="places-overview">
+  <div class="events-overview">
     <!-- Перший рядок -->
     <v-row class="mt-1">
       <v-col
@@ -57,38 +57,510 @@
     </v-row>
     <!-- Другий рядок -->
     <v-row>
-      <v-col
-        cols="9"
-      >
-        <!-- Коротний опис -->
-        <v-card outlined class="mb-5">
-          <div class="flex-wrap pa-4">
-            <v-text-field
-              v-model="title"
-              :rules="[rules.required, rules.counter]"
-              label="Название"
-              counter
-              maxlength="191"
-            ></v-text-field>
-            <p class="text--disabled mb-2">
-              Короткое описание
-            </p>
-            <v-text-field
-              outlined
-              dense
-
-            ></v-text-field>
-            <p class="text--disabled mb-2">
-              Полное описание
-            </p>
-            <quill-editor
-              :content="content"
-              :options="editorOption"
-              @change="onEditorChange($event)"
-            />
-          </div>
-        </v-card>
+      <v-col cols="9">
         <v-expansion-panels v-model="panel1" multiple active-class="mb-5">
+          <!-- Основна інформація -->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Основная информация
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-5">
+              <v-text-field
+                v-model="title"
+                :rules="[rules.required, rules.counter]"
+                label="Назва"
+                counter
+                maxlength="191"
+              ></v-text-field>
+              <v-row>
+                <v-col cols="5" class="py-0">
+                  <v-subheader
+                    class="tabs-subheader"
+                  >
+                    Тип события
+                  </v-subheader>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="7" class="d-grid cols-4-2">
+                  <v-select
+                    :items="types"
+                    label="Действия"
+                    background-color="white"
+                    dense
+                    outlined
+                    hide-details
+                  ></v-select>
+                  <v-btn
+                    depressed
+                    class="btn-main"
+                    height="40px"
+                    small
+                  >
+                    Применить
+                  </v-btn>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="5">
+                  <v-subheader
+                    class="tabs-subheader"
+                  >
+                    Дата начала
+                  </v-subheader>
+                </v-col>
+                <v-col cols="7">
+                  <v-subheader
+                    class="tabs-subheader"
+                  >
+                    Дата окончания
+                  </v-subheader>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="12"
+                  class="d-grid cols-3-2-3-2-2 pt-0"
+                >
+                  <!-- Тут дата-1 -->
+                  <v-dialog
+                    ref="dialog"
+                    v-model="saleday1"
+                    :return-value.sync="date"
+                    persistent
+                    width="290px"
+                    title-date-format
+                    input="string"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="date"
+                        prepend-inner-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                        color="mgrey"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="date"
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="saleday1 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.dialog.save(date)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-dialog>
+                  <!-- Тут година-1 -->
+                  <v-dialog
+                    ref="saletime1"
+                    v-model="menu15"
+                    :return-value.sync="time15"
+                    persistent
+                    width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time15"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="menu15"
+                      v-model="time15"
+                      full-width
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menu15 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.saletime1.save(time15)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-time-picker>
+                  </v-dialog>
+                  <!-- Тут дата-2 -->
+                  <v-dialog
+                    ref="dialog2"
+                    v-model="saleday2"
+                    :return-value.sync="date2"
+                    persistent
+                    width="290px"
+                    title-date-format
+                    input="string"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="date2"
+                        prepend-inner-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="date2"
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="saleday2 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.dialog2.save(date2)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-dialog>
+                  <!-- Тут година-2 -->
+                  <v-dialog
+                    ref="saletime2"
+                    v-model="menu16"
+                    :return-value.sync="time16"
+                    persistent
+                    width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time16"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="menu16"
+                      v-model="time16"
+                      full-width
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menu16 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.saletime2.save(time16)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-time-picker>
+                  </v-dialog>
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                    class="mr-3"
+                  >
+                    <v-icon color="grey">
+                      mdi-plus
+                    </v-icon>
+                  </v-btn>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col
+                  cols="12"
+                  class="d-grid cols-3-2-3-2-2"
+                >
+                  <!-- Тут дата-3 -->
+                  <v-dialog
+                    ref="dialog3"
+                    v-model="saleday3"
+                    :return-value.sync="date3"
+                    persistent
+                    width="290px"
+                    title-date-format
+                    input="string"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="date3"
+                        prepend-inner-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                        color="mgrey"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="date3"
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="saleday3 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.dialog3.save(date3)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-dialog>
+                  <!-- Тут година-3 -->
+                  <v-dialog
+                    ref="saletime3"
+                    v-model="menu17"
+                    :return-value.sync="time17"
+                    persistent
+                    width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time17"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="menu17"
+                      v-model="time17"
+                      full-width
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menu17 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.saletime3.save(time17)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-time-picker>
+                  </v-dialog>
+                  <!-- Тут дата-4 -->
+                  <v-dialog
+                    ref="dialog4"
+                    v-model="saleday4"
+                    :return-value.sync="date4"
+                    persistent
+                    width="290px"
+                    title-date-format
+                    input="string"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="date4"
+                        prepend-inner-icon="mdi-calendar"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="date4"
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="saleday4 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.dialog4.save(date4)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-dialog>
+                  <!-- Тут година-4 -->
+                  <v-dialog
+                    ref="saletime4"
+                    v-model="menu18"
+                    :return-value.sync="time18"
+                    persistent
+                    width="290px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="time18"
+                        readonly
+                        v-bind="attrs"
+                        v-on="on"
+                        hide-details
+                        outlined
+                        dense
+                      ></v-text-field>
+                    </template>
+                    <v-time-picker
+                      v-if="menu18"
+                      v-model="time18"
+                      full-width
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menu18 = false"
+                      >
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.saletime4.save(time18)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-time-picker>
+                  </v-dialog>
+                  <div class="d-flex justify-start">
+                    <v-btn
+                      fab
+                      small
+                      color="graylightsecond"
+                      depressed
+                      class="mr-3"
+                    >
+                      <v-icon color="grey">
+                        mdi-plus
+                      </v-icon>
+                    </v-btn>
+                    <v-btn
+                      fab
+                      small
+                      color="graylightsecond"
+                      depressed
+                    >
+                      <v-icon color="grey">
+                        mdi-minus
+                      </v-icon>
+                    </v-btn>
+                  </div>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <!-- Полное описание -->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Полное описание
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-5">
+              <p class="text--disabled text-start mb-2">
+                Полное описание
+              </p>
+              <v-textarea
+                  outlined
+
+                >
+              </v-textarea>
+              <v-row>
+                <v-col cols="6">
+                  <v-text-field
+                    v-model="site"
+                    :rules="[rules.required, rules.counter]"
+                    label="Сайт"
+                    counter
+                    maxlength="191"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="6">
+                  <v-text-field
+                    v-model="linkToBuy"
+                    :rules="[rules.required, rules.counter]"
+                    label="Ссылка на покупку билетов или регистрацию"
+                    counter
+                    maxlength="191"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
           <!-- Контактна інформація -->
           <v-expansion-panel>
             <v-expansion-panel-header >
@@ -921,92 +1393,7 @@
               </v-tabs-items>
             </v-expansion-panel-content>
           </v-expansion-panel>
-          <!-- seo -->
-          <v-expansion-panel>
-            <v-expansion-panel-header >
-              <v-subheader
-                class="tab-subheader"
-              >
-                seo
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon >
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content>
-              <v-tabs
-                v-model="tab2"
-                class="pl-5"
-              >
-                <v-tabs-slider></v-tabs-slider>
-
-                <v-tab
-                  v-for="item in tabs2"
-                  :key="item"
-                  :to="item.component"
-                >
-                  {{ item }}
-                </v-tab>
-              </v-tabs>
-              <v-divider></v-divider>
-              <v-tabs-items v-model="tab2">
-                <v-tab-item class="pa-5">
-                  <v-text-field
-                    v-model="seoMetaTitle"
-                    :rules="[rules.required, rules.counter]"
-                    label="Meta title"
-                    counter
-                    maxlength="191"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="seoUrlAdress"
-                    :rules="[rules.required, rules.counter]"
-                    label="Канонический URL-адрес"
-                    counter
-                    maxlength="191"
-                    class="mb-6"
-                  ></v-text-field>
-                  <p class="text--disabled mb-2">
-                    Meta descriptopn
-                  </p>
-                  <v-textarea
-                      outlined
-                    >
-                  </v-textarea>
-                </v-tab-item>
-                <v-tab-item class="pa-5">
-                  <v-text-field
-                    v-model="facebook"
-                    :rules="[rules.required, rules.counter]"
-                    label="Facebook"
-                    counter
-                    maxlength="191"
-                    class="mb-3"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="google"
-                    :rules="[rules.required, rules.counter]"
-                    label="Google"
-                    counter
-                    maxlength="191"
-                    class="mb-5"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="google"
-                    :rules="[rules.required, rules.counter]"
-                    label="Google"
-                    counter
-                    maxlength="191"
-                    class="mb-10"
-                  ></v-text-field>
-                </v-tab-item>
-              </v-tabs-items>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!-- Додаткова інформація -->
+          <!-- Дополнительная информация -->
           <v-expansion-panel>
             <v-expansion-panel-header >
               <v-subheader
@@ -1021,14 +1408,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="pa-4">
-              <v-text-field
-                v-model="fullName"
-                :rules="[rules.required, rules.counter]"
-                label="Полное название"
-                counter
-                maxlength="191"
-              ></v-text-field>
+            <v-expansion-panel-content class="pa-5">
               <v-text-field
                 v-model="authorPhoto"
                 :rules="[rules.required, rules.counter]"
@@ -1037,37 +1417,9 @@
                 maxlength="191"
               ></v-text-field>
               <v-text-field
-                v-model="sourse"
+                v-model="source"
                 :rules="[rules.required, rules.counter]"
-                label="Источник"
-                counter
-                maxlength="191"
-              ></v-text-field>
-              <v-text-field
-                v-model="addInfoKod"
-                :rules="[rules.required, rules.counter]"
-                label="КОАТУУ"
-                counter
-                maxlength="191"
-              ></v-text-field>
-              <v-text-field
-                v-model="kodUsreou"
-                :rules="[rules.required, rules.counter]"
-                label="Код ЄДРПОУ"
-                counter
-                maxlength="191"
-              ></v-text-field>
-              <v-text-field
-                v-model="addInfoVideo"
-                :rules="[rules.required, rules.counter]"
-                label="3D видео"
-                counter
-                maxlength="191"
-              ></v-text-field>
-              <v-text-field
-                v-model="keywords"
-                :rules="[rules.required, rules.counter]"
-                label="Ключевые слова"
+                label="Джерело"
                 counter
                 maxlength="191"
               ></v-text-field>
@@ -1075,334 +1427,10 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
-      <v-col
-        cols="3"
-      >
-        <v-expansion-panels v-model="panel2" multiple active-class="mb-5">
-          <!--Настройки-->
-          <v-expansion-panel>
-            <v-expansion-panel-header>
-              <v-subheader
-                class="tab-subheader"
-              >
-                Настройки
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon>
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4 py-3">
-              <v-row>
-                <v-col cols="12" class="py-0">
-                  <v-select
-                    :items="settingsStatus"
-                    label="Статус"
-                    hide-details
-                  ></v-select>
-                  <v-select
-                    :items="settingsType"
-                    label="Тип"
-                    hide-details
-                  ></v-select>
-                  <v-select
-                    :items="settingsAuthor"
-                    label="Автор"
-                    hide-details
-                  ></v-select>
-                  <v-text-field
-                    hide-details
-                    label="Слаг"
-                  ></v-text-field>
-                  <v-text-field
-                    hide-details
-                    label="Создано"
-                  ></v-text-field>
-                  <v-text-field
-                    label="Изменено"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!--Категории-->
-          <v-expansion-panel>
-            <v-expansion-panel-header >
-              <v-subheader
-                class="tab-subheader"
-              >
-                категории
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon >
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4 pb-5">
-              <v-row>
-                <v-col cols="12">
-                  <v-checkbox
-                    v-model="sportSections"
-                    label="Спортивные секции"
-                    color="primary"
-                    hide-details
-                  ></v-checkbox>
-                  <v-checkbox
-                    v-model="sauna"
-                    label="Баня"
-                    color="primary"
-                    hide-details
-                  ></v-checkbox>
-                  <v-checkbox
-                    v-model="entertainmentComplex"
-                    label="Развлекательный комплекс"
-                    color="primary"
-                    hide-details
-                    class="mb-4"
-                  ></v-checkbox>
-                  <v-btn
-                    text
-                    class="categorie-btn"
-                    @click="creationNewCategorie = !creationNewCategorie"
-                  >
-                    <v-icon class="mr-2">
-                      mdi-plus
-                    </v-icon>
-                    Добавить новую категорию
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!--Метки-->
-          <v-expansion-panel>
-            <v-expansion-panel-header >
-              <v-subheader
-                class="tab-subheader"
-              >
-                Метки
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon >
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content class="pa-5">
-              <div class="d-grid cols-3-2">
-                <v-text-field
-                  outlined
-                  hide-details
-                  dense
-                ></v-text-field>
-                <v-btn
-                  depressed
-                  class="btn-main"
-                  small
-                  height="100%"
-                >
-                  Добавить
-                </v-btn>
-              </div>
-              <v-subheader> Разделяйте метки запятыми </v-subheader>
-              <v-chip-group
-                column
-              >
-                <v-chip
-                  close
-                  close-icon="mdi-close"
-                  small
-                > Активный отдых </v-chip>
-                <v-chip
-                  close
-                  close-icon="mdi-close"
-                  small
-                >Пляж</v-chip>
-                <v-chip
-                  close
-                  close-icon="mdi-close"
-                  small
-                >Бокс</v-chip>
-                <v-chip
-                  close
-                  close-icon="mdi-close"
-                  small
-                >Хоккей</v-chip>
-              </v-chip-group>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!--Изображение-->
-          <v-expansion-panel>
-            <v-expansion-panel-header >
-              <v-subheader
-                class="tab-subheader"
-              >
-                Изображение
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon >
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4 pb-5">
-              <v-row class="d-flex">
-                <v-col>
-                  <v-file-input
-                    label="Установить изображение страницы"
-                    hide-details
-                    prepend-icon=""
-                    class="file-input"
-                  ></v-file-input>
-                </v-col>
-              </v-row>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!--Лого-->
-          <v-expansion-panel>
-            <v-expansion-panel-header >
-              <v-subheader
-                class="tab-subheader"
-              >
-                Лого
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon >
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4 pb-5">
-              <v-row class="d-flex">
-                <v-col>
-                  <v-file-input
-                    label="Установить изображение страницы"
-                    hide-details
-                    prepend-icon=""
-                    class="file-input"
-                  ></v-file-input>
-                </v-col>
-              </v-row>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-          <!-- Атрибуты страницы -->
-          <v-expansion-panel>
-            <v-expansion-panel-header >
-              <v-subheader
-                class="tab-subheader"
-              >
-                Атрибуты страницы
-              </v-subheader>
-              <template v-slot:actions>
-                <v-icon >
-                  $expand
-                </v-icon>
-              </template>
-            </v-expansion-panel-header>
-            <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4">
-              <v-select
-                :items="template"
-                label="Шаблон"
-                hide-details
-                class="mb-3"
-              ></v-select>
-              <v-text-field
-                label="Порядок"
-                hide-details
-                class="mb-3"
-              ></v-text-field>
-              <v-checkbox
-                v-model="reсomended"
-                label="Рекомендований"
-                color="primary"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                v-model="unsolisited"
-                label="Незатребуваний"
-                color="primary"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                v-model="closeForever"
-                label="Закритий назавжди"
-                color="primary"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                v-model="faceControl"
-                label="Фейсконтроль"
-                color="primary"
-                hide-details
-              ></v-checkbox>
-              <v-checkbox
-                v-model="dressCode"
-                label="Дресскод"
-                color="primary"
-                hide-details
-                class="mb-4"
-              ></v-checkbox>
-              <p class="text--disabled mb-2">
-                Описание дресскода
-              </p>
-              <v-textarea
-                  outlined
-                >
-              </v-textarea>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
+      <v-col cols="3">
+
       </v-col>
     </v-row>
-    <v-navigation-drawer
-      v-model="creationNewCategorie"
-      absolute
-      right
-      width="512px"
-      temporary
-    >
-      <v-col
-        class="pt-5 pa-4"
-      >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-7"
-        >
-          Додати категорію
-        </v-subheader>
-        <v-text-field
-          v-model="categoryName"
-          :rules="[rules.required, rules.counter]"
-          label="Название услуги"
-          counter
-          maxlength="191"
-        ></v-text-field>
-        <div>
-          <v-btn
-            depressed
-            class="btn-main"
-            height="56px"
-            small
-          >
-            Отменить
-          </v-btn>
-          <v-btn
-            depressed
-            color="primary"
-            class="font-weight-medium"
-          >
-            ДОДАТИ
-          </v-btn>
-        </div>
-      </v-col>
-    </v-navigation-drawer>
   </div>
 </template>
 
@@ -1411,26 +1439,34 @@ export default {
   data() {
     return ({
       panel1: [0, 1, 2, 3],
-      panel2: [0, 1, 2, 3, 4, 5],
       language: ['Рус', 'Укр', 'Eng'],
-      dropdown_font: [
-        { text: 'Arial' },
-        { text: 'Calibri' },
-        { text: 'Courier' },
-        { text: 'Verdana' },
-      ],
-      dropdown_edit: [
-        { text: '100%' },
-        { text: '75%' },
-        { text: '50%' },
-        { text: '25%' },
-        { text: '0%' },
-      ],
       title: '',
+      site: '',
+      linkToBuy: '',
+      authorPhoto: '',
+      source: '',
       rules: {
         required: value => !!value || 'Required.',
         counter: value => value.length <= 191 || 'Max 191 characters',
       },
+      date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday1: false,
+      date2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday2: false,
+      date3: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday3: false,
+      date4: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      saleday4: false,
+      time15: null,
+      menu15: false,
+      time16: null,
+      menu16: false,
+      time17: null,
+      menu17: false,
+      time18: null,
+      menu18: false,
+
+
       tab1: null,
       tabs1: [
         'Адрес',
@@ -1478,80 +1514,26 @@ export default {
       menu13: false,
       time14: null,
       menu14: false,
-      tab2: null,
-      tabs2: [
-        'Основные',
-        'Социальные сети',
-      ],
-      seoMetaTitle: '',
-      seoUrlAdress: '',
-      fullName: '',
-      authorPhoto: '',
-      sourse: '',
-      addInfoKod: '',
-      kodUsreou: '',
-      addInfoVideo: '',
-      keywords: '',
-      settingsStatus: ['Активно', 'Не активно'],
-      settingsType: ['Локации', 'Места'],
-      settingsAuthor: ['Anna Krivko'],
-      sportSections: [false],
-      sauna: [true],
-      entertainmentComplex: [false],
-      creationNewCategorie: false,
-      template: ['Продукты'],
-      reсomended: true,
-      unsolisited: true,
-      closeForever: false,
-      faceControl: false,
-      dressCode: true,
-      categoryName: '',
-
-      content: '<h2>I am Example</h2>',
-      editorOption: {
-        // Some Quill options...
-      }
     })
-  },
-  methods: {
-    onEditorBlur(quill) {
-      console.log('editor blur!', quill)
-    },
-    onEditorFocus(quill) {
-      console.log('editor focus!', quill)
-    },
-    onEditorReady(quill) {
-      console.log('editor ready!', quill)
-    },
-    onEditorChange({ quill, html, text }) {
-      console.log('editor change!', quill, html, text)
-      this.content = html
-    }
-  },
-  computed: {
-    editor() {
-      return this.$refs.myQuillEditor.quill
-    }
-  },
-  mounted() {
-    console.log('this is current quill instance object', this.editor)
   }
 }
 </script>
 
-<style lang="css" scoped>
-.places-overview {
+<style lang="scss" scoped>
+.events-overview {
   background-color: #F9F9F9;
   padding: 0;
 }
 
-.categorie-btn {
-  font-size: 14px;
-  line-height: 16px;
-  color: #6C6C6C !important;
-  text-transform: none !important;
-  margin: 0px;
-  letter-spacing: normal;
+.v-text-field {
+  padding: 0px !important;
+}
+
+.row {
+  margin-top: 0 !important;
+}
+
+.v-subheader {
   padding: 0px !important;
 }
 </style>

@@ -202,12 +202,24 @@ $dirtygrey: #DADADA;
     grid-template-columns: 3fr 2fr 3fr 2fr 2fr;
   }
 
+  &.cols-3-2-3-2 {
+    grid-template-columns: 3fr 2fr 3fr 2fr;
+  }
+
   &.cols-2-2-2-1-2-1 {
     grid-template-columns: 2fr 2fr 2fr 1fr 2fr 1fr;
   }
 
   &.cols-4-2-2 {
     grid-template-columns: 4fr 2fr 2fr;
+  }
+
+  &.cols-2-2-4 {
+    grid-template-columns: 2fr 2fr 4fr;
+  }
+
+  &.cols-4-2 {
+    grid-template-columns: 4fr 2fr;
   }
 }
 

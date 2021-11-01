@@ -125,7 +125,24 @@ const routes = [
   {
     path: '/events/:id',
     name: 'Events Edit',
-    component: () => import('../views/events/Edit.vue')
+    component: () => import('../views/events/Edit.vue'),
+    children: [
+      {
+        path: 'overview',
+        name: 'Events Overview',
+        component: () => import('../components/events/Overview.vue')
+      },
+      {
+        path: 'tickets',
+        name: 'Events Tickets',
+        component: () => import('../components/events/Tickets.vue')
+      },
+      {
+        path: 'sales',
+        name: 'Events Sales',
+        component: () => import('../components/events/Sales.vue')
+      },
+    ],
   },
   {
     path: '/events-tags',
