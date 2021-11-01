@@ -1167,7 +1167,7 @@
                   <v-btn
                     text
                     class="categorie-btn"
-                    @click="creationNewCategorie = !creationNewCategorie"
+                    @click="$emit('openNewCategorySidebar')"
                   >
                     <v-icon class="mr-2">
                       mdi-plus
@@ -1362,47 +1362,6 @@
         </v-expansion-panels>
       </v-col>
     </v-row>
-    <v-navigation-drawer
-      v-model="creationNewCategorie"
-      absolute
-      right
-      width="512px"
-      temporary
-    >
-      <v-col
-        class="pt-5 pa-4"
-      >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-7"
-        >
-          Додати категорію
-        </v-subheader>
-        <v-text-field
-          v-model="categoryName"
-          :rules="[rules.required, rules.counter]"
-          label="Название услуги"
-          counter
-          maxlength="191"
-        ></v-text-field>
-        <div>
-          <v-btn
-            depressed
-            class="btn-main"
-            height="56px"
-            small
-          >
-            Отменить
-          </v-btn>
-          <v-btn
-            depressed
-            color="primary"
-            class="font-weight-medium"
-          >
-            ДОДАТИ
-          </v-btn>
-        </div>
-      </v-col>
-    </v-navigation-drawer>
   </div>
 </template>
 
@@ -1498,7 +1457,7 @@ export default {
       sportSections: [false],
       sauna: [true],
       entertainmentComplex: [false],
-      creationNewCategorie: false,
+      createNewCategory: false,
       template: ['Продукты'],
       reсomended: true,
       unsolisited: true,

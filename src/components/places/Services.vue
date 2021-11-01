@@ -61,7 +61,7 @@
             class="btn-main mr-3"
             height="40px"
             small
-            @click="creationServiceBlock = !creationServiceBlock"
+            @click="$emit('openNewServiceBlockSidebar')"
             >
               Настройки блока
             </v-btn>
@@ -69,7 +69,7 @@
               depressed
               color="primary"
               class="font-weight-medium"
-              @click="creationSidebar = !creationSidebar"
+              @click="$emit('openNewServiceSidebar')"
             >
               <v-icon dark class="mr-2">
                 mdi-plus
@@ -105,7 +105,7 @@
           <template v-slot:item.actions="{ item }">
             <v-icon
               class="mr-4"
-              @click="creationServiseEditor = !creationServiseEditor"
+              @click="$emit('openServiseEditorSidebar')"
             >
               mdi-pencil
             </v-icon>
@@ -126,166 +126,6 @@
       </v-data-table>
       </v-card>
     </v-row>
-    <v-navigation-drawer
-      v-model="creationServiceBlock"
-      absolute
-      right
-      width="512px"
-      temporary
-    >
-      <v-col
-        class="pt-5 pa-4"
-      >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
-        >
-          Блок услуг
-        </v-subheader>
-        <v-text-field
-          v-model="blockName"
-          :rules="[rules.required, rules.counter]"
-          label="Название блока"
-          counter
-          maxlength="191"
-        ></v-text-field>
-        <p class="text--disabled mb-1">
-          Короткое описание
-        </p>
-        <v-textarea
-            outlined
-            height="82px"
-            hide-details
-            class="mb-2"
-          >
-        </v-textarea>
-        <v-select
-          :items="displayType"
-          label="Тип отображения"
-          hide-details
-          class="mb-6"
-        ></v-select>
-        <v-checkbox
-          v-model="active"
-          label="Активний"
-          color="primary"
-          hide-details
-        ></v-checkbox>
-        <v-checkbox
-          v-model="cashPay"
-          label="Оплата готівкою"
-          color="primary"
-          hide-details
-        ></v-checkbox>
-        <v-checkbox
-          v-model="onlinePay"
-          label="Оплата онлайн"
-          color="primary"
-          hide-details
-        ></v-checkbox>
-      </v-col>
-      <v-col class="text-center">
-        <v-btn
-          depressed
-          class="btn-main mr-3"
-          large
-          width="33%"
-        >
-          Отмена
-        </v-btn>
-        <v-btn
-          depressed
-          color="primary"
-          large
-          width="33%"
-        >
-          сохранить
-        </v-btn>
-      </v-col>
-    </v-navigation-drawer>
-    <v-navigation-drawer
-      v-model="creationServiseEditor"
-      absolute
-      right
-      width="512px"
-      temporary
-    >
-      <v-col
-        class="pt-5 pa-4"
-      >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
-        >
-          Редактор  услуги
-        </v-subheader>
-        <v-text-field
-          v-model="blockName"
-          :rules="[rules.required, rules.counter]"
-          label="Название услуги"
-          counter
-          maxlength="191"
-        ></v-text-field>
-        <v-text-field
-          label="Цена"
-          hide-details
-        ></v-text-field>
-        <v-row class="align-center pt-2">
-          <v-col>
-            <p class="text--secondary ma-0"
-            >Общая цена: 1030 грн.</p>
-          </v-col>
-          <v-col class="d-flex justify-end">
-            <v-btn
-            text
-            class="categorie-btn"
-            color="primary"
-            >Подробнее о цене</v-btn>
-          </v-col>
-        </v-row>
-        <v-img
-          lazy-src="https://picsum.photos/id/11/10/6"
-          max-height="144"
-          max-width="194"
-          class="my-5"
-          src="https://picsum.photos/id/11/500/300"
-        ></v-img>
-        <v-checkbox
-          v-model="active"
-          label="Активний"
-          color="primary"
-          hide-details
-        ></v-checkbox>
-        <v-checkbox
-          v-model="cashPay"
-          label="Оплата готівкою"
-          color="primary"
-          hide-details
-        ></v-checkbox>
-        <v-checkbox
-          v-model="onlinePay"
-          label="Оплата онлайн"
-          color="primary"
-          hide-details
-        ></v-checkbox>
-      </v-col>
-      <v-col class="text-center">
-        <v-btn
-          depressed
-          class="btn-main mr-3"
-          large
-          width="33%"
-        >
-          Отмена
-        </v-btn>
-        <v-btn
-          depressed
-          color="primary"
-          large
-          width="33%"
-        >
-          сохранить
-        </v-btn>
-      </v-col>
-    </v-navigation-drawer>
     <v-dialog v-model="dialogDelete" max-width="500px">
       <v-card>
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -353,17 +193,12 @@ export default {
       },
       defaultItem: {
       },
-      creationServiseEditor: false,
       creationServiceBlock: false,
       rules: {
         required: value => !!value || 'Required.',
         counter: value => value.length <= 191 || 'Max 191 characters',
       },
-      blockName: '',
       displayType: ['Список'],
-      active: false,
-      cashPay: false,
-      onlinePay: false,
     }
   },
   computed: {
