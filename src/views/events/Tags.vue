@@ -1,4 +1,4 @@
-events<template lang="html">
+<template lang="html">
   <div class="tegs">
     <v-app-bar
       app
@@ -31,39 +31,53 @@ events<template lang="html">
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="px-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все теги (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Опубликованные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Черновики (9)
+        </v-btn>
       </v-col>
     </v-row>
     <v-row
-      class="mx-3 justify-start"
+      class="px-2"
     >
       <v-col
         cols="3"
-        class="d-flex mr-12"
+        class="d-grid cols-2-2 mr-12"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        class="bg-white"
-        height="40px"
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -73,17 +87,15 @@ events<template lang="html">
         class="d-grid cols-2-2-3"
       >
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Структура
         </v-btn>
         <v-select
-          :items="types"
+          :items="content"
           label="Контекст"
           background-color="white"
           dense
@@ -91,7 +103,7 @@ events<template lang="html">
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="filter"
           label="Фильтровать по статусу"
           background-color="white"
           dense
@@ -100,7 +112,7 @@ events<template lang="html">
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -109,7 +121,7 @@ events<template lang="html">
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -219,10 +231,10 @@ events<template lang="html">
             </v-icon>
           </template>
           <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
+            <v-icon v-if="item.top">
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
@@ -238,14 +250,12 @@ events<template lang="html">
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-3"
+              class="mr-4"
               @click="editTegs = !editTegs"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -313,11 +323,10 @@ events<template lang="html">
           </v-textarea>
           <v-btn
             depressed
-            outlined
-            color="graylight"
+            class="btn-main mr-3"
+            height="44px"
             large
             width="33%"
-            class="mr-3"
           >
             Отменить
           </v-btn>
@@ -492,7 +501,9 @@ export default {
       ],
       editTegs: false,
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      actions: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      content: [''],
+      filter: [''],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,

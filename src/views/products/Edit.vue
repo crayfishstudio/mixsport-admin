@@ -47,35 +47,36 @@
       </template>
     </v-app-bar>
     <v-tabs-items v-model="tab">
-      <router-view></router-view>
+      <router-view
+      ></router-view>
     </v-tabs-items>
   </div>
 </template>
 
 <script>
-
-export default {
-  data: () => ({
-    tab: null,
-    tabs: [
-      {
-        id: 1,
-        title: 'Общая информация',
-        link: 'overview',
-      },
-      {
-        id: 2,
-        title: 'Заказы',
-        link:  'orders',
-      },
-      {
-        id: 3,
-        title: 'Погашение сертификатов',
-        link: 'certificates',
-      },
-    ],
-  }),
-}
+  export default {
+    data: () => ({
+      variantEditor: false,
+      tab: null,
+      tabs: [
+        {
+          id: 1,
+          title: 'Общая информация',
+          link: 'overview',
+        },
+        {
+          id: 2,
+          title: 'Заказы',
+          link:  'orders',
+        },
+        {
+          id: 3,
+          title: 'Погашение сертификатов',
+          link: 'certificates',
+        },
+      ],
+    }),
+  }
 </script>
 
 <style lang="scss" scoped>

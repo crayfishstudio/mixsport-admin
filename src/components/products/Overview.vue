@@ -2,7 +2,7 @@
   <div class="product-overview">
     <v-row>
       <v-col
-        cols="9"
+        cols="8"
       >
         <v-expansion-panels v-model="panel1" multiple active-class="mb-5">
           <!--Опис-->
@@ -42,6 +42,7 @@
               <quill-editor
                 :content="content"
                 :options="editorOption"
+                @click="$emit('openProZZZSidebar')"
                 @change="onEditorChange($event)"
               />
             </v-expansion-panel-content>
@@ -605,7 +606,7 @@
                             <v-text-field hide-details></v-text-field>
                           </v-col>
                         </v-row>
-                        <v-row class="align-center">
+                        <v-row class="d-flex align-center">
                           <v-col cols="3">
                             <v-subheader>Включить отзывы</v-subheader>
                           </v-col>
@@ -613,8 +614,8 @@
                             <v-checkbox
                               v-model="ex4"
                               color="primary"
-                              value="primary"
                               hide-details
+                              class="ma-0 pa-0"
                               small
                             ></v-checkbox>
                           </v-col>
@@ -997,6 +998,7 @@
                         value="primary"
                         hide-details
                         small
+                        class="pt-0 mt-0"
                       ></v-checkbox>
                     </v-col>
                   </v-row>
@@ -2086,7 +2088,7 @@
         </v-expansion-panels>
       </v-col>
       <v-col
-        cols="3"
+        cols="4"
       >
         <v-expansion-panels v-model="panel2" multiple active-class="mb-5">
           <!--Настройки-->
@@ -2735,4 +2737,5 @@ export default {
 .text-directions {
   text-align: left;
 }
+
 </style>

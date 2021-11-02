@@ -264,18 +264,18 @@
             </div>
           </template>
           <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
+            <v-icon v-if="item.top">
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
           <template v-slot:item.verified="{ item }">
-            <v-icon v-if="item.verified" small>
+            <v-icon v-if="item.verified">
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
@@ -291,26 +291,22 @@
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-2"
+              class="mr-4"
             >
               mdi-eye
             </v-icon>
             <v-icon
-              small
-              class="mr-2"
+              class="mr-4"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
-              class="mr-2"
+              class="mr-4"
             >
               mdi-clock-outline
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
