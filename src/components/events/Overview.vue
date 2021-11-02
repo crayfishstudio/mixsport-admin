@@ -94,8 +94,8 @@
               <v-row>
                 <v-col cols="7" class="d-grid cols-4-2">
                   <v-select
-                    :items="types"
-                    label="Действия"
+                    :items="eventType"
+                    label="Переодичное событие"
                     background-color="white"
                     dense
                     outlined
@@ -1428,7 +1428,245 @@
         </v-expansion-panels>
       </v-col>
       <v-col cols="3">
-
+        <v-expansion-panels v-model="panel2" multiple active-class="mb-5">
+          <!--Настройки-->
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <v-subheader
+                class="tab-subheader"
+              >
+                Настройки
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon>
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="px-4 py-3">
+              <v-row>
+                <v-col cols="12" class="py-0">
+                  <v-select
+                    :items="settingsStatus"
+                    label="Статус"
+                  ></v-select>
+                  <v-select
+                    :items="settingsType"
+                    label="Тип"
+                  ></v-select>
+                  <v-select
+                    :items="settingsAuthor"
+                    label="Автор"
+                  ></v-select>
+                  <v-text-field
+                    label="Слаг"
+                  ></v-text-field>
+                  <v-text-field
+                    label="Создано"
+                  ></v-text-field>
+                  <v-text-field
+                    label="Изменено"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <!--Категории-->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                категории
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="px-4 pb-5">
+              <v-row>
+                <v-col cols="12">
+                  <v-checkbox
+                    v-model="sportSections"
+                    label="Спортивные секции"
+                    color="primary"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="sauna"
+                    label="Баня"
+                    color="primary"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="entertainmentComplex"
+                    label="Развлекательный комплекс"
+                    color="primary"
+                    hide-details
+                    class="mb-4"
+                  ></v-checkbox>
+                  <v-btn
+                    text
+                    class="categorie-btn"
+                    @click="$emit('openNewCategorySidebar')"
+                  >
+                    <v-icon class="mr-2">
+                      mdi-plus
+                    </v-icon>
+                    Добавить новую категорию
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <!--Метки-->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Метки
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-5">
+              <div class="d-grid cols-3-2">
+                <v-text-field
+                  outlined
+                  hide-details
+                  dense
+                ></v-text-field>
+                <v-btn
+                  depressed
+                  class="btn-main"
+                  small
+                  height="100%"
+                >
+                  Добавить
+                </v-btn>
+              </div>
+              <v-subheader> Разделяйте метки запятыми </v-subheader>
+              <v-chip-group
+                column
+              >
+                <v-chip
+                  close
+                  close-icon="mdi-close"
+                  small
+                > Активный отдых </v-chip>
+                <v-chip
+                  close
+                  close-icon="mdi-close"
+                  small
+                >Пляж</v-chip>
+                <v-chip
+                  close
+                  close-icon="mdi-close"
+                  small
+                >Бокс</v-chip>
+                <v-chip
+                  close
+                  close-icon="mdi-close"
+                  small
+                >Хоккей</v-chip>
+              </v-chip-group>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <!--Зображення-->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Изображение
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-4">
+              <v-img
+                lazy-src="https://picsum.photos/id/11/10/6"
+                height="213"
+                src="https://picsum.photos/id/11/500/300"
+              ></v-img>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+          <!--Атрибути сторінки-->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Атрибуты страницы
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-4">
+              <v-select
+                :items="template"
+                label="Шаблон"
+                hide-details
+                class="mb-3"
+              ></v-select>
+              <v-text-field
+                label="Порядок"
+                hide-details
+                class="mb-3"
+              ></v-text-field>
+              <v-checkbox
+                v-model="reсomended"
+                label="Рекомендований"
+                color="primary"
+                hide-details
+              ></v-checkbox>
+              <v-checkbox
+                v-model="ageRestriction"
+                label="Вікове обмеження"
+                color="primary"
+                hide-details
+                class="mb-2"
+              ></v-checkbox>
+              <v-text-field
+                :disabled="!ageRestriction"
+                outlined
+                hide-details
+                dense
+              >
+              </v-text-field>
+              <v-checkbox
+                v-model="faceControl"
+                label="Фейсконтроль"
+                color="primary"
+                hide-details
+              ></v-checkbox>
+              <v-checkbox
+                v-model="dressCode"
+                label="Дресскод"
+                color="primary"
+                hide-details
+                class="mb-4"
+              ></v-checkbox>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
       </v-col>
     </v-row>
   </div>
@@ -1439,8 +1677,10 @@ export default {
   data() {
     return ({
       panel1: [0, 1, 2, 3],
+      panel2: [0, 1, 2, 3, 4, 5],
       language: ['Рус', 'Укр', 'Eng'],
       title: '',
+      eventType: ['Переодичное событие', 'Єжегодное событие'],
       site: '',
       linkToBuy: '',
       authorPhoto: '',
@@ -1514,6 +1754,17 @@ export default {
       menu13: false,
       time14: null,
       menu14: false,
+      settingsStatus: ['Активно', 'Не активно'],
+      settingsType: ['Локации', 'Места'],
+      settingsAuthor: ['Anna Krivko'],
+      sportSections: true,
+      sauna: true,
+      entertainmentComplex: false,
+      template: ['Продукты'],
+      reсomended: false,
+      ageRestriction: true,
+      faceControl: false,
+      dressCode: false,
     })
   }
 }
@@ -1534,6 +1785,16 @@ export default {
 }
 
 .v-subheader {
+  padding: 0px !important;
+}
+
+.categorie-btn {
+  font-size: 14px;
+  line-height: 16px;
+  color: #6C6C6C !important;
+  text-transform: none !important;
+  margin: 0px;
+  letter-spacing: normal;
   padding: 0px !important;
 }
 </style>

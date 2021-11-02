@@ -329,7 +329,7 @@
             dense
           ></v-text-field>
           <v-select
-            :items="cities"
+            :items="sponsor"
             label="Орагнизатор"
             background-color="white"
             outlined
@@ -357,7 +357,7 @@
           class="pt-0"
         >
           <v-select
-            :items="cities"
+            :items="category"
             label="Категория"
             background-color="white"
             outlined
@@ -707,8 +707,10 @@ export default {
         },
       ],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Тип', 'Структура', 'Форма'],
+      types: ['События'],
+      sponsor: ['Master2020', 'Petro'],
+      cities: ['Львів', 'Київ', 'Одеса'],
+      category: ['Концерт', 'Виставка', 'Спортивне змагання'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,
