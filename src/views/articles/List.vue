@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="list">
+  <div class="list-articles">
     <v-app-bar
       app
       color="white"
@@ -31,26 +31,42 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все статьи   (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Опубликованные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Черновики (9)
+        </v-btn>
       </v-col>
     </v-row>
     <v-row
-      class="justify-start mx-3"
+      class="px-2"
     >
       <v-col
         cols="3"
         class="d-flex mr-10"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
@@ -59,13 +75,10 @@
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -75,7 +88,7 @@
         class="d-grid cols-2-3-3"
       >
         <v-select
-          :items="types"
+          :items="rubric"
           label="Рубрика"
           background-color="white"
           dense
@@ -83,7 +96,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="typeFilter"
           label="Фильтровать по типу"
           background-color="white"
           dense
@@ -91,7 +104,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="dateFilter"
           label="Фильтровать по дате"
           background-color="white"
           dense
@@ -100,7 +113,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -109,7 +122,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -219,12 +232,12 @@
             </v-icon>
           </template>
           <template v-slot:header.views="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
           <template v-slot:header.showphone="{ header }">
-            <v-icon v-tooltip.bottom-center="header.text" small >
+            <v-icon v-tooltip.bottom-center="header.text">
               {{ header.icon }}
             </v-icon>
           </template>
@@ -235,18 +248,18 @@
             </div>
           </template>
           <template v-slot:item.top="{ item }">
-            <v-icon v-if="item.top" small>
+            <v-icon v-if="item.top">
               mdi-star
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-star-outline
             </v-icon>
           </template>
           <template v-slot:item.showphone="{ item }">
-            <v-icon v-if="item.showphone" small>
+            <v-icon v-if="item.showphone">
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
@@ -262,14 +275,12 @@
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-2"
+              class="mr-4"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -363,26 +374,11 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все статьи',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Опубликованные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      actions: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      rubric: [''],
+      typeFilter: [''],
+      dateFilter: [''],
       cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,
@@ -406,7 +402,8 @@ export default {
         },
         {
           text: 'Тип',
-          value: 'type'
+          value: 'type',
+          sortable: false,
         },
         {
           text: 'Автор',
@@ -416,6 +413,7 @@ export default {
           icon: 'mdi-eye',
           text: 'Перегляди',
           value: 'views',
+          align: 'center',
         },
         {
           text: 'Статус',
@@ -436,7 +434,8 @@ export default {
         },
         {
           text: 'Дата',
-          value: 'date'
+          value: 'date',
+          align: 'center'
         },
         {
           text: 'Действия',
@@ -518,7 +517,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('articles/' + item.id);
+      this.$router.push('articles/' + item.id + '/overview');
     },
 
     deleteItem (item) {
@@ -562,6 +561,7 @@ export default {
 
 <style lang="scss" scoped>
 .name-col {
+
   small {
     display: block;
     font-size: 12px;

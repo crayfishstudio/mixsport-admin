@@ -209,9 +209,30 @@ const routes = [
   {
     path: '/articles/:id',
     name: 'Article Edit',
-    component: () => import('../views/articles/Edit.vue')
+    component: () => import('../views/articles/Edit.vue'),
+    children: [
+      {
+        path: 'overview',
+        name: 'Article Overview',
+        component: () => import('../components/articles/Overview.vue')
+      },
+      {
+        path: 'photo',
+        name: 'Article Photo',
+        component: () => import('../components/articles/Photo.vue')
+      },
+      {
+        path: 'file',
+        name: 'Article File',
+        component: () => import('../components/articles/File.vue')
+      },
+      {
+        path: 'relatedplaces',
+        name: 'Article Pelated Places',
+        component: () => import('../components/articles/Relatedplaces.vue')
+      },
+    ],
   },
-
 ]
 
 const router = new VueRouter({

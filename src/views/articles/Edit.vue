@@ -1,17 +1,14 @@
 <template lang="html">
-  <div class="create">
+  <div class="articles-edit">
     <v-app-bar
       app
       color="white"
-      class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium"> Cтатья № {{ $route.params.id }}</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium px-1"> Cтатья № {{ $route.params.id }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -19,9 +16,7 @@
       </v-btn>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -35,23 +30,27 @@
       >
         Сохранить
       </v-btn>
+      <template v-slot:extension>
+        <v-tabs
+          v-model="tab"
+          class="px-5"
+        >
+          <v-tabs-slider></v-tabs-slider>
+
+          <v-tab
+            v-for="item in tabs"
+            :key="item.id"
+            :to="item.link"
+          >
+            {{ item.title }}
+          </v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
-    <v-tabs
-      v-model="tab"
-      align-with-title
-      class="px-0"
-    >
-      <v-tabs-slider></v-tabs-slider>
-
-      <v-tab
-        v-for="item in tabs"
-        :key="item"
-        :to="item.component"
-      >
-        {{ item }}
-      </v-tab>
-    </v-tabs>
-
+    <v-tabs-items v-model="tab">
+      <router-view
+      ></router-view>
+    </v-tabs-items>
   </div>
 </template>
 
@@ -60,15 +59,33 @@
     data: () => ({
       tab: null,
       tabs: [
-        'Общая информация',
-        'Фото',
-        'Файлы',
-        'Связанные места',
+        {
+          id: 1,
+          title: 'Общая информация',
+          link: 'overview',
+        },
+        {
+          id: 2,
+          title: 'ФОто',
+          link: 'photo',
+        },
+        {
+          id: 3,
+          title: 'Файлы',
+          link: 'file',
+        },
+        {
+          id: 4,
+          title: 'Связанные места',
+          link: 'relatedplaces',
+        }
       ],
     }),
   }
 </script>
 
 <style lang="scss" scoped>
-
+.articles-edit {
+  padding: 0px;
+}
 </style>

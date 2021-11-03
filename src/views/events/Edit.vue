@@ -7,18 +7,18 @@
       <v-toolbar-title class="font-weight-medium px-1"> Событиe № {{ $route.params.id }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
-      depressed
-      class="btn-main mr-3"
-      height="36px"
-      smalll
+        depressed
+        class="btn-main mr-3"
+        height="36px"
+        small
       >
         Удалить
       </v-btn>
       <v-btn
-      depressed
-      class="btn-main mr-3"
-      height="36px"
-      smalll
+        depressed
+        class="btn-main mr-3"
+        height="36px"
+        small
       >
         Посмотреть
       </v-btn>

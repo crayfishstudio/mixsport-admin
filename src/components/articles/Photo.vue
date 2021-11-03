@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="places-photo">
+  <div class="article-photo">
     <v-row class="pt-3">
       <v-col
         cols="4"
@@ -90,56 +90,56 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return ({
-      actions: ['Позначити всі'],
-      items: [
-        {
-          src: 'backgrounds/bg.jpg',
-        },
-        {
-          src: 'backgrounds/md.jpg',
-        },
-        {
-          src: 'backgrounds/bg-2.jpg',
-        },
-        {
-          src: 'backgrounds/md2.jpg',
-        },
-        {
-          src: 'backgrounds/bg.jpg',
-        },
-        {
-          src: 'backgrounds/md.jpg',
-        },
-        {
-          src: 'backgrounds/bg-2.jpg',
-        },
-        {
-          src: 'backgrounds/md2.jpg',
-        },
-        {
-          src: 'backgrounds/bg.jpg',
-        },
-        {
-          src: 'backgrounds/md.jpg',
-        },
-        {
-          src: 'backgrounds/bg-2.jpg',
-        },
-        {
-          src: 'backgrounds/md2.jpg',
-        },
-      ],
-      selected: [],
-    })
+  export default {
+    data() {
+      return {
+        actions: ['Позначити всі', 'Видалити всі фото'],
+        items: [
+          {
+            src: 'backgrounds/bg.jpg',
+          },
+          {
+            src: 'backgrounds/md.jpg',
+          },
+          {
+            src: 'backgrounds/bg-2.jpg',
+          },
+          {
+            src: 'backgrounds/md2.jpg',
+          },
+          {
+            src: 'backgrounds/bg.jpg',
+          },
+          {
+            src: 'backgrounds/md.jpg',
+          },
+          {
+            src: 'backgrounds/bg-2.jpg',
+          },
+          {
+            src: 'backgrounds/md2.jpg',
+          },
+          {
+            src: 'backgrounds/bg.jpg',
+          },
+          {
+            src: 'backgrounds/md.jpg',
+          },
+          {
+            src: 'backgrounds/bg-2.jpg',
+          },
+          {
+            src: 'backgrounds/md2.jpg',
+          },
+        ],
+        selected: [],
+      }
+    }
   }
-}
 </script>
 
 <style lang="css" scoped>
-.places-photo {
+.article-photo {
   background-color: #F9F9F9;
   padding: 0;
 }
