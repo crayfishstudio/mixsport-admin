@@ -145,6 +145,21 @@ const routes = [
     ],
   },
   {
+    path: '/events-tickets',
+    name: 'Tickets List',
+    component: () => import('../views/events/Tickets.vue')
+  },
+  {
+    path: '/events-qrreading',
+    name: 'QR Reading List',
+    component: () => import('../views/events/Qrreading.vue')
+  },
+  {
+    path: '/events-transactions',
+    name: 'Transactions Logs List',
+    component: () => import('../views/events/Transactions.vue')
+  },
+  {
     path: '/events-tags',
     name: 'Tags List',
     component: () => import('../views/events/Tags.vue')

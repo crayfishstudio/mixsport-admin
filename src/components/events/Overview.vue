@@ -106,8 +106,9 @@
                     class="btn-main"
                     height="40px"
                     small
+                    @click="$emit('openAddDataEventSidebar')"
                   >
-                    Применить
+                    Добавить даты
                   </v-btn>
                 </v-col>
               </v-row>
@@ -1444,7 +1445,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4 py-3">
+            <v-expansion-panel-content class="px-5 py-4">
               <v-row>
                 <v-col cols="12" class="py-0">
                   <v-select
@@ -1487,7 +1488,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="px-4 pb-5">
+            <v-expansion-panel-content class="px-5 pb-5">
               <v-row>
                 <v-col cols="12">
                   <v-checkbox
@@ -1596,7 +1597,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="pa-4">
+            <v-expansion-panel-content class="pa-5">
               <v-img
                 lazy-src="https://picsum.photos/id/11/10/6"
                 height="213"
@@ -1619,7 +1620,7 @@
               </template>
             </v-expansion-panel-header>
             <v-divider></v-divider>
-            <v-expansion-panel-content class="pa-4">
+            <v-expansion-panel-content class="pa-5">
               <v-select
                 :items="template"
                 label="Шаблон"

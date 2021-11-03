@@ -69,10 +69,10 @@
     >
       <v-col
         cols="5"
-        class="d-grid cols-3-2-2 mr-10"
+        class="d-grid cols-4-2-2 mr-10"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
@@ -101,7 +101,7 @@
         class="d-grid cols-3-2-4"
       >
         <v-select
-          :items="types"
+          :items="categoryFilter"
           label="Категория"
           background-color="white"
           dense
@@ -117,7 +117,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="filterData"
           label="Фильтровать по дате"
           background-color="white"
           dense
@@ -300,9 +300,10 @@
       right
       width="512px"
       temporary
+      class="py-4"
     >
       <v-row
-        class="pt-5 text-right mx-3"
+        class="text-right mx-3"
       >
         <v-col cols="12" class="pb-0" >
           <v-subheader
@@ -423,13 +424,13 @@
                 class="sidebar-btn"
                 outlined
               >
-                Локация
+                Единоразовое
               </v-btn>
               <v-btn
                 class="sidebar-btn"
                 outlined
               >
-                Локация
+                Многоразовое
               </v-btn>
             </v-col>
           </v-row>
@@ -683,31 +684,11 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все события',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Опубликованные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'На подтверждение',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-        {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
       creationSidebar: false,
-      types: ['События'],
+      actions: ['Удалить выбранное', 'Слияние'],
+      categoryFilter: [''],
+      types: [''],
+      filterData: [''],
       sponsor: ['Master2020', 'Petro'],
       cities: ['Львів', 'Київ', 'Одеса'],
       category: ['Концерт', 'Виставка', 'Спортивне змагання'],

@@ -107,6 +107,7 @@
 export default {
   data() {
     return {
+      language: ['Рус', 'Укр', 'Eng'],
       panel1:[0],
       dialog: false,
       dialogDelete: false,

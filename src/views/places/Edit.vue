@@ -416,7 +416,6 @@
 
 <style lang="scss" scoped>
 .edit-places {
-  padding: 0px;
 
   .categorie-btn {
     font-size: 14px;
@@ -427,5 +426,6 @@
     letter-spacing: normal;
     padding: 0px !important;
   }
+
 }
 </style>

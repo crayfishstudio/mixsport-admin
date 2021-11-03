@@ -240,7 +240,18 @@
                 title: 'Все события',
                 link: '/events',
               },
-              { title: 'Категории' },
+              {
+                title: 'Билети' ,
+                link: '/events-tickets'
+              },
+              {
+                title: 'QR Reading' ,
+                link: '/events-qrreading'
+              },
+              {
+                title: 'Логи транзакций' ,
+                link: '/events-transactions'
+              },
               {
                 title: 'Теги',
                 link: '/events-tags',

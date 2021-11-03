@@ -19,6 +19,7 @@
           class="pa-2"
           label="Поиск..."
           single-line
+          hide-details
         >
         </v-text-field>
       </v-col>
@@ -57,7 +58,6 @@
                       </v-icon>
                       <v-icon
                         class="mr-5"
-                        @click="$emit('openTicketEditorSidebar')"
                       >
                         mdi-pencil
                       </v-icon>
@@ -141,12 +141,6 @@ export default {
       val || this.close()
     },
     dialogDelete (val) {
-      val || this.closeDelete()
-    },
-    dialog2 (val) {
-      val || this.close()
-    },
-    dialogDelete2 (val) {
       val || this.closeDelete()
     },
   },
