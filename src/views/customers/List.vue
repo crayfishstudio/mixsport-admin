@@ -16,13 +16,10 @@
         >
         </v-text-field>
       </v-col>
-
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -41,41 +38,54 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все пользователи   (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Активные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Заблокированые (3)
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="justify-start mx-3"
-    >
+    <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-8"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          outlined
+          color="graylight"
+          background-color="white"
+          class="bg-white"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -85,7 +95,7 @@
         class="d-grid cols-2-2"
       >
         <v-select
-          :items="types"
+          :items="typesFilter"
           label="Фильтровать по типу"
           background-color="white"
           dense
@@ -94,7 +104,7 @@
           class="mr-3"
         ></v-select>
         <v-select
-          :items="types"
+          :items="statusFilter"
           label="Фильтровать по статусу"
           background-color="white"
           dense
@@ -103,7 +113,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -112,7 +122,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -216,6 +226,11 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
+          <template v-slot:item.name="{ item }">
+            <div class="name-col">
+              <p>{{ item.name }}</p>
+            </div>
+          </template>
           <template v-slot:item.status="{ item }">
             <v-chip
               :color="getColor(item.status)"
@@ -227,20 +242,17 @@
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-2"
+              class="mr-3"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
-              class="mr-2"
+              class="mr-3"
             >
               mdi-account-circle
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -381,8 +393,9 @@ export default {
         },
       ],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      actions: ['Удалить выбранное', 'Слияние'],
+      typesFilter: [''],
+      statusFilter: [''],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,
@@ -402,15 +415,18 @@ export default {
         },
         {
           text: 'Группа',
-          value: 'group'
+          value: 'group',
+          sortable: false,
         },
         {
           text: 'Телефон',
-          value: 'tellnumber'
+          value: 'tellnumber',
+          sortable: false,
         },
         {
           text: 'Пол',
-          value: 'sex'
+          value: 'sex',
+          sortable: false,
         },
         {
           text: 'Сумма',
@@ -486,7 +502,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('customers/' + item.id);
+      this.$router.push('customers/' + item.id + '/overview');
     },
 
     deleteItem (item) {
@@ -540,6 +556,13 @@ export default {
   span {
     display: block;
     margin: 2px 0;
+  }
+
+  p {
+    display: block;
+    font-weight: bold;
+    color: $grey;
+    margin: 0px;
   }
 }
 </style>

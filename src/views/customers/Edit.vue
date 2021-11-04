@@ -18,23 +18,28 @@
         </v-icon>
         Создать
       </v-btn>
+      <template v-slot:extension>
+        <v-tabs
+          v-model="tab"
+          class="px-5"
+        >
+          <v-tabs-slider></v-tabs-slider>
+
+          <v-tab
+            v-for="item in tabs"
+            :key="item.id"
+            :to="item.link"
+          >
+            {{ item.title }}
+          </v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
-    <v-tabs
-      v-model="tab"
-      align-with-title
-      class="px-0"
-    >
-      <v-tabs-slider></v-tabs-slider>
+    <v-tabs-items v-model="tab">
+      <router-view
 
-      <v-tab
-        v-for="item in tabs"
-        :key="item"
-        :to="item.component"
-      >
-        {{ item }}
-      </v-tab>
-    </v-tabs>
-
+      ></router-view>
+    </v-tabs-items>
   </div>
 </template>
 
@@ -43,9 +48,21 @@
     data: () => ({
       tab: null,
       tabs: [
-        'информация',
-        'Адреса',
-        'Настройки',
+        {
+          id: 1,
+          title: 'информация',
+          link: 'overview'
+        },
+        {
+          id: 2,
+          title: 'Адреса',
+          link: 'adress'
+        },
+        {
+          id: 3,
+          title: 'Настройки',
+          link: 'settings'
+        }
       ],
     }),
   }

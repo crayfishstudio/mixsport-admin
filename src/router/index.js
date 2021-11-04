@@ -105,7 +105,24 @@ const routes = [
   {
     path: '/customers/:id',
     name: 'Client Edit',
-    component: () => import('../views/customers/Edit.vue')
+    component: () => import('../views/customers/Edit.vue'),
+    children: [
+      {
+        path: 'overview',
+        name: 'Client Overview',
+        component: () => import('../components/customers/Overview.vue')
+      },
+      {
+        path: 'adress',
+        name: 'Client Adress',
+        component: () => import('../components/customers/Adress.vue')
+      },
+      {
+        path: 'settings',
+        name: 'Client Settings',
+        component: () => import('../components/customers/Settings.vue')
+      },
+    ],
   },
   {
     path: '/users',

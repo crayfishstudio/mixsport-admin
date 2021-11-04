@@ -1,7 +1,30 @@
 <template lang="html">
   <div class="events-tickets">
+    <v-row v-if="!products.length" class="pt-12">
+      <v-col cols="12" class="text-center" height="100%">
+        <v-img
+          src="@/assets/Vector.svg"
+          width="116"
+          class="mb-8 mx-auto"
+        ></v-img>
+        <v-subheader
+          class="d-block font-weight-medium
+          text-lg-h6 mb-5"
+          color="graydark"
+        >Билетов нет
+        </v-subheader>
+        <v-btn
+          depressed
+          class="btn-main"
+          height="45px"
+          small
+        >
+          Создать билет
+        </v-btn>
+      </v-col>
+    </v-row>
     <!-- Перший рядок -->
-    <v-row class="mt-1">
+    <v-row class="mt-1" v-if="products.length" >
       <v-col
         cols="3" class="d-grid cols-1-2"
       >
@@ -15,17 +38,17 @@
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        class="btn-main mr-3"
-        height="45px"
-        smalll
+          depressed
+          class="btn-main mr-3"
+          height="45px"
+          small
         >
           Создать билет
         </v-btn>
       </v-col>
     </v-row>
     <!-- Другий рядок -->
-    <v-row>
+    <v-row v-if="products.length">
       <v-col>
         <v-expansion-panels v-model="panel1" multiple active-class="mb-5">
           <v-expansion-panel>

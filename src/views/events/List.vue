@@ -265,6 +265,9 @@
               <span>{{ item.name }}</span>
             </div>
           </template>
+          <template v-slot:item.status="{ item }">
+            <span v-html="item.status"></span>
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
               class="mr-3"
@@ -274,6 +277,7 @@
             </v-icon>
             <v-icon
               class="mr-3"
+              v-tooltip.bottom="'Бронирование'"
             >
               mdi-clock-outline
             </v-icon>
@@ -801,7 +805,7 @@ export default {
           start: '12.01.2021',
           date: '02.01.2022',
           autor: 'Master2020',
-          status: 'Ожидает подтверждения',
+          status: 'Ожидает <br> подтверждения',
         },
         {
           id: 11785,
@@ -813,7 +817,7 @@ export default {
           start: '22.06.2021',
           date: '13.05.2022',
           autor: 'Master2020',
-          status: 'Ожидает подтверждения',
+          status: 'Ожидает  <br> подтверждения',
         },
       ]
     },

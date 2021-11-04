@@ -9,7 +9,7 @@
         depressed
         class="btn-main mr-3"
         height="45px"
-        smalll
+        small
         >
           Экспорт
         </v-btn>
@@ -52,7 +52,7 @@
                     item-key="id"
                     class="elevation-1 table-list"
                   >
-                    <template v-slot:item.actions="{ item }">
+                    <template v-slot:item.actions>
                       <v-icon class="mr-5">
                         mdi-magnify
                       </v-icon>
@@ -61,9 +61,7 @@
                       >
                         mdi-pencil
                       </v-icon>
-                      <v-icon
-                        @click="deleteItem(item)"
-                      >
+                      <v-icon>
                         mdi-account-circle
                       </v-icon>
                     </template>

@@ -6,7 +6,7 @@
       class="px-3"
     >
       <v-toolbar-title class="font-weight-medium">Пользователи</v-toolbar-title>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="2">
         <v-text-field
           append-icon="mdi-magnify"
           color="graylight"
@@ -47,21 +47,21 @@
           depressed
           class="categories"
         >
-          Все пользователи   (23)
+          Все клиенты   (23)
         </v-btn>
         <v-btn
           text
           plain
           class="categories"
         >
-          Активные   (13)
+          Опубликованные   (13)
         </v-btn>
         <v-btn
           text
           plain
           class="categories"
         >
-          Заблокированые (3)
+          Черновики (3)
         </v-btn>
       </v-col>
     </v-row>
@@ -79,13 +79,13 @@
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          outlined
+          color="graylight"
+          background-color="white"
+          class="bg-white"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
