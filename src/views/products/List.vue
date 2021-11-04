@@ -81,16 +81,15 @@
     </v-row>
     <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex"
+        cols="4"
+        class="d-grid cols-3-2"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
@@ -108,7 +107,7 @@
       >
         <p class="text-filter">Фильтровать:</p>
         <v-select
-          :items="types"
+          :items="category"
           label="по категории"
           background-color="white"
           dense
@@ -116,7 +115,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="stocks"
           label="по запасам"
           background-color="white"
           dense
@@ -124,7 +123,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="partners"
           label="по партнеру"
           background-color="white"
           dense
@@ -452,6 +451,10 @@
 export default {
   data() {
     return {
+      actions: ['Удалить выбранное', 'Слияние'],
+      category: [''],
+      stocks: [''],
+      partners: [''],
       categoryItems: [
         {
           id: 1,

@@ -390,7 +390,7 @@
       menu1: false,
       time2: null,
       menu2: false,
-      categoryName: [''],    
+      categoryName: [''],
     }),
     methods: {
       openTicketEditorSidebar() {

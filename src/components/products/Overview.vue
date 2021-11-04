@@ -726,7 +726,7 @@
                               <v-card-actions class="pr-4">
                                 <v-icon
                                   class="mr-5"
-                                  @click="editItem(item)"
+                                  @click="$emit('openNewOptionEditorSidebar')"
                                 >
                                   mdi-pencil
                                 </v-icon>
@@ -768,7 +768,7 @@
                               <v-card-actions class="pr-4">
                                 <v-icon
                                   class="mr-5"
-                                  @click="editItem(item)"
+                                  @click="$emit('openNewOptionEditorSidebar')"
                                 >
                                   mdi-pencil
                                 </v-icon>
@@ -1113,7 +1113,7 @@
                           <v-card-actions>
                             <v-icon
                               class="mr-5"
-                              @click="editItem(item)"
+                              @click="$emit('openNewAtributeSidebar')"
                             >
                               mdi-pencil
                             </v-icon>
@@ -1137,7 +1137,7 @@
                           <v-card-actions>
                             <v-icon
                               class="mr-5"
-                              @click="editItem(item)"
+                              @click="$emit('openNewAtributeSidebar')"
                             >
                               mdi-pencil
                             </v-icon>

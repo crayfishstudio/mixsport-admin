@@ -30,14 +30,14 @@
       </v-btn>
     </v-app-bar>
     <v-row
-      class="pa-2"
+      class="px-2 pt-3"
     >
       <v-col
         cols="5"
         class="d-flex"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
@@ -185,46 +185,35 @@
           <template v-slot:item.active="{ item }">
             <v-icon
               v-if="item.active"
-              small
             >
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
           <template v-slot:item.statistic="{ item }">
             <v-icon
               v-if="item.statistic"
-              small
             >
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
           <template v-slot:item.top="{ item }">
             <v-icon
               v-if="item.top"
-              small
             >
               mdi-check
             </v-icon>
-            <v-icon v-else small>
+            <v-icon v-else>
               mdi-close
             </v-icon>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-3"
-              @click="editItem(item)"
-            >
-              mdi-pencil
-            </v-icon>
-            <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -313,7 +302,7 @@ export default {
   data() {
     return {
       creationSidebarList: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      actions: ['Удалить выбранное', 'Слияние'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,
