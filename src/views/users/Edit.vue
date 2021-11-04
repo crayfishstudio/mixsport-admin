@@ -1,17 +1,14 @@
 <template lang="html">
-  <div class="edit">
+  <div class="users-edit">
     <v-app-bar
       app
       color="white"
-      class="px-3"
     >
-      <v-toolbar-title class="font-weight-medium mr-5"> Пользователь № {{ $route.params.id }}</v-toolbar-title>
+      <v-toolbar-title class="font-weight-medium px-1"> Пользователь № {{ $route.params.id }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -19,9 +16,7 @@
       </v-btn>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -31,26 +26,31 @@
         depressed
         color="primary"
         class="font-weight-medium"
-        @click="creationSidebar = !creationSidebar"
       >
         Сохранить
       </v-btn>
-    </v-app-bar>
-    <v-tabs
-      v-model="tab"
-      align-with-title
-      class="px-0"
-    >
-      <v-tabs-slider></v-tabs-slider>
+      <template v-slot:extension>
+        <v-tabs
+          v-model="tab"
+          class="px-5"
+        >
+          <v-tabs-slider></v-tabs-slider>
 
-      <v-tab
-        v-for="item in tabs"
-        :key="item"
-        :to="item.component"
-      >
-        {{ item }}
-      </v-tab>
-    </v-tabs>
+          <v-tab
+            v-for="item in tabs"
+            :key="item.id"
+            :to="item.link"
+          >
+            {{ item.title }}
+          </v-tab>
+        </v-tabs>
+      </template>
+    </v-app-bar>
+    <v-tabs-items v-model="tab">
+      <router-view
+
+      ></router-view>
+    </v-tabs-items>
 
   </div>
 </template>
@@ -60,14 +60,28 @@
     data: () => ({
       tab: null,
       tabs: [
-        'Информация',
-        'Адреса',
-        'Настройки',
+        {
+          id: 1,
+          title: 'информация',
+          link: 'overview'
+        },
+        {
+          id: 2,
+          title: 'Адреса',
+          link: 'adress'
+        },
+        {
+          id: 3,
+          title: 'Настройки',
+          link: 'settings'
+        }
       ],
     }),
   }
 </script>
 
 <style lang="scss" scoped>
+.users-edit {
 
+}
 </style>

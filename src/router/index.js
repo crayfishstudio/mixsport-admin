@@ -115,7 +115,24 @@ const routes = [
   {
     path: '/users/:id',
     name: 'Users Edit',
-    component: () => import('../views/users/Edit.vue')
+    component: () => import('../views/users/Edit.vue'),
+    children: [
+      {
+        path: 'overview',
+        name: 'Users Overview',
+        component: () => import('../components/users/Overview.vue')
+      },
+      {
+        path: 'adress',
+        name: 'Users Adress',
+        component: () => import('../components/users/Adress.vue')
+      },
+      {
+        path: 'settings',
+        name: 'Users Settings',
+        component: () => import('../components/users/Settings.vue')
+      },
+    ],
   },
   {
     path: '/events',

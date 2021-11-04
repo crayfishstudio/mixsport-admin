@@ -307,35 +307,39 @@
       <v-col
         class="pt-5 text-right pa-5"
       >
-        <v-subheader insset class="pl-0" >Введите данные о локации
+        <v-subheader
+          class="font-weight-medium text-lg-h6 pl-0"
+        >
+          Cоздать статью
         </v-subheader>
+        <v-text-field
+          v-model="title"
+          :rules="[rules.required, rules.counter]"
+          label="Заголовок"
+          counter
+          maxlength="191"
+          class="mb-5"
+        ></v-text-field>
         <v-select
           :items="types"
           label="Тип"
           background-color="white"
           outlined
+          class="mb-5"
+          hide-details
         ></v-select>
         <v-text-field
-          label="Название"
-          outlined
-          background-color="white"
+          label="Автор статьи"
         ></v-text-field>
-        <v-select
-          :items="cities"
-          label="Город"
-          background-color="white"
-          outlined
-        ></v-select>
-        <v-text-field
-          label="Адрес"
-          outlined
-          background-color="white"
-        ></v-text-field>
-        <v-text-field
-          label="Телефон"
-          outlined
-          background-color="white"
-        ></v-text-field>
+        <p class="text--disabled text-start mb-2">
+          Текст статьи
+        </p>
+        <v-textarea
+            outlined
+            height="82px"
+          >
+        </v-textarea>
+
         <v-btn
           depressed
           outlined
@@ -450,6 +454,12 @@ export default {
       },
       defaultItem: {
       },
+      title: '',
+      rules: {
+        required: value => !!value || 'Required.',
+        counter: value => value.length <= 191 || 'Max 191 characters',
+      },
+      types: ['Блог'],
     }
   },
   computed: {

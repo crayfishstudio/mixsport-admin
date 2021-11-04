@@ -57,7 +57,7 @@
     <!-- Сайдбар із блоку Загальна інформація / Додати нову категорію -->
     <v-navigation-drawer
       v-model="createNewCategory"
-      absolute
+      fixed
       right
       width="512px"
       temporary
@@ -292,7 +292,6 @@
             prepend-icon=""
             class="file-input pt-0"
           ></v-file-input>
-
           <v-checkbox
             v-model="active"
             label="Активний"

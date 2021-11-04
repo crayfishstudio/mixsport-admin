@@ -16,13 +16,10 @@
         >
         </v-text-field>
       </v-col>
-
       <v-spacer></v-spacer>
       <v-btn
         depressed
-        outlined
-        color="graylight"
-        class="bg-white mr-3"
+        class="btn-main mr-3"
         height="36px"
         small
       >
@@ -41,31 +38,44 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все пользователи   (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Активные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Заблокированые (3)
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="justify-start mx-3"
-    >
+    <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-8"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
@@ -85,16 +95,15 @@
         class="d-grid cols-1-2"
       >
         <v-select
-          :items="types"
+          :items="role"
           label="Роль"
           background-color="white"
           dense
           outlined
           hide-details
-          class="mr-3"
         ></v-select>
         <v-select
-          :items="types"
+          :items="filter"
           label="Фильтровать по дате"
           background-color="white"
           dense
@@ -103,7 +112,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -112,7 +121,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -346,26 +355,10 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все пользователи',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Активные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Заблокированые',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
+      actions: ['Удалить выбранное', 'Слияние'],
+      role: [''],
+      filter: [''],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,
@@ -468,7 +461,7 @@ export default {
     },
 
     editItem (item) {
-      this.$router.push('users/' + item.id);
+      this.$router.push('users/' + item.id + '/overview');
     },
 
     deleteItem (item) {

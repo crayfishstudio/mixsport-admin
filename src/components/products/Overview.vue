@@ -27,6 +27,7 @@
                 label="SKU"
                 counter
                 maxlength="191"
+                class="mb-3"
               ></v-text-field>
               <v-text-field
                 v-model="title"
