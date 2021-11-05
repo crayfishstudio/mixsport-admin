@@ -40,12 +40,15 @@
               <p class="text--disabled mb-2">
                 Полное описание
               </p>
-              <quill-editor
-                :content="content"
-                :options="editorOption"
-                @click="$emit('openProZZZSidebar')"
-                @change="onEditorChange($event)"
-              />
+              <div class="editor-container">
+                <quill-editor
+                  :content="content"
+                  :options="editorOption"
+                  @click="$emit('openProZZZSidebar')"
+                  @change="onEditorChange($event)"
+                />
+              </div>
+
             </v-expansion-panel-content>
           </v-expansion-panel>
         <!--Налаштування товару-->
@@ -696,90 +699,52 @@
                         </v-row>
                         <v-row>
                           <v-col>
-                            <v-card
-                              class="card-products py-3 mb-4"
-                              elevation="3"
-                            >
-                              <v-list-item class="mr-16">
-                                <v-icon> mdi-view-headline </v-icon>
-                                <div class="font-weight-medium ml-5">
-                                  #519
-                                </div>
-                                <div class="d-grid cols-2-2 mx-15">
-                                  <v-select
-                                    :items="versionAttribute"
-                                    label="Размер"
-                                    background-color="white"
-                                    dense
-                                    outlined
-                                    hide-details
-                                  ></v-select>
-                                  <v-select
-                                    :items="versionColor"
-                                    background-color="white"
-                                    label="Цвета"
-                                    dense
-                                    outlined
-                                    hide-details
-                                  ></v-select>
-                                </div>
-                              </v-list-item>
-                              <v-card-actions class="pr-4">
-                                <v-icon
-                                  class="mr-5"
-                                  @click="$emit('openNewOptionEditorSidebar')"
-                                >
-                                  mdi-pencil
-                                </v-icon>
-                                <v-icon
-                                  @click="deleteItem(item)"
-                                >
-                                  mdi-delete
-                                </v-icon>
-                              </v-card-actions>
-                            </v-card>
-                            <v-card
-                              class="card-products py-3"
-                              elevation="3"
-                            >
-                              <v-list-item class="mr-16">
-                                <v-icon> mdi-view-headline </v-icon>
-                                <div class="font-weight-medium ml-5">
-                                  #519
-                                </div>
-                                <div class="d-grid cols-2-2 mx-15">
-                                  <v-select
-                                    :items="versionAttribute"
-                                    label="Размер"
-                                    background-color="white"
-                                    dense
-                                    outlined
-                                    hide-details
-                                  ></v-select>
-                                  <v-select
-                                    :items="versionColor"
-                                    background-color="white"
-                                    label="Цвета"
-                                    dense
-                                    outlined
-                                    hide-details
-                                  ></v-select>
-                                </div>
-                              </v-list-item>
-                              <v-card-actions class="pr-4">
-                                <v-icon
-                                  class="mr-5"
-                                  @click="$emit('openNewOptionEditorSidebar')"
-                                >
-                                  mdi-pencil
-                                </v-icon>
-                                <v-icon
-                                  @click="deleteItem(item)"
-                                >
-                                  mdi-delete
-                                </v-icon>
-                              </v-card-actions>
-                            </v-card>
+                            <draggable v-model="settingsOptions" group="settingsOptions" @start="drag=true" @end="drag=false">
+                              <v-card
+                                class="card-products py-3 mb-4"
+                                elevation="3"
+                                v-for="item in settingsOptions"
+                                :key="item.id"
+                              >
+                                <v-list-item class="mr-16">
+                                  <v-icon> mdi-view-headline </v-icon>
+                                  <div class="font-weight-medium ml-5">
+                                    {{ item.id }}
+                                  </div>
+                                  <div class="d-grid cols-2-2 mx-15">
+                                    <v-select
+                                      :items="versionAttribute"
+                                      label="Размер"
+                                      background-color="white"
+                                      dense
+                                      outlined
+                                      hide-details
+                                    ></v-select>
+                                    <v-select
+                                      :items="versionColor"
+                                      background-color="white"
+                                      label="Цвета"
+                                      dense
+                                      outlined
+                                      hide-details
+                                    ></v-select>
+                                  </div>
+                                </v-list-item>
+                                <v-card-actions class="pr-4">
+                                  <v-icon
+                                    class="mr-5"
+                                    @click="$emit('openNewOptionEditorSidebar')"
+                                  >
+                                    mdi-pencil
+                                  </v-icon>
+                                  <v-icon
+                                    @click="deleteItem(item)"
+                                  >
+                                    mdi-delete
+                                  </v-icon>
+                                </v-card-actions>
+                              </v-card>
+                            </draggable>
                           </v-col>
                         </v-row>
                       </v-expansion-panel-content>
@@ -1102,54 +1067,34 @@
                   </v-row>
                   <v-row>
                     <v-col>
-                      <v-card
-                        class="card-products mb-4 py-3"
-                        elevation="3"
-                      >
-                        <v-list-item>
-                          <v-icon> mdi-view-headline </v-icon>
-                          <p class="mb-0 mx-12">Размер</p>
-                          <p class="mb-0">L, XL, XXXL</p>
-                          <v-spacer></v-spacer>
-                          <v-card-actions>
-                            <v-icon
-                              class="mr-5"
-                              @click="$emit('openNewAtributeSidebar')"
-                            >
-                              mdi-pencil
-                            </v-icon>
-                            <v-icon
-                              @click="deleteItem(item)"
-                            >
-                              mdi-delete
-                            </v-icon>
-                          </v-card-actions>
-                        </v-list-item>
-                      </v-card>
-                      <v-card
-                        class="card-products py-3"
-                        elevation="3"
-                      >
-                        <v-list-item>
-                          <v-icon> mdi-view-headline </v-icon>
-                          <p class="mb-0 mx-12">Цвета</p>
-                          <p class="mb-0">Белый,    Серый,    Черный</p>
-                          <v-spacer></v-spacer>
-                          <v-card-actions>
-                            <v-icon
-                              class="mr-5"
-                              @click="$emit('openNewAtributeSidebar')"
-                            >
-                              mdi-pencil
-                            </v-icon>
-                            <v-icon
-                              @click="deleteItem(item)"
-                            >
-                              mdi-delete
-                            </v-icon>
-                          </v-card-actions>
-                        </v-list-item>
-                      </v-card>
+                      <draggable v-model="productAttributes" group="productAttributes" @start="drag=true" @end="drag=false">
+                        <v-card
+                          class="card-products mb-4 py-3"
+                          elevation="3"
+                          v-for="item in productAttributes"
+                          :key="item.id"
+                        >
+                          <v-list-item>
+                            <v-icon> mdi-view-headline </v-icon>
+                            <p class="mb-0 mx-12">{{ item.param }}</p>
+                            <p class="mb-0">{{ item.options.join(', ') }}</p>
+                            <v-spacer></v-spacer>
+                            <v-card-actions>
+                              <v-icon
+                                class="mr-5"
+                                @click="$emit('openNewAtributeSidebar')"
+                              >
+                                mdi-pencil
+                              </v-icon>
+                              <v-icon
+                                @click="deleteItem(item)"
+                              >
+                                mdi-delete
+                              </v-icon>
+                            </v-card-actions>
+                          </v-list-item>
+                        </v-card>
+                      </draggable>
                     </v-col>
                   </v-row>
                 </v-tab-item>
@@ -2395,6 +2340,8 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
+
 export default {
   data() {
     return ({
@@ -2581,7 +2528,30 @@ export default {
       products2: [],
       defaultItem2: {
       },
+      productAttributes: [
+        {
+          id: 0,
+          param: 'Размер',
+          options: ['L', 'Xl', 'XXXL'],
+        },
+        {
+          id: 1,
+          param: 'Цвета',
+          options: ['Білий', 'Сірий', 'Чорний'],
+        }
+      ],
+      settingsOptions: [
+        {
+          id: 519,
+        },
+        {
+          id: 520,
+        }
+      ],
     })
+  },
+  components: {
+    draggable,
   },
   watch: {
     dialog (val) {
