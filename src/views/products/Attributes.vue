@@ -20,30 +20,24 @@
         Создать
       </v-btn>
     </v-app-bar>
-    <v-row
-      class="pa-2"
-    >
+    <v-row class="px-2 pt-4">
       <v-col
-        cols="3"
-        class="d-flex"
+        cols="4"
+        class="d-grid cols-3-2"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -296,6 +290,7 @@
 export default {
   data() {
     return {
+      actions: ['Удалить выбранное', 'Слияние'],
       creationSidebarList: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,

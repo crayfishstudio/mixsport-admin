@@ -30,41 +30,51 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все заказы   (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Неоплачено   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          На модерации (3)
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="justify-start mx-3"
-    >
+    <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-8"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -74,16 +84,15 @@
         class="d-grid cols-1-2"
       >
         <v-select
-          :items="types"
+          :items="status"
           label="Статус"
           background-color="white"
           dense
           outlined
           hide-details
-          class="mr-3"
         ></v-select>
         <v-select
-          :items="types"
+          :items="payFilters"
           label="Фильтровать по оплате"
           background-color="white"
           dense
@@ -92,7 +101,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -101,7 +110,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -205,6 +214,9 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
+          <template v-slot:item.check="{ item }">
+            <span v-html="item.check"></span>
+          </template>
           <template v-slot:item.status="{ item }">
             <v-chip
               :color="getColor(item.status)"
@@ -214,9 +226,11 @@
               {{ item.status }}
             </v-chip>
           </template>
+          <template v-slot:item.seller="{ item }">
+            <span v-html="item.seller"></span>
+          </template>
           <template v-slot:item.actions="{  }">
             <v-icon
-              small
               @click="creationSidebar = !creationSidebar"
             >
               mdi-check
@@ -292,26 +306,10 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все Заказы',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Неоплачено',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'На модерации',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
+      actions: ['Удалить выбранное', 'Слияние'],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      status: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      payFilters: [''],
       rules: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,
@@ -417,10 +415,10 @@ export default {
         {
           id: 21,
           sum: '2100 грн.',
-          check: 'demo webkul',
+          check: 'demo <br> webkul',
           status: 'Оплачен',
           date: '12.01.2021',
-          seller: 'demo webku',
+          seller: 'demo <br> webku',
           commission: '200 грн.',
           discount: '0 грн.',
           totalforsell: '1900 грн.',
@@ -432,10 +430,10 @@ export default {
         {
           id: 23,
           sum: '3100 грн.',
-          check: 'demo webkul',
+          check: 'demo <br> webkul',
           status: 'Оплачен',
           date: '18.01.2021',
-          seller: 'demo webku',
+          seller: 'demo <br> webku',
           commission: '500 грн.',
           discount: '0 грн.',
           totalforsell: '1900 грн.',

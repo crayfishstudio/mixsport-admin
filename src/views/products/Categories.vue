@@ -6,7 +6,7 @@
       class="px-3"
     >
       <v-toolbar-title class="font-weight-medium">Категории</v-toolbar-title>
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="3">
         <v-text-field
           append-icon="mdi-magnify"
           color="graylight"
@@ -29,12 +29,10 @@
         Создать
       </v-btn>
     </v-app-bar>
-    <v-row
-      class="px-2 pt-3"
-    >
+    <v-row class="px-2 pt-3">
       <v-col
-        cols="5"
-        class="d-flex"
+        cols="6"
+        class="d-grid cols-3-2-2"
       >
         <v-select
           :items="actions"
@@ -42,28 +40,21 @@
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white mr-7"
-        height="40px"
-        small
+          depressed
+          class="btn-main mr-5"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Структура
         </v-btn>

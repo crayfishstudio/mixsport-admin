@@ -158,5 +158,6 @@
 
 <style lang="scss" scoped>
 .events-qrreading {
+
 }
 </style>

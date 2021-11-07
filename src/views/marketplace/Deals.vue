@@ -18,47 +18,57 @@
       </v-col>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все сделки   (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Утвержденные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          На модерации (3)
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="mx-3"
-    >
+    <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-8"
+        cols="4"
+        class="d-grid cols-3-2"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -67,7 +77,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -171,23 +181,7 @@
               </v-dialog>
             </v-toolbar>
           </template>-->
-          <template v-slot:item.status="{ item }">
-            <v-chip
-              :color="getColor(item.status)"
-              dark
-              label
-            >
-              {{ item.status }}
-            </v-chip>
-          </template>
-          <template v-slot:item.actions="{  }">
-            <v-icon
-              small
-              @click="creationSidebar = !creationSidebar"
-            >
-              mdi-check
-            </v-icon>
-          </template>
+
           <template v-slot:no-data>
             <v-btn
               color="primary"
@@ -199,47 +193,6 @@
         </v-data-table>
       </v-col>
     </v-row>
-    <v-navigation-drawer
-      v-model="creationSidebar"
-      absolute
-      right
-      width="512px"
-      temporary
-    >
-      <v-col
-        class="pt-5 text-right pa-5"
-      >
-        <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
-        >
-          Просмотр заказа
-        </v-subheader>
-        <v-text-field
-          label="Название билета"
-          hide-details
-          class="mb-5"
-          :rules="rules"
-        ></v-text-field>
-        <v-text-field
-          label="Количество"
-          hide-details
-          class="mb-5"
-          :rules="rules"
-        ></v-text-field>
-        <v-text-field
-          label="Цена"
-          hide-details
-          class="mb-5"
-          :rules="rules"
-        ></v-text-field>
-        <v-text-field
-          label="Сумма"
-          hide-details
-          class="mb-5"
-          :rules="rules"
-        ></v-text-field>
-      </v-col>
-    </v-navigation-drawer>
     <v-dialog v-model="dialogDelete" max-width="500px">
       <v-card>
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -258,24 +211,7 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все сделки',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Утвержденные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'На модерации',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
+      actions: ['Удалить выбранное', 'Слияние'],
       creationSidebar: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       rules: ['', ''],
@@ -298,11 +234,13 @@ export default {
         },
         {
           text: 'ID транзакции',
-          value: 'idtransactions'
+          value: 'idtransactions',
+          sortable: false,
         },
         {
           text: 'Коментарий',
           value: 'comment',
+          sortable: false,
         },
         {
           text: 'Итого',

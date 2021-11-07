@@ -6,7 +6,7 @@
       class="px-3"
     >
       <v-toolbar-title class="font-weight-medium">Продавцы</v-toolbar-title>
-      <v-col cols="12" md="3">
+      <v-col cols="12" md="2">
         <v-text-field
           append-icon="mdi-magnify"
           color="graylight"
@@ -31,41 +31,51 @@
       </v-btn>
     </v-app-bar>
     <v-row>
-      <v-col>
-        <v-breadcrumbs
-          :items="titles"
-          large
-          color="grey"
+      <v-col
+        cols="12"
+        class="pa-0 py-3"
+      >
+        <v-btn
+          text
+          depressed
+          class="categories"
         >
-          <template v-slot:divider>
-          </template>
-        </v-breadcrumbs>
+          Все продавцы   (23)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          Утвержденные   (13)
+        </v-btn>
+        <v-btn
+          text
+          plain
+          class="categories"
+        >
+          На модерации (3)
+        </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="justify-start mx-3"
-    >
+    <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-8"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -75,7 +85,7 @@
         class="d-flex"
       >
         <v-select
-          :items="types"
+          :items="statusFilter"
           label="Фильтровать по статусу"
           background-color="white"
           dense
@@ -84,7 +94,7 @@
         ></v-select>
       </v-col>
     </v-row>
-    <v-row>
+    <v-row class="px-2">
       <v-col>
         <v-data-table
           v-model="selected"
@@ -93,7 +103,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1 mx-6"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -202,21 +212,18 @@
               depressed
               color="primary"
               class="font-weight-medium"
-              @click="creationSidebar = !creationSidebar"
             >
               Добавить
             </v-btn>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon
-              small
-              class="mr-2"
+              class="mr-4"
               @click="editItem(item)"
             >
               mdi-pencil
             </v-icon>
             <v-icon
-              small
               @click="deleteItem(item)"
             >
               mdi-delete
@@ -302,26 +309,9 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все продавцы',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Утвержденные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'На модерации',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
+      actions: ['Удалить выбранное', 'Слияние'],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      statusFilter: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       rules: ['', ''],
       items: ['', ''],

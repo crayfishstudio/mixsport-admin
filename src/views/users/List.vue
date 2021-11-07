@@ -47,21 +47,21 @@
           depressed
           class="categories"
         >
-          Все клиенты   (23)
+          Все пользователи   (23)
         </v-btn>
         <v-btn
           text
           plain
           class="categories"
         >
-          Опубликованные   (13)
+          Активные   (13)
         </v-btn>
         <v-btn
           text
           plain
           class="categories"
         >
-          Черновики (3)
+          Заблокированые (3)
         </v-btn>
       </v-col>
     </v-row>
@@ -80,10 +80,7 @@
         ></v-select>
         <v-btn
           depressed
-          outlined
-          color="graylight"
-          background-color="white"
-          class="bg-white"
+          class="btn-main mr-3"
           height="40px"
           small
         >
