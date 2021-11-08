@@ -184,7 +184,7 @@
             items: [
               {
                 title: 'Все заказы',
-                link: '/sales',
+                link: '/order',
               },
               { title: 'Отчеты' },
               { title: 'Настройки' },

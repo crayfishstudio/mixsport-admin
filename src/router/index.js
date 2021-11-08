@@ -31,14 +31,14 @@ const routes = [
     component: () => import('../views/marketplace/Deals.vue')
   },
   {
-    path: '/sales',
-    name: 'Sales List',
-    component: () => import('../views/sales/List.vue')
+    path: '/order',
+    name: 'Order List',
+    component: () => import('../views/order/List.vue')
   },
   {
-    path: '/sales/:id',
-    name: 'Sales Edit',
-    component: () => import('../views/sales/Edit.vue')
+    path: '/order/:id',
+    name: 'Order Edit',
+    component: () => import('../views/order/Edit.vue')
   },
   {
     path: '/products',
