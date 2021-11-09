@@ -11,7 +11,7 @@
         depressed
         color="primary"
         class="font-weight-medium"
-        @click="creationSidebar = !creationSidebar"
+        @click="creationSidebarList = !creationSidebarList"
       >
         <v-icon dark class="mr-2">
           mdi-plus
@@ -19,30 +19,24 @@
         Создать
       </v-btn>
     </v-app-bar>
-    <v-row
-      class="pa-2"
-    >
+    <v-row class="pa-2">
       <v-col
-        cols="3"
-        class="d-flex"
+        cols="4"
+        class="d-grid cols-3-2 pb-0"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
-        depressed
-        outlined
-        color="graylight"
-        background-color="white"
-        class="bg-white"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Применить
         </v-btn>
@@ -57,7 +51,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -230,11 +224,10 @@
         ></v-text-field>
         <v-btn
           depressed
-          outlined
-          color="graylight"
+          class="btn-main mr-3"
+          height="44px"
           large
           width="33%"
-          class="mr-3"
         >
           Отменить
         </v-btn>
@@ -267,6 +260,7 @@ export default {
   data() {
     return {
       creationSidebarList: false,
+      actions: ['Удалить выбранное', 'Слияние'],
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,

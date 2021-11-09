@@ -203,8 +203,11 @@
                 link: '/products-attributes',
               },
               {
-                title: 'Настройки',
+                title: 'Семейство атрибутов',
                 link: '/products-attribute-family',
+              },
+              {
+                title: 'Настройки',
               },
               {
                 title: 'Категории',
