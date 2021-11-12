@@ -125,6 +125,11 @@ const routes = [
     ],
   },
   {
+    path: '/customers-client-group',
+    name: 'Client Group List',
+    component: () => import('../views/customers/ClientGroup.vue')
+  },
+  {
     path: '/users',
     name: 'Users List',
     component: () => import('../views/users/List.vue')
@@ -274,11 +279,6 @@ const routes = [
         path: 'file',
         name: 'Article File',
         component: () => import('../components/articles/File.vue')
-      },
-      {
-        path: 'relatedplaces',
-        name: 'Article Pelated Places',
-        component: () => import('../components/articles/Relatedplaces.vue')
       },
     ],
   },

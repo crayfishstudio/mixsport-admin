@@ -65,9 +65,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="px-2"
-    >
+    <v-row class="px-2">
       <v-col
         cols="3"
         class="d-flex mr-11"
@@ -330,11 +328,9 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 text-right pa-5"
-      >
+      <v-col class="pt-5 text-right pa-5">
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+          class="subheader-lowercase mb-2"
         >
           Введите данные о локации
         </v-subheader>

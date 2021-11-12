@@ -238,7 +238,6 @@
                   </small>
                 </v-col>
               </v-row>
-
             </div>
           </template>
           <template v-slot:item.repayedDate="{ item }">
@@ -246,6 +245,14 @@
               <span>{{ item.repayedDate }}</span>
               <span>{{ item.repayedTime }}</span>
             </div>
+          </template>
+          <template v-slot:item.actions="{  }">
+            <v-icon
+              class="mr-4"
+              @click="creationSidebar = !creationSidebar"
+            >
+              mdi-eye
+            </v-icon>
           </template>
           <template v-slot:no-data>
             <v-btn
@@ -258,6 +265,108 @@
         </v-data-table>
       </v-col>
     </v-row>
+    <v-navigation-drawer
+      v-model="creationSidebar"
+      absolute
+      right
+      width="512px"
+      temporary
+    >
+      <v-col class="pt-5 pa-5">
+        <v-subheader
+          class="subheader-lowercase mb-4"
+        >
+          Билет / Сертификат
+        </v-subheader>
+        <v-row>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              Ticket #
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0">
+              6
+            </p>
+          </v-col>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              UUID
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0">
+              3d731aeb-e76d-4310-94ff-c5f35e3ddcce
+            </p>
+          </v-col>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              Created At
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0">
+              29.12.2020 12:16
+            </p>
+          </v-col>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              Статус
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0">
+              Approved
+            </p>
+          </v-col>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              Issued date
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0"> - </p>
+          </v-col>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              Issued by
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0"> - </p>
+          </v-col>
+          <v-col cols="3">
+            <p class="text--secondary text-start mb-0">
+              Expired At
+            </p>
+          </v-col>
+          <v-col cols="9">
+            <p class="text--secondary text-start mb-0"> - </p>
+          </v-col>
+        </v-row>
+        <v-row class="pt-4">
+          <v-col cols="12">
+            <v-btn
+              depressed
+              color="primary"
+              large
+              width="33%"
+              class="mr-3"
+            >
+              Погасить билет
+            </v-btn>
+            <v-btn
+              depressed
+              class="btn-main"
+              large
+              width="33%"
+            >
+              Скачать QR
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -265,6 +374,7 @@
   export default {
     data() {
       return {
+        creationSidebar: false,
         actions: ['Удалить выбранное', 'Слияние'],
         categoryFilter: [''],
         types: [''],
@@ -304,6 +414,11 @@
             text: 'Статус',
             value: 'status'
           },
+          {
+            text: 'Дії',
+            value: 'actions',
+            sortable: false,
+          }
         ],
         events: [],
         editedIndex: -1,

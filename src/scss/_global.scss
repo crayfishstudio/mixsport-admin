@@ -283,6 +283,14 @@ $black: #1D1D1D;
   color: $grey;
 }
 
+.subheader-lowercase {
+  font-weight: 600 !important;
+  font-size: 24px !important;
+  line-height: 28px;
+  color: $graydark !important;
+  padding: 0px !important;
+}
+
 .card-products {
   background-color: $dirtywhite !important;
   color: $graydark !important;

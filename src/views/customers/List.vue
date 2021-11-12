@@ -370,24 +370,6 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все клиенты',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Опубликованные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
       creationSidebar: false,
       actions: ['Удалить выбранное', 'Слияние'],
       typesFilter: [''],
@@ -493,7 +475,6 @@ export default {
           sum: '31000',
           status: 'Активен',
         },
-
       ]
     },
 

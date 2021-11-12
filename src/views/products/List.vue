@@ -320,11 +320,9 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 pa-5"
-      >
+      <v-col class="pt-5 pa-5">
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-4"
+          class="subheader-lowercase mb-4"
         >
           Редактор категорий
         </v-subheader>
@@ -390,11 +388,9 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 text-right pa-5"
-      >
+      <v-col class="pt-5 text-right pa-5">
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+          class="subheader-lowercase mb-2"
         >
           Создать продукт
         </v-subheader>

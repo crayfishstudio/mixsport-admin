@@ -201,7 +201,7 @@
         class="pt-5 text-right pa-5"
       >
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-6"
+          class="subheader-lowercase mb-6"
           color="graydark"
         >
           Семейство атрибутов

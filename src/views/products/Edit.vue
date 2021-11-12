@@ -63,7 +63,7 @@
       <v-row class="pt-5 pa-5">
         <v-col cols="12">
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0 mb-3"
+            class="subheader-lowercase mb-3"
           >
             Редактор варианта
           </v-subheader>
@@ -170,7 +170,7 @@
       <v-row class="pt-5 pa-5">
         <v-col cols="12">
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0 mb-3"
+            class="subheader-lowercase mb-3"
           >
             Атрибут продукта
           </v-subheader>

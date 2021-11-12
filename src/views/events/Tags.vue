@@ -58,9 +58,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="px-2"
-    >
+    <v-row class="px-2">
       <v-col
         cols="3"
         class="d-grid cols-2-2 mr-12"
@@ -284,9 +282,7 @@
       >
         <v-col cols="12" class="pb-0" >
           <v-subheader
-            class="font-weight-medium
-            text-lg-h6
-            pl-0 mb-6"
+            class="subheader-lowercase mb-6"
           >Редактор тега
           </v-subheader>
           <v-text-field

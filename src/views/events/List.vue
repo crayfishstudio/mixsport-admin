@@ -649,11 +649,10 @@
           ></v-checkbox>
           <v-btn
             depressed
-            outlined
-            color="graylight"
+            class="btn-main mr-3"
+            height="44px"
             large
             width="33%"
-            class="mr-3"
           >
             Отменить
           </v-btn>

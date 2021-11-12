@@ -65,7 +65,7 @@
       <v-row class="pt-5 pa-4">
         <v-col>
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0 mb-7"
+            class="subheader-lowercase mb-7"
           >
             Додати категорію
           </v-subheader>
@@ -104,11 +104,9 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 pa-4"
-      >
+      <v-col class="pt-5 pa-4">
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+          class="subheader-lowercase mb-2"
         >
           Редактор  услуги
         </v-subheader>
@@ -189,11 +187,9 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 pa-4"
-      >
+      <v-col class="pt-5 pa-4">
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+          class="subheader-lowercase mb-2"
         >
           Блок услуг
         </v-subheader>
@@ -269,7 +265,7 @@
       <v-row class="pt-5 pa-4">
         <v-col cols="12">
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0 mb-2"
+            class="subheader-lowercase mb-2"
           >
             Добавить услугу
           </v-subheader>

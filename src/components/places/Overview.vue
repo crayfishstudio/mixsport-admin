@@ -2,9 +2,7 @@
   <div class="places-overview">
     <!-- Перший рядок -->
     <v-row class="mt-1">
-      <v-col
-        cols="2"
-      >
+      <v-col cols="2">
         <v-select
           :items="language"
           label="язык"
@@ -1476,7 +1474,8 @@ export default {
     onEditorBlur(quill) {
       console.log('editor blur!', quill)
     },
-    onEditorFocus(quill) {
+    onEditorFocus(quill
+    ) {
       console.log('editor focus!', quill)
     },
     onEditorReady(quill) {

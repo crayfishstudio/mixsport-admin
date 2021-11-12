@@ -74,11 +74,6 @@
           title: 'Файлы',
           link: 'file',
         },
-        {
-          id: 4,
-          title: 'Связанные места',
-          link: 'relatedplaces',
-        }
       ],
     }),
   }

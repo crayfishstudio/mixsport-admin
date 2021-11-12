@@ -225,6 +225,10 @@
                 link: '/customers',
               },
               {
+                title: 'Группы клиентов',
+                link: '/customers-client-group',
+              },
+              {
                 title: 'Все пользователи',
                 link: '/users',
               },

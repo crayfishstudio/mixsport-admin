@@ -16,18 +16,6 @@
         >
         </v-text-field>
       </v-col>
-
-      <v-spacer></v-spacer>
-      <v-btn
-        depressed
-        color="primary"
-        class="font-weight-medium"
-      >
-        <v-icon dark class="mr-2">
-          mdi-plus
-        </v-icon>
-        Создать
-      </v-btn>
     </v-app-bar>
     <v-row>
       <v-col
@@ -254,11 +242,9 @@
       width="512px"
       temporary
     >
-      <v-col
-        class="pt-5 text-right pa-5"
-      >
+      <v-col class="pt-5 text-right pa-5">
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0 mb-2"
+          class="subheader-lowercase mb-2"
         >
           Просмотр заказа
         </v-subheader>

@@ -64,7 +64,7 @@
       <v-row class="pt-5 pa-5">
         <v-col cols="12">
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0"
+            class="subheader-lowercase"
           >
             Редактор билета
           </v-subheader>
@@ -167,7 +167,7 @@
       <v-row class="pt-5 pa-4">
         <v-col>
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0 mb-7"
+            class="subheader-lowercase mb-7"
           >
             Додати категорію
           </v-subheader>
@@ -210,7 +210,7 @@
       <v-row>
         <v-col cols="7" class="mb-5">
           <v-subheader
-            class="font-weight-medium text-lg-h6 pl-0"
+            class="subheader-lowercase"
           >
           Выберите даты и время проведения
           </v-subheader>

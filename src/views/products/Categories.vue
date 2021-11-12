@@ -69,7 +69,7 @@
           :single-select="singleSelect"
           item-key="id"
           show-select
-          class="elevation-1"
+          class="elevation-1 table-list"
         >
           <!--<template v-slot:top>
             <v-toolbar
@@ -204,6 +204,12 @@
             </v-icon>
           </template>
           <template v-slot:item.actions="{ item }">
+            <v-icon
+              class="mr-4"
+              @click="editItem(item)"
+            >
+              mdi-pencil
+            </v-icon>
             <v-icon
               @click="deleteItem(item)"
             >

@@ -58,9 +58,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-row
-      class="px-2"
-    >
+    <v-row class="px-2">
       <v-col
         cols="3"
         class="d-flex mr-10"
