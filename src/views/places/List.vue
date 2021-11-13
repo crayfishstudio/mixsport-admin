@@ -67,16 +67,15 @@
     </v-row>
     <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-11"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
-          :items="types"
+          :items="actions"
           label="Действия"
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
@@ -89,11 +88,11 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="8"
+        cols="7"
         class="d-grid cols-2-2-2-3"
       >
         <v-select
-          :items="types"
+          :items="cities"
           label="Все города"
           background-color="white"
           dense
@@ -101,7 +100,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="category"
           label="Категория"
           background-color="white"
           dense
@@ -117,7 +116,7 @@
           hide-details
         ></v-select>
         <v-select
-          :items="types"
+          :items="dateFilter"
           label="Фильтровать по дате"
           background-color="white"
           dense
@@ -371,11 +370,10 @@
         ></v-text-field>
         <v-btn
           depressed
-          outlined
-          color="graylight"
+          class="btn-main mr-3"
+          height="44px"
           large
           width="33%"
-          class="mr-3"
         >
           Отмена
         </v-btn>
@@ -407,32 +405,12 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все места',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Опубликованные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Ожидает подтверждения',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-        {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
+      actions: ['Удалить выбранное', 'Слияние'],
       creationSidebar: false,
-      types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      types: ['Места'],
+      cities: ['Львів', 'Одеса', 'Київ', 'Всі міста'],
+      category: [''],
+      dateFilter: [''],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,

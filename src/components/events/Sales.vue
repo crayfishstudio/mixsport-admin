@@ -3,7 +3,7 @@
     <!-- Перший рядок -->
     <v-row class="mt-1">
       <v-col
-        cols="4" class="d-grid cols-2-3 pb-0"
+        cols="5" class="d-grid cols-1-3 pb-0"
       >
         <v-btn
         depressed
@@ -17,7 +17,7 @@
           append-icon="mdi-magnify"
           color="graylight"
           class="pa-2"
-          label="Поиск..."
+          label="Поиск по номеру телефона..."
           single-line
           hide-details
         >

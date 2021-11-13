@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="article-file">
-    <v-row class="py-3">
+    <v-row class="pt-3">
       <v-col
         cols="4"
         class="d-grid cols-3-2"
@@ -28,7 +28,7 @@
         </p>
       </v-col>
     </v-row>
-    <v-row class="px-2">
+    <v-row>
       <v-col>
         <v-data-table
           v-model="selected"

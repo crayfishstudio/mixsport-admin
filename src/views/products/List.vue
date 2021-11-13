@@ -18,18 +18,31 @@
       </v-col>
 
       <v-spacer></v-spacer>
-      <v-btn
-        depressed
-        class="btn-main mr-3"
-        height="36px"
-        small
-      >
-        экспорт
-        <v-icon dark class="ml-2">
-          mdi-chevron-down
-        </v-icon>
-      </v-btn>
-
+      <v-menu offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            depressed
+            class="btn-main mr-3"
+            height="36px"
+            small
+            v-bind="attrs"
+            v-on="on"
+          >
+            экспорт
+            <v-icon dark class="ml-2">
+              mdi-chevron-down
+            </v-icon>
+          </v-btn>
+        </template>
+        <v-list>
+          <v-list-item
+            v-for="(item, index) in items"
+            :key="index"
+          >
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
       <v-btn
         depressed
         class="btn-main mr-3"
@@ -401,7 +414,7 @@
           class="mb-3"
         ></v-select>
         <v-select
-          :items="cities"
+          :items="attributeFamily"
           label="Семейство аттрибутов"
           hide-details
           class="mb-3"
@@ -447,6 +460,12 @@
 export default {
   data() {
     return {
+      items: [
+        { title: 'Скачай мене' },
+        { title: 'Скачай себе' },
+        { title: 'Скачай Його' },
+        { title: 'Скачай її' },
+      ],
       actions: ['Удалить выбранное', 'Слияние'],
       category: [''],
       stocks: [''],
@@ -479,7 +498,7 @@ export default {
       creationCategoryEditor: false,
       creationSidebar: false,
       types: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-      cities: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      attributeFamily: ['Foo', 'Bar', 'Fizz', 'Buzz'],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,

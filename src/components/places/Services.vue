@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="places-services">
-    <v-row class="py-3 px-4">
+    <v-row class="py-3">
       <v-col
         cols="6"
         class="d-grid cols-3-2-2"
@@ -16,28 +16,42 @@
           </v-icon>
           Добавить блок услуг
         </v-btn>
+        <v-menu offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              depressed
+              class="btn-main mr-3"
+              height="40px"
+              small
+              v-bind="attrs"
+              v-on="on"
+            >
+              экспорт
+              <v-icon dark class="ml-2">
+                mdi-chevron-down
+              </v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(item, index) in items"
+              :key="index"
+            >
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
         <v-btn
-        depressed
-        class="btn-main"
-        height="40px"
-        small
-        >
-          Экспорт
-          <v-icon class="ml-3">
-            mdi-chevron-down
-          </v-icon>
-        </v-btn>
-        <v-btn
-        depressed
-        class="btn-main"
-        height="40px"
-        small
+          depressed
+          class="btn-main"
+          height="40px"
+          small
         >
           Импорт
         </v-btn>
       </v-col>
     </v-row>
-    <v-row class="px-7">
+    <v-row class="px-3">
       <v-card
         outlined
         class="mb-5"
@@ -144,6 +158,12 @@
 export default {
   data() {
     return {
+      items: [
+        { title: 'Скачай мене' },
+        { title: 'Скачай себе' },
+        { title: 'Скачай Його' },
+        { title: 'Скачай її' },
+      ],
       dialog: false,
       dialogDelete: false,
       singleSelect: false,

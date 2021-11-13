@@ -60,8 +60,8 @@
     </v-row>
     <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-grid cols-2-2 mr-12"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
           :items="actions"
@@ -477,27 +477,9 @@
 export default {
   data() {
     return {
-      titles: [
-        {
-          text: 'Все теги',
-          disabled: false,
-          exact: true,
-          href: 'breadcrumbs_dashboard',
-        },
-        {
-          text: 'Опубликованные',
-          disabled: true,
-          href: 'breadcrumbs_link_1',
-        },
-        {
-          text: 'Черновики',
-          disabled: true,
-          href: 'breadcrumbs_link_2',
-        },
-      ],
       editTegs: false,
       creationSidebar: false,
-      actions: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      actions: ['Удалить выбранное', 'Слияние'],
       content: [''],
       filter: [''],
       dialog: false,

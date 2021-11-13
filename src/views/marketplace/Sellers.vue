@@ -270,6 +270,7 @@
         <v-select
           :items="items"
           label="Категория"
+          class="mb-5"
         ></v-select>
         <v-btn
           depressed

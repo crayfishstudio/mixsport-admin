@@ -60,8 +60,8 @@
     </v-row>
     <v-row class="px-2">
       <v-col
-        cols="3"
-        class="d-flex mr-10"
+        cols="4"
+        class="d-grid cols-3-2 mr-8"
       >
         <v-select
           :items="actions"
@@ -69,7 +69,6 @@
           background-color="white"
           dense
           outlined
-          class="mr-3"
           hide-details
         ></v-select>
         <v-btn
@@ -82,7 +81,7 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="8"
+        cols="7"
         class="d-grid cols-2-3-3"
       >
         <v-select
@@ -306,7 +305,7 @@
         class="pt-5 text-right pa-5"
       >
         <v-subheader
-          class="font-weight-medium text-lg-h6 pl-0"
+          class="subheader-lowercase"
         >
           Cоздать статью
         </v-subheader>
@@ -340,11 +339,10 @@
 
         <v-btn
           depressed
-          outlined
-          color="graylight"
+          class="btn-main mr-3"
+          height="44px"
           large
           width="33%"
-          class="mr-3"
         >
           Отмена
         </v-btn>
@@ -377,7 +375,7 @@ export default {
   data() {
     return {
       creationSidebar: false,
-      actions: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      actions: ['Удалить выбранное', 'Слияние'],
       rubric: [''],
       typeFilter: [''],
       dateFilter: [''],

@@ -48,15 +48,15 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <v-row class="pt-3">
+    <v-row class="pa-3">
       <v-card>
          <v-container >
            <v-item-group
              v-model="selected"
              multiple
-             class="px-3"
+             class="pa-2"
            >
-             <v-row class="pa-3">
+             <v-row>
                <v-col
                  v-for="(item, i) in items"
                  :key="i"

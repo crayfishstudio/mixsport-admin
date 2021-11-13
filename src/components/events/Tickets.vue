@@ -8,9 +8,7 @@
           class="mb-8 mx-auto"
         ></v-img>
         <v-subheader
-          class="d-block font-weight-medium
-          text-lg-h6 mb-5"
-          color="graydark"
+          class="d-block subheader-lowercase mb-5"
         >Билетов нет
         </v-subheader>
         <v-btn
