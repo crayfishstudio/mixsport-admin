@@ -2,6 +2,7 @@
   <v-app id="app">
     <v-navigation-drawer
       app
+      v-if="$route.path != '/login'"
       v-model="drawer"
       :mini-variant.sync="mini"
       permanent
@@ -20,7 +21,7 @@
       </v-list-item>
 
       <v-list dense class="sidebar-list">
-        <v-list-item>
+        <v-list-item @click="changeRoute('/console')" >
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
@@ -328,7 +329,7 @@
     methods: {
       changeRoute(route) {
         this.$router.push(route);
-      }
+      },
     }
   }
 </script>
