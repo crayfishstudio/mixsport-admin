@@ -61,7 +61,7 @@
                 <p class="text--secondary ma-0 text-end"
                 >Создать аккаунт?</p>
               </v-col>
-              <v-col>
+              <v-col cols="6">
                 <v-btn
                   text
                   class="categorie-btn"
