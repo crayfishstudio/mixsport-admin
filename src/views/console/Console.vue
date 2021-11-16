@@ -200,7 +200,7 @@
                 <v-col cols="6" class="d-grid cols-1-3">
                   <v-avatar size="46">
                     <img
-                      src="https://cdn.vuetifyjs.com/images/john.jpg"
+                      src="https://i.pinimg.com/564x/0d/2d/30/0d2d300224afeef5a20be80f2eed5e6a.jpg"
                       alt="John"
                     >
                   </v-avatar>
@@ -247,7 +247,7 @@
                   <v-col cols="6" class="d-grid cols-1-3">
                     <v-avatar size="46">
                       <img
-                        src="https://cdn.vuetifyjs.com/images/john.jpg"
+                        src="https://i.pinimg.com/564x/ce/11/51/ce1151ad1fe8e3a87726ed6f1db0a1d3.jpg"
                         alt="John"
                       >
                     </v-avatar>

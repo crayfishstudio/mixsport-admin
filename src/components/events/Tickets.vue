@@ -54,7 +54,7 @@
               <v-subheader
                 class="tab-subheader"
               >
-                Проданые билеты
+                Білети
               </v-subheader>
               <template v-slot:actions>
                 <v-icon >
