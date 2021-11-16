@@ -21,7 +21,7 @@
       </v-list-item>
 
       <v-list dense class="sidebar-list">
-        <v-list-item @click="changeRoute('/console')" >
+        <v-list-item @click="changeRoute('/')" >
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
