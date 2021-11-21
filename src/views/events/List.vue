@@ -67,7 +67,7 @@
     <v-row class="px-2">
       <v-col
         cols="5"
-        class="d-grid cols-4-2-2 mr-10"
+        class="d-grid cols-4-2-2 pr-10"
       >
         <v-select
           :items="actions"

@@ -11,11 +11,20 @@
       dark
       width="240"
     >
-      <v-list-item class="px-0">
+      <v-list-item class="pt-2">
         <v-img
+          v-if="mini"
+          src="@/assets/logo-icon.svg"
+          @click.stop="mini = !mini"
+          height="28px"
+          width="28px"
+          position="start center">
+        </v-img>
+        <v-img
+          v-else
           src="@/assets/mixsport-logo.svg"
           @click.stop="mini = !mini"
-          height="70"
+          height="28px"
           position="start center">
         </v-img>
       </v-list-item>

@@ -180,7 +180,7 @@
                 :single-select="singleSelect"
                 item-key="id"
                 show-select
-                class="elevation-1 table-list"
+                class="table-list"
               >
                 <template v-slot:header.img="{ header }">
                   <v-icon v-tooltip.bottom-center="header.text">
@@ -233,6 +233,7 @@
                   </v-btn>
                 </template>
               </v-data-table>
+              <v-divider></v-divider>
               <v-row class="d-flex justify-end pa-5">
                 <v-col cols="3">
                   <p class="text--secondary text-right">
