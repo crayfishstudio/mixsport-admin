@@ -1540,7 +1540,7 @@
             </v-expansion-panel-header>
             <v-divider></v-divider>
             <v-expansion-panel-content class="pa-5">
-              <div class="d-grid cols-3-2">
+              <div class="d-flex">
                 <v-text-field
                   outlined
                   hide-details

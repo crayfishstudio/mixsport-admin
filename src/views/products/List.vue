@@ -392,7 +392,7 @@
         >
           Отмена
         </v-btn>
-    </v-col>
+      </v-col>
     </v-navigation-drawer>
     <v-navigation-drawer
       v-model="creationSidebar"

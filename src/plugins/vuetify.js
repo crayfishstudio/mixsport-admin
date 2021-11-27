@@ -18,6 +18,7 @@ export default new Vuetify({
         mgrey: '#979797',
         dirtygrey: '#DADADA',
         black: '#1D1D1D',
+        dirtywhite: '#FAFAFA',
         secondary: colors.red.lighten4, // #FFCDD2
         accent: colors.indigo.base, // #3F51B5
       },

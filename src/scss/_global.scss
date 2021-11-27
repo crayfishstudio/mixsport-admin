@@ -234,6 +234,11 @@ $black: #1D1D1D;
   &.cols-1-3 {
     grid-template-columns: 1fr 3fr;
   }
+
+  &.cols-1-1-1-1 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 12px 20px;
+  }
 }
 
 .text-filter {
@@ -310,7 +315,7 @@ $black: #1D1D1D;
 }
 
 .btn-main {
-  font-size: 14px !important;
+  font-size: 12px !important;
   line-height: 16px !important;
   font-weight: 600 !important;
   color: $grey !important;
