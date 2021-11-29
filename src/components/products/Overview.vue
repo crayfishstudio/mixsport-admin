@@ -7708,19 +7708,19 @@
                             v-model="item.basic"
                             color="primary"
                             hide-details
-                            class="ma-0"
+                            class="mx-auto my-0"
                           ></v-checkbox>
                           <v-checkbox
                             v-model="item.standard"
                             color="primary"
                             hide-details
-                            class="ma-0"
+                            class="mx-auto my-0"
                           ></v-checkbox>
                           <v-checkbox
                             v-model="item.premium"
                             color="primary"
                             hide-details
-                            class="ma-0"
+                            class="mx-auto my-0"
                           ></v-checkbox>
                         </div>
                       </div>
