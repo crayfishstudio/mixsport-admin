@@ -2864,6 +2864,20 @@
                     </v-row>
                     <v-row class="d-flex">
                       <v-col cols="3">
+                        <v-subheader>Тип брони</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-select
+                          :items="reservationType"
+                          hide-details
+                          class="mb-3"
+                          outlined
+                          dense
+                        ></v-select>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
                         <v-subheader>Место</v-subheader>
                       </v-col>
                       <v-col cols="5">
@@ -2888,6 +2902,90 @@
                       </v-col>
                       <v-col cols="4">
                         <p class="text--secondary text-caption ma-0">Введите количество бронируемых продуктов. Это общее количество для каждого слота.</p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
+                        <v-subheader>Цена за</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-select
+                          :items="priceFor"
+                          hide-details
+                          class="mb-3"
+                          outlined
+                          dense
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="4">
+                        <p class="text--secondary text-caption my-3">Или за столик</p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
+                        <v-subheader>Вместимость гостей</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-text-field
+                          outlined
+                          dense
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="4">
+                        <p class="text--secondary text-caption ma-0">Плата за: Вы можете взимать плату, например, за столик или за каждого гостя. Когда вы выбираете для каждого стола, вы должны ввести количество гостей для каждого стола . Так что вы можете взимать плату за стол (2 гостя) ниже на скриншоте.</p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
+                        <v-subheader>Доступно каждую неделю</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-select
+                          :items="availabelEveryWeek"
+                          hide-details
+                          class="mb-3"
+                          outlined
+                          dense
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="4">
+                        <p class="text--secondary text-caption ma-0">Установите « Да », чтобы настроить временные интервалы для всех дней недели. если вы не хотите настраивать временные интервалы для всех дней недели, установите « Нет ». И настройте дату начала и дату окончания.</p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
+                        <v-subheader>Тип аренды</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-select
+                          :items="rentType"
+                          hide-details
+                          class="mb-3"
+                          outlined
+                          dense
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="4">
+                        <p class="text--secondary text-caption ma-0">Ежедневная основа: - Если вы выбрали «Тип аренды» в качестве ежедневной основы. Затем установите посуточную арендную плату и нажмите «Сохранить продукт».</p>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
+                        <v-subheader>Цена за день <span class="required-field">*</span></v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-select
+                          :items="goalPerDay"
+                          hide-details
+                          class="mb-3"
+                          required
+                          :rules="rulesgoalPerDay"
+                          outlined
+                          dense
+                        ></v-select>
+                      </v-col>
+                      <v-col cols="4">
+                        <p class="text--secondary text-caption ma-0">Почасовая оплата: - Если вы выбрали «Тип аренды» в качестве почасовой оплаты. Затем настройте детали бронирования ниже.</p>
                       </v-col>
                     </v-row>
                     <v-row class="d-flex">
@@ -2954,13 +3052,14 @@
                           dense
                           required
                           :rules="rulesLengthSlot"
+                          hide-details
                         ></v-text-field>
                       </v-col>
                       <v-col cols="4">
                         <p class="primary--text text-caption ma-0">Если выбран вариант “Много броней на 1 день” активируются слоты по полчаса.</p>
                       </v-col>
                     </v-row>
-                    <v-row class="d-flex mb-5">
+                    <v-row class="d-flex">
                       <v-col cols="3">
                         <v-subheader>Перерыв между слотами, минут<span class="required-field">*</span></v-subheader>
                       </v-col>
@@ -2969,7 +3068,42 @@
                           outlined
                           dense
                           required
+                          hide-details
                           :rules="rulesAdvantageSlot"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex">
+                      <v-col cols="3">
+                        <v-subheader>Отмена брони за</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-text-field
+                          outlined
+                          dense
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex mb-5">
+                      <v-col cols="3">
+                        <v-subheader>Слоты одинаковые каждый день</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-text-field
+                          outlined
+                          dense
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                    <v-row class="d-flex mb-5">
+                      <v-col cols="3">
+                        <v-subheader>Доступно каждую неделю</v-subheader>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-text-field
+                          outlined
+                          dense
+                          hide-details
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -3018,7 +3152,7 @@
                               </v-subheader>
                             </v-col>
                           </v-row>
-                          <div class="">
+                          <div>
                             <!-- Понеділок -->
                             <v-row class="pt-4">
                               <v-col cols="12" class="d-grid cols-1-1-1-1">
@@ -3689,6 +3823,1766 @@
                                   dense
                                   hide-details
                                 ></v-select>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+                      <!-- Слоти / одне бронювання на багато днів -->
+                      <v-expansion-panel class="bordered mt-5">
+                        <v-expansion-panel-header >
+                          <v-subheader
+                            class="tab-subheader"
+                          >
+                            Слоты / Одно Бронирование На Много Дней
+                          </v-subheader>
+                          <template v-slot:actions>
+                            <v-icon >
+                              $expand
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content class="px-3 pb-4">
+                          <v-row class="dirtywhite">
+                            <v-col cols="12" class="d-grid cols-6-6-1 py-0 px-5">
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                От
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                До
+                              </v-subheader>
+                            </v-col>
+                          </v-row>
+                          <div>
+                            <!-- Перший рядок -->
+                            <v-row class="pt-4">
+                              <v-col cols="12" class="d-grid cols-3-3-3-3-1">
+                                <v-text-field
+                                  label="Понедельник"
+                                  outlined
+                                  dense
+                                  hide-details
+                                ></v-text-field>
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime14"
+                                  v-model="menu39"
+                                  :return-value.sync="time39"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time39"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu39"
+                                    v-model="time39"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu39 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime14.save(time39)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-text-field
+                                  label="Понедельник"
+                                  outlined
+                                  dense
+                                  hide-details
+                                ></v-text-field>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime15"
+                                  v-model="menu40"
+                                  :return-value.sync="time40"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time40"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu40"
+                                    v-model="time40"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu40 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime15.save(time40)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Другий рядок -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-3-3-3-3-1">
+                                <v-text-field
+                                  label="Среда"
+                                  outlined
+                                  dense
+                                  hide-details
+                                ></v-text-field>
+                                <!-- Година 1 (від) - середа -->
+                                <v-dialog
+                                  ref="bookingtime16"
+                                  v-model="menu41"
+                                  :return-value.sync="time41"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time41"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu41"
+                                    v-model="time41"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu41 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime16.save(time41)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-text-field
+                                  label="Четверг"
+                                  outlined
+                                  dense
+                                  hide-details
+                                ></v-text-field>
+                                <!-- Година 2(до) - четвер -->
+                                <v-dialog
+                                  ref="bookingtime17"
+                                  v-model="menu42"
+                                  :return-value.sync="time42"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time42"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu42"
+                                    v-model="time42"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu42 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime17.save(time42)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Третій рядок  -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-3-3-3-3-1">
+                                <v-text-field
+                                  label="Пятница"
+                                  outlined
+                                  dense
+                                  hide-details
+                                ></v-text-field>
+                                <!-- Година 1 (від) - середа -->
+                                <v-dialog
+                                  ref="bookingtime18"
+                                  v-model="menu43"
+                                  :return-value.sync="time43"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time43"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu43"
+                                    v-model="time43"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu43 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime18.save(time43)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-text-field
+                                  label="Субота"
+                                  outlined
+                                  dense
+                                  hide-details
+                                ></v-text-field>
+                                <!-- Година 2(до) - четвер -->
+                                <v-dialog
+                                  ref="bookingtime19"
+                                  v-model="menu48"
+                                  :return-value.sync="time44"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time44"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu44"
+                                    v-model="time44"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu44 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime19.save(time44)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <v-row>
+                              <v-col class="pa-5">
+                                <v-btn
+                                  depressed
+                                  color="primary"
+                                  class="font-weight-medium"
+                                >
+                                  Добавить слот
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+                      <!-- Слоти -->
+                      <v-expansion-panel class="bordered mt-5">
+                        <v-expansion-panel-header >
+                          <v-subheader
+                            class="tab-subheader"
+                          >
+                            Слоты
+                          </v-subheader>
+                          <template v-slot:actions>
+                            <v-icon >
+                              $expand
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content class="px-3 pb-4">
+                          <v-row class="dirtywhite">
+                            <v-col cols="12" class="d-grid cols-6-6-1 py-0 px-5">
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                От
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                До
+                              </v-subheader>
+                            </v-col>
+                          </v-row>
+                          <div>
+                            <!-- Перший рядок -->
+                            <v-row class="pt-4">
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime20"
+                                  v-model="menu45"
+                                  :return-value.sync="time45"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time45"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu45"
+                                    v-model="time45"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu45 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime20.save(time45)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime21"
+                                  v-model="menu46"
+                                  :return-value.sync="time46"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time46"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu46"
+                                    v-model="time46"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu46 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime21.save(time46)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Другий рядок -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime22"
+                                  v-model="menu47"
+                                  :return-value.sync="time47"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time47"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu47"
+                                    v-model="time47"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu47 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime22.save(time47)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime23"
+                                  v-model="menu48"
+                                  :return-value.sync="time48"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time48"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu48"
+                                    v-model="time48"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu48 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime23.save(time48)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Третій рядок  -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime24"
+                                  v-model="menu49"
+                                  :return-value.sync="time49"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time49"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu49"
+                                    v-model="time49"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu49 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime24.save(time49)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime25"
+                                  v-model="menu50"
+                                  :return-value.sync="time50"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time50"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu50"
+                                    v-model="time50"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu50= false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime25.save(time50)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <v-row>
+                              <v-col class="pa-5">
+                                <v-btn
+                                  depressed
+                                  color="primary"
+                                  class="font-weight-medium"
+                                >
+                                  Создать новую
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+                      <!-- Слоти для погодинної оплати -->
+                      <v-expansion-panel class="bordered mt-5">
+                        <v-expansion-panel-header >
+                          <v-subheader
+                            class="tab-subheader"
+                          >
+                            Слоты для почасовой оплаты
+                          </v-subheader>
+                          <template v-slot:actions>
+                            <v-icon >
+                              $expand
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-header>
+                        <v-divider></v-divider>
+                        <v-expansion-panel-content class="pa-5">
+                        <v-row>
+                          <v-col cols="12" class="d-grid cols-6-6-1 py-0">
+                            <v-subheader
+                              class="tabs-subheader"
+                            >
+                              От
+                            </v-subheader>
+                            <v-subheader
+                              class="tabs-subheader"
+                            >
+                              До
+                            </v-subheader>
+                          </v-col>
+                        </v-row>
+                          <!-- Перший рядок -->
+                          <v-row>
+                            <v-col cols="12" class="d-grid cols-6-6-1">
+                              <!-- Година 1 (від) - понеділок -->
+                              <v-dialog
+                                ref="bookingtime38"
+                                v-model="menu63"
+                                :return-value.sync="time63"
+                                persistent
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="time63"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    hide-details
+                                    outlined
+                                    dense
+                                  ></v-text-field>
+                                </template>
+                                <v-time-picker
+                                  v-if="menu63"
+                                  v-model="time63"
+                                  full-width
+                                >
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="menu63 = false"
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs.bookingtime38.save(time63)"
+                                  >
+                                    OK
+                                  </v-btn>
+                                </v-time-picker>
+                              </v-dialog>
+                              <!-- Година 2(до) - понеділок -->
+                              <v-dialog
+                                ref="bookingtime39"
+                                v-model="menu64"
+                                :return-value.sync="time46"
+                                persistent
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="time64"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    hide-details
+                                    outlined
+                                    dense
+                                  ></v-text-field>
+                                </template>
+                                <v-time-picker
+                                  v-if="menu64"
+                                  v-model="time64"
+                                  full-width
+                                >
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="menu64 = false"
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs.bookingtime39.save(time64)"
+                                  >
+                                    OK
+                                  </v-btn>
+                                </v-time-picker>
+                              </v-dialog>
+                              <v-btn
+                                icon
+                                color="grey"
+                              >
+                                <v-icon>mdi-close</v-icon>
+                              </v-btn>
+                            </v-col>
+                          </v-row>
+                          <!-- Другий рядок -->
+                          <v-row>
+                            <v-col cols="12" class="d-grid cols-6-6-1">
+                              <!-- Година 1 (від) - понеділок -->
+                              <v-dialog
+                                ref="bookingtime40"
+                                v-model="menu65"
+                                :return-value.sync="time65"
+                                persistent
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="time65"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    hide-details
+                                    outlined
+                                    dense
+                                  ></v-text-field>
+                                </template>
+                                <v-time-picker
+                                  v-if="menu65"
+                                  v-model="time65"
+                                  full-width
+                                >
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="menu65 = false"
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs.bookingtime40.save(time65)"
+                                  >
+                                    OK
+                                  </v-btn>
+                                </v-time-picker>
+                              </v-dialog>
+                              <!-- Година 2(до) - понеділок -->
+                              <v-dialog
+                                ref="bookingtime41"
+                                v-model="menu66"
+                                :return-value.sync="time66"
+                                persistent
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="time66"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    hide-details
+                                    outlined
+                                    dense
+                                  ></v-text-field>
+                                </template>
+                                <v-time-picker
+                                  v-if="menu66"
+                                  v-model="time66"
+                                  full-width
+                                >
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="menu66 = false"
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs.bookingtime41.save(time66)"
+                                  >
+                                    OK
+                                  </v-btn>
+                                </v-time-picker>
+                              </v-dialog>
+                              <v-btn
+                                icon
+                                color="grey"
+                              >
+                                <v-icon>mdi-close</v-icon>
+                              </v-btn>
+                            </v-col>
+                          </v-row>
+                          <!-- Третій рядок  -->
+                          <v-row>
+                            <v-col cols="12" class="d-grid cols-6-6-1">
+                              <!-- Година 1 (від) - понеділок -->
+                              <v-dialog
+                                ref="bookingtime42"
+                                v-model="menu67"
+                                :return-value.sync="time67"
+                                persistent
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="time67"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    hide-details
+                                    outlined
+                                    dense
+                                  ></v-text-field>
+                                </template>
+                                <v-time-picker
+                                  v-if="menu67"
+                                  v-model="time67"
+                                  full-width
+                                >
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="menu67 = false"
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs.bookingtime42.save(time67)"
+                                  >
+                                    OK
+                                  </v-btn>
+                                </v-time-picker>
+                              </v-dialog>
+                              <!-- Година 2(до) - понеділок -->
+                              <v-dialog
+                                ref="bookingtime43"
+                                v-model="menu68"
+                                :return-value.sync="time68"
+                                persistent
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="time68"
+                                    readonly
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    hide-details
+                                    outlined
+                                    dense
+                                  ></v-text-field>
+                                </template>
+                                <v-time-picker
+                                  v-if="menu68"
+                                  v-model="time68"
+                                  full-width
+                                >
+                                  <v-spacer></v-spacer>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="menu68= false"
+                                  >
+                                    Cancel
+                                  </v-btn>
+                                  <v-btn
+                                    text
+                                    color="primary"
+                                    @click="$refs.bookingtime43.save(time68)"
+                                  >
+                                    OK
+                                  </v-btn>
+                                </v-time-picker>
+                              </v-dialog>
+                              <v-btn
+                                icon
+                                color="grey"
+                              >
+                                <v-icon>mdi-close</v-icon>
+                              </v-btn>
+                            </v-col>
+                          </v-row>
+                          <v-row>
+                            <v-col class="py-5">
+                              <v-btn
+                                depressed
+                                color="primary"
+                                class="font-weight-medium"
+                              >
+                                Создать новую
+                              </v-btn>
+                            </v-col>
+                          </v-row>
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+                      <!-- Білети -->
+                      <v-expansion-panel class="bordered mt-5">
+                        <v-expansion-panel-header >
+                          <v-subheader
+                            class="tab-subheader"
+                          >
+                            Билеты
+                          </v-subheader>
+                          <template v-slot:actions>
+                            <v-icon >
+                              $expand
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-header>
+                        <v-divider></v-divider>
+                        <v-expansion-panel-content class="pa-5">
+                          <v-row>
+                            <v-col cols="12" class="d-grid cols-2-3-3-3 py-0">
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                Название
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                Цена
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                Количество
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                Описание
+                              </v-subheader>
+                            </v-col>
+                          </v-row>
+                          <!-- Перший рядок -->
+                          <v-row>
+                            <v-col cols="12" class="d-grid cols-2-3-3-3">
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <!-- Другий рядок -->
+                          <v-row>
+                            <v-col cols="12" class="d-grid cols-2-3-3-3">
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                              <v-text-field
+                                outlined
+                                dense
+                                hide-details
+                              ></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-row>
+                            <v-col class="py-5">
+                              <v-btn
+                                depressed
+                                color="primary"
+                                class="font-weight-medium"
+                              >
+                                Создать билет
+                              </v-btn>
+                            </v-col>
+                          </v-row>
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+
+                <!-- Слоти на кожен день . Заголовок -->
+                      <v-subheader
+                        class="tab-subheader mt-10"
+                      >
+                        Слоты Разные на каждый день
+                      </v-subheader>
+                      <!-- Понедельник -->
+                      <v-expansion-panel class="bordered mt-0">
+                        <v-expansion-panel-header >
+                          <v-subheader
+                            class="tab-subheader"
+                          >
+                            Понедельник
+                          </v-subheader>
+                          <template v-slot:actions>
+                            <v-icon >
+                              $expand
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content class="px-3 pb-4">
+                          <v-row class="dirtywhite">
+                            <v-col cols="12" class="d-grid cols-6-6-1 py-0 px-5">
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                От
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                До
+                              </v-subheader>
+                            </v-col>
+                          </v-row>
+                          <div>
+                            <!-- Перший рядок -->
+                            <v-row class="pt-4">
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime26"
+                                  v-model="menu51"
+                                  :return-value.sync="time51"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time51"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu51"
+                                    v-model="time51"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu51 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime26.save(time51)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime27"
+                                  v-model="menu52"
+                                  :return-value.sync="time52"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time52"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu52"
+                                    v-model="time52"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu52 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime27.save(time52)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Другий рядок -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime28"
+                                  v-model="menu53"
+                                  :return-value.sync="time53"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time53"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu53"
+                                    v-model="time53"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu53 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime28.save(time53)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime29"
+                                  v-model="menu54"
+                                  :return-value.sync="time54"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time54"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu54"
+                                    v-model="time54"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu54 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime29.save(time54)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Третій рядок  -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime30"
+                                  v-model="menu55"
+                                  :return-value.sync="time55"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time55"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu55"
+                                    v-model="time55"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu55 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime30.save(time55)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime31"
+                                  v-model="menu56"
+                                  :return-value.sync="time56"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time56"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu56"
+                                    v-model="time56"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu56= false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime31.save(time56)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <v-row>
+                              <v-col class="pa-5">
+                                <v-btn
+                                  depressed
+                                  color="primary"
+                                  class="font-weight-medium"
+                                >
+                                  Создать новую
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </v-expansion-panel-content>
+                      </v-expansion-panel>
+                      <!-- Вівторок -->
+                      <v-expansion-panel class="bordered mt-5">
+                        <v-expansion-panel-header >
+                          <v-subheader
+                            class="tab-subheader"
+                          >
+                            Вторник
+                          </v-subheader>
+                          <template v-slot:actions>
+                            <v-icon >
+                              $expand
+                            </v-icon>
+                          </template>
+                        </v-expansion-panel-header>
+                        <v-expansion-panel-content class="px-3 pb-4">
+                          <v-row class="dirtywhite">
+                            <v-col cols="12" class="d-grid cols-6-6-1 py-0 px-5">
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                От
+                              </v-subheader>
+                              <v-subheader
+                                class="tabs-subheader"
+                              >
+                                До
+                              </v-subheader>
+                            </v-col>
+                          </v-row>
+                          <div>
+                            <!-- Перший рядок -->
+                            <v-row class="pt-4">
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime32"
+                                  v-model="menu57"
+                                  :return-value.sync="time57"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time57"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu57"
+                                    v-model="time57"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu57 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime32.save(time57)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime33"
+                                  v-model="menu58"
+                                  :return-value.sync="time58"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time58"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu58"
+                                    v-model="time58"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu58 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime33.save(time58)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Другий рядок -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime34"
+                                  v-model="menu59"
+                                  :return-value.sync="time59"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time59"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu59"
+                                    v-model="time59"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu59 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime34.save(time59)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime35"
+                                  v-model="menu60"
+                                  :return-value.sync="time60"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time60"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu60"
+                                    v-model="time60"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu60 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime35.save(time60)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <!-- Третій рядок  -->
+                            <v-row>
+                              <v-col cols="12" class="d-grid cols-6-6-1 px-5">
+                                <!-- Година 1 (від) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime36"
+                                  v-model="menu61"
+                                  :return-value.sync="time61"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time61"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu61"
+                                    v-model="time61"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu61 = false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime36.save(time61)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <!-- Година 2(до) - понеділок -->
+                                <v-dialog
+                                  ref="bookingtime37"
+                                  v-model="menu62"
+                                  :return-value.sync="time62"
+                                  persistent
+                                  width="290px"
+                                >
+                                  <template v-slot:activator="{ on, attrs }">
+                                    <v-text-field
+                                      v-model="time62"
+                                      readonly
+                                      v-bind="attrs"
+                                      v-on="on"
+                                      hide-details
+                                      outlined
+                                      dense
+                                    ></v-text-field>
+                                  </template>
+                                  <v-time-picker
+                                    v-if="menu62"
+                                    v-model="time62"
+                                    full-width
+                                  >
+                                    <v-spacer></v-spacer>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="menu62= false"
+                                    >
+                                      Cancel
+                                    </v-btn>
+                                    <v-btn
+                                      text
+                                      color="primary"
+                                      @click="$refs.bookingtime37.save(time62)"
+                                    >
+                                      OK
+                                    </v-btn>
+                                  </v-time-picker>
+                                </v-dialog>
+                                <v-btn
+                                  icon
+                                  color="grey"
+                                >
+                                  <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                            <v-row>
+                              <v-col class="pa-5">
+                                <v-btn
+                                  depressed
+                                  color="primary"
+                                  class="font-weight-medium"
+                                >
+                                  Создать новую
+                                </v-btn>
                               </v-col>
                             </v-row>
                           </div>
@@ -5398,7 +7292,7 @@ export default {
       rulesAdvantageSlot: [
         value => !!value || 'Заповність це поле',
       ],
-      panel6: [0, 1, 2, 3],
+      panel6: [0, 1, 2, 3, 4, 5, 6],
       time25: null,
       menu25: false,
       time26: null,
@@ -5434,6 +7328,74 @@ export default {
       time38: null,
       menu38: false,
       statusSunday: ['Открыто', 'Закрито'],
+      time39: null,
+      menu39: false,
+      time40: null,
+      menu40: false,
+      time41: null,
+      menu41: false,
+      time42: null,
+      menu42: false,
+      time43: null,
+      menu43: false,
+      time44: null,
+      menu44: false,
+      time45: null,
+      menu45: false,
+      time46: null,
+      menu46: false,
+      time47: null,
+      menu47: false,
+      time48: null,
+      menu48: false,
+      time49: null,
+      menu49: false,
+      time50: null,
+      menu50: false,
+      time51: null,
+      menu51: false,
+      time52: null,
+      menu52: false,
+      time53: null,
+      menu53: false,
+      time54: null,
+      menu54: false,
+      time55: null,
+      menu55: false,
+      time56: null,
+      menu56: false,
+      time57: null,
+      menu57: false,
+      time58: null,
+      menu58: false,
+      time59: null,
+      menu59: false,
+      time60: null,
+      menu60: false,
+      time61: null,
+      menu61: false,
+      time62: null,
+      menu62: false,
+      reservationType: ['Запись на прием'],
+      availabelEveryWeek: ['Да', 'Нет'],
+      rentType: ['Ежедневная основа'],
+      goalPerDay: ['5 000', '10 000', '15 000'],
+      rulesgoalPerDay: [
+        value => !!value || 'Оберіть ціль за день',
+      ],
+      time63: null,
+      menu63: false,
+      time64: null,
+      menu64: false,
+      time65: null,
+      menu65: false,
+      time66: null,
+      menu66: false,
+      time67: null,
+      menu67: false,
+      time68: null,
+      menu68: false,
+      priceFor: ['Гостя'],
     })
   },
   components: {

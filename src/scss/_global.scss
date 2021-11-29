@@ -239,6 +239,15 @@ $black: #1D1D1D;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     padding: 12px 20px;
   }
+
+  &.cols-3-3-3-3-1 {
+    grid-template-columns: 3fr 3fr 3fr 3fr 1fr;
+    padding: 12px 20px;
+  }
+
+  &.cols-6-6-1 {
+    grid-template-columns: 6fr 6fr 1fr;
+  }
 }
 
 .text-filter {
