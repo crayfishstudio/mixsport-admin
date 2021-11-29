@@ -47,8 +47,8 @@
     </v-row>
     <v-row class="px-2">
       <v-col
-        cols="4"
-        class="d-grid cols-4-2 mr-10"
+        cols="3"
+        class="d-flex mr-10"
       >
         <v-select
           :items="actions"
@@ -57,6 +57,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
           depressed
@@ -69,7 +70,7 @@
       </v-col>
       <v-col
         cols="7"
-        class="d-grid cols-2-3-3"
+        class="d-flex"
       >
         <v-select
           :items="categoryFilter"
@@ -78,6 +79,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="types"
@@ -86,6 +88,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="filterData"

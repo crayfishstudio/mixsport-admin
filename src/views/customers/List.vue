@@ -68,7 +68,7 @@
     <v-row class="px-2">
       <v-col
         cols="4"
-        class="d-grid cols-3-2 mr-8"
+        class="d-flex mr-8"
       >
         <v-select
           :items="actions"
@@ -77,6 +77,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
           depressed
@@ -89,7 +90,7 @@
       </v-col>
       <v-col
         cols="6"
-        class="d-grid cols-2-2"
+        class="d-flex"
       >
         <v-select
           :items="typesFilter"
@@ -98,6 +99,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="statusFilter"

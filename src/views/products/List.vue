@@ -95,7 +95,7 @@
     <v-row class="px-2">
       <v-col
         cols="4"
-        class="d-grid cols-3-2"
+        class="d-flex mr-5"
       >
         <v-select
           :items="actions"
@@ -104,6 +104,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
           depressed
@@ -116,9 +117,9 @@
       </v-col>
       <v-col
         cols="7"
-        class="d-grid cols-2-3-3-3"
+        class="d-flex"
       >
-        <p class="text-filter">Фильтровать:</p>
+        <p class="text-filter mr-3">Фильтровать:</p>
         <v-select
           :items="category"
           label="по категории"
@@ -126,6 +127,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="stocks"
@@ -134,6 +136,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="partners"

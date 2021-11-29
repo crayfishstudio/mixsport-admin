@@ -23,7 +23,7 @@
     <v-row class="px-2 pt-4">
       <v-col
         cols="4"
-        class="d-grid cols-3-2"
+        class="d-flex"
       >
         <v-select
           :items="actions"
@@ -32,6 +32,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
           depressed

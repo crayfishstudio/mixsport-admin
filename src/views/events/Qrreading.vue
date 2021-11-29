@@ -10,7 +10,7 @@
     <!-- Перший рядок -->
     <v-row class="mt-1 px-2">
       <v-col
-        cols="3" class="d-grid cols-1-2"
+        cols="3" class="d-flex"
       >
         <v-select
           :items="language"
@@ -20,10 +20,11 @@
           dense
           height="45px"
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
         depressed
-        class="btn-main mr-3"
+        class="btn-main"
         height="45px"
         smalll
         >

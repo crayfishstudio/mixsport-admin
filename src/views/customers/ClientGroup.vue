@@ -29,8 +29,8 @@
     </v-app-bar>
     <v-row class="pa-2">
       <v-col
-        cols="4"
-        class="d-grid cols-3-2"
+        cols="3"
+        class="d-flex"
       >
         <v-select
           :items="actions"
@@ -39,10 +39,11 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
           depressed
-          class="btn-main mr-3"
+          class="btn-main"
           height="40px"
           small
         >

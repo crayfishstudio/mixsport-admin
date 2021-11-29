@@ -60,8 +60,8 @@
     </v-row>
     <v-row class="px-2">
       <v-col
-        cols="4"
-        class="d-grid cols-3-2 mr-8"
+        cols="3"
+        class="d-flex mr-8"
       >
         <v-select
           :items="actions"
@@ -70,6 +70,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-btn
           depressed
@@ -81,12 +82,12 @@
         </v-btn>
       </v-col>
       <v-col
-        cols="7"
-        class="d-grid cols-2-2-3"
+        cols="6"
+        class="d-flex"
       >
         <v-btn
           depressed
-          class="btn-main"
+          class="btn-main mr-3"
           height="40px"
           small
         >
@@ -99,6 +100,7 @@
           dense
           outlined
           hide-details
+          class="mr-3"
         ></v-select>
         <v-select
           :items="filter"
