@@ -248,6 +248,14 @@ $black: #1D1D1D;
   &.cols-6-6-1 {
     grid-template-columns: 6fr 6fr 1fr;
   }
+
+  &.cols-3-1-1-1 {
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+  }
+
+  &.cols-1-1-1 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .text-filter {

@@ -5,7 +5,7 @@
         cols="8"
       >
         <v-expansion-panels v-model="panel1" multiple active-class="mb-5">
-          <!--Опис-->
+        <!--Опис-->
           <v-expansion-panel>
             <v-expansion-panel-header >
               <v-subheader
@@ -4936,7 +4936,7 @@
                         </v-expansion-panel-content>
                       </v-expansion-panel>
 
-                <!-- Слоти на кожен день . Заголовок -->
+                      <!-- Слоти на кожен день . Заголовок -->
                       <v-subheader
                         class="tab-subheader mt-10"
                       >
@@ -5866,6 +5866,7 @@
                   ></v-text-field>
                 </v-tab-item>
                 <v-tab-item class="pa-5">
+                  <!-- Понеділок -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                       Понеділок
@@ -5968,6 +5969,7 @@
                       </v-icon>
                     </v-btn>
                   </div>
+                  <!-- Вівторок -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                       Вівторок
@@ -6070,6 +6072,7 @@
                       </v-icon>
                     </v-btn>
                   </div>
+                  <!-- Середа -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                         Середа
@@ -6172,6 +6175,7 @@
                       </v-icon>
                     </v-btn>
                   </div>
+                  <!-- Четвер -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                         Четвер
@@ -6274,6 +6278,7 @@
                       </v-icon>
                     </v-btn>
                   </div>
+                  <!-- П'ятниця -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                         Пятниця
@@ -6376,6 +6381,7 @@
                       </v-icon>
                     </v-btn>
                   </div>
+                  <!-- Субота -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                         Субота
@@ -6478,6 +6484,7 @@
                       </v-icon>
                     </v-btn>
                   </div>
+                  <!-- Неділя -->
                   <div class="d-grid cols-2-2-2-1-2-1 align-center pr-12 mb-7">
                     <p class="font-weight-medium mb-0" color= "graylight">
                         Неділя
@@ -6584,13 +6591,937 @@
               </v-tabs-items>
             </v-expansion-panel-content>
           </v-expansion-panel>
-        <!-- Атрибути -->
+        <!--Дати-->
+        <v-expansion-panel class="bordered">
+          <v-expansion-panel-header >
+            <v-subheader
+              class="tab-subheader"
+            >
+              Даты
+            </v-subheader>
+            <template v-slot:actions>
+              <v-icon >
+                $expand
+              </v-icon>
+            </template>
+          </v-expansion-panel-header>
+          <v-divider></v-divider>
+          <v-expansion-panel-content class="px-5 pb-5">
+            <v-row>
+              <v-col cols="5">
+                <v-subheader
+                  class="tabs-subheader"
+                >
+                  Дата начала
+                </v-subheader>
+              </v-col>
+              <v-col cols="7">
+                <v-subheader
+                  class="tabs-subheader"
+                >
+                  Дата окончания
+                </v-subheader>
+              </v-col>
+            </v-row>
+          <!-- Перший рядок -->
+            <v-row>
+              <v-col
+                cols="12"
+                class="d-grid cols-3-2-3-2-2 pt-0"
+              >
+                <!-- Тут дата-1 -->
+                <v-dialog
+                  ref="datesDialog"
+                  v-model="dateslibs1"
+                  :return-value.sync="dates1"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates1"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                      color="mgrey"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates1"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs1 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog.save(dates1)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-1 -->
+                <v-dialog
+                  ref="datesTime"
+                  v-model="menudates"
+                  :return-value.sync="timedates"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates"
+                    v-model="timedates"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime.save(timedates)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <!-- Тут дата-2 -->
+                <v-dialog
+                  ref="datesDialog2"
+                  v-model="dateslibs2"
+                  :return-value.sync="dates2"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates2"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates2"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs2 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog2.save(dates2)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-2 -->
+                <v-dialog
+                  ref="datesTime2"
+                  v-model="menudates2"
+                  :return-value.sync="timedates2"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates2"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates2"
+                    v-model="timedates2"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates2 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime2.save(timedates2)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <v-btn
+                  fab
+                  small
+                  color="graylightsecond"
+                  depressed
+                  class="mr-3"
+                >
+                  <v-icon color="grey">
+                    mdi-plus
+                  </v-icon>
+                </v-btn>
+              </v-col>
+            </v-row>
+          <!-- Другий рядок -->
+            <v-row>
+              <v-col
+                cols="12"
+                class="d-grid cols-3-2-3-2-2"
+              >
+                <!-- Тут дата-3 -->
+                <v-dialog
+                  ref="datesDialog3"
+                  v-model="dateslibs3"
+                  :return-value.sync="dates3"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates3"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                      color="mgrey"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates3"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs3 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog3.save(dates3)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-3 -->
+                <v-dialog
+                  ref="datesTime3"
+                  v-model="menudates3"
+                  :return-value.sync="timedates3"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates3"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates3"
+                    v-model="timedates3"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates3 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime3.save(timedates3)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <!-- Тут дата-4 -->
+                <v-dialog
+                  ref="datesDialog4"
+                  v-model="dateslibs4"
+                  :return-value.sync="dates4"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates4"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates4"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs4 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog4.save(dates4)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-4 -->
+                <v-dialog
+                  ref="datesTime4"
+                  v-model="menudates4"
+                  :return-value.sync="timedates4"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates4"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates4"
+                    v-model="timedates4"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates4 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime4.save(timedates4)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <div class="d-flex justify-start">
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                    class="mr-3"
+                  >
+                    <v-icon color="grey">
+                      mdi-plus
+                    </v-icon>
+                  </v-btn>
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                  >
+                    <v-icon color="grey">
+                      mdi-minus
+                    </v-icon>
+                  </v-btn>
+                </div>
+              </v-col>
+            </v-row>
+          <!-- Третій рядок -->
+            <v-row>
+              <v-col
+                cols="12"
+                class="d-grid cols-3-2-3-2-2"
+              >
+                <!-- Тут дата-5 -->
+                <v-dialog
+                  ref="diatesDalog5"
+                  v-model="dateslibs5"
+                  :return-value.sync="dates5"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates5"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                      color="mgrey"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates5"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs5 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog5.save(dates5)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-5 -->
+                <v-dialog
+                  ref="datesTime5"
+                  v-model="menudates5"
+                  :return-value.sync="timedates5"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates5"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates5"
+                    v-model="timedates5"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates5 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime5.save(timedates5)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <!-- Тут дата-6 -->
+                <v-dialog
+                  ref="datesDialog6"
+                  v-model="dateslibs6"
+                  :return-value.sync="dates6"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates6"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates6"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs6 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog6.save(dates6)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-6 -->
+                <v-dialog
+                  ref="datesTime6"
+                  v-model="menudates6"
+                  :return-value.sync="timedates6"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates6"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates6"
+                    v-model="timedates6"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates6 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime6.save(timedates6)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <div class="d-flex justify-start">
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                    class="mr-3"
+                  >
+                    <v-icon color="grey">
+                      mdi-plus
+                    </v-icon>
+                  </v-btn>
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                  >
+                    <v-icon color="grey">
+                      mdi-minus
+                    </v-icon>
+                  </v-btn>
+                </div>
+              </v-col>
+            </v-row>
+            <!-- Четвертий рядок -->
+            <v-row>
+              <v-col
+                cols="12"
+                class="d-grid cols-3-2-3-2-2"
+              >
+                <!-- Тут дата-7 -->
+                <v-dialog
+                  ref="datesDialog7"
+                  v-model="dateslibs7"
+                  :return-value.sync="dates7"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates7"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                      color="mgrey"
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates7"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs7 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog7.save(dates7)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-7 -->
+                <v-dialog
+                  ref="datesTime7"
+                  v-model="menudates7"
+                  :return-value.sync="timedates7"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates7"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates7"
+                    v-model="timedates7"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates7 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime7.save(timedates7)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <!-- Тут дата-8 -->
+                <v-dialog
+                  ref="datesDialog8"
+                  v-model="dateslibs8"
+                  :return-value.sync="dates8"
+                  persistent
+                  width="290px"
+                  title-date-format
+                  input="string"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="dates8"
+                      prepend-inner-icon="mdi-calendar"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-date-picker
+                    v-model="dates8"
+                    scrollable
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="dateslibs8 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesDialog8.save(dates8)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-date-picker>
+                </v-dialog>
+                <!-- Тут година-8 -->
+                <v-dialog
+                  ref="datesTime8"
+                  v-model="menudates8"
+                  :return-value.sync="timedates8"
+                  persistent
+                  width="290px"
+                >
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-text-field
+                      v-model="timedates8"
+                      readonly
+                      v-bind="attrs"
+                      v-on="on"
+                      hide-details
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </template>
+                  <v-time-picker
+                    v-if="menudates8"
+                    v-model="timedates8"
+                    full-width
+                  >
+                    <v-spacer></v-spacer>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="menudates8 = false"
+                    >
+                      Cancel
+                    </v-btn>
+                    <v-btn
+                      text
+                      color="primary"
+                      @click="$refs.datesTime8.save(timedates8)"
+                    >
+                      OK
+                    </v-btn>
+                  </v-time-picker>
+                </v-dialog>
+                <div class="d-flex justify-start">
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                    class="mr-3"
+                  >
+                    <v-icon color="grey">
+                      mdi-plus
+                    </v-icon>
+                  </v-btn>
+                  <v-btn
+                    fab
+                    small
+                    color="graylightsecond"
+                    depressed
+                  >
+                    <v-icon color="grey">
+                      mdi-minus
+                    </v-icon>
+                  </v-btn>
+                </div>
+              </v-col>
+            </v-row>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+        <!-- Білети -->
           <v-expansion-panel>
             <v-expansion-panel-header >
               <v-subheader
                 class="tab-subheader"
               >
-                Атрибуты
+                Билеты
+              </v-subheader>
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-5">
+              <v-row>
+                <v-col cols="4">
+                  <v-text-field
+                    label="Базовая цена"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    label="Стандартная"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    label="Премиум цена"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row class="py-5">
+                <v-col class="d-grid-product cols-2-1-2-2-2">
+                  <p class="text--secondary text-body-2 ma-0">Дата</p>
+                  <p class="text--secondary text-body-2 ma-0 text-center">Кол-во</p>
+                  <p class="text--secondary text-body-2 ma-0">Базовая цена</p>
+                  <p class="text--secondary text-body-2 ma-0">Стандартная</p>
+                  <p class="text--secondary text-body-2 ma-0">Премиум цена</p>
+                  <!-- Перший рядок -->
+                  <p class="text--secondary ma-0">09.02.2021</p>
+                  <p class="text--secondary text-center ma-0">45</p>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <!-- Другий рядок -->
+                  <p class="text--secondary ma-0">19.02.2021</p>
+                  <p class="text--secondary text-center ma-0">45</p>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <!-- Третій рядок -->
+                  <p class="text--secondary ma-0">29.02.2021</p>
+                  <p class="text--secondary text-center ma-0">45</p>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                  <v-text-field
+                    hide-details
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="singlePriceDate"
+                    label="Единая цена для всех дат"
+                    color="primary"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="priceForPerson"
+                    label="Цена с человека"
+                    color="primary"
+                    hide-details
+                  ></v-checkbox>
+                  <v-checkbox
+                    v-model="priceForGroup"
+                    label="Цена с группы"
+                    color="primary"
+                    hide-details
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        <!-- Загальні атрибути -->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-subheader
+                class="tab-subheader"
+              >
+                Общие атрибуты
               </v-subheader>
               <template v-slot:actions>
                 <v-icon >
@@ -6603,58 +7534,210 @@
               <v-row>
                 <v-col cols="6">
                   <v-text-field
-                    label="ISBN"
+                    label="Місто"
                   ></v-text-field>
                 </v-col>
-                <v-col cols="6">
+                <v-col cols="3">
                   <v-text-field
-                    label="Автор"
+                    label="К-ть днів"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="3">
+                  <v-text-field
+                    label="К-ть ночей"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-text-field
+                    label="Тривалість"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="3">
+                  <v-text-field
+                    label="К-ть годин"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="3">
+                  <v-text-field
+                    label="К-ть людей від"
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="3">
+                  <v-text-field
+                    label="К-ть людей до"
                   ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col cols="6">
-                  <v-text-field
-                    label="Видавець"
-                  ></v-text-field>
+                  <v-select
+                    :items="complexity"
+                    label="Сложность"
+                  ></v-select>
                 </v-col>
                 <v-col cols="6">
                   <v-text-field
-                    label="Поставщик"
+                    label="Довжина маршруту"
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col cols="6">
-                  <v-text-field
-                    label="Язык"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="6">
-                  <v-text-field
-                    label="Перевод"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="6">
-                  <v-text-field
-                    label="Количество страниц"
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="6">
-                  <v-text-field
-                    label="Рік випуску"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col cols="6">
-                  <v-text-field
-                    label="Вік"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        <!-- Атрибути -->
+          <v-expansion-panel>
+            <v-expansion-panel-header >
+              <v-col cols="7" class="d-grid cols-1-3 pa-0">
+                <v-subheader
+                  class="tab-subheader"
+                >
+                  Атрибуты
+                </v-subheader>
+                <div class="attribute-class">
+                  <p class="ma-0 pr-4">Семейство:</p>
+                  <v-select
+                    :items="attributesTypes"
+                    class="my-2"
+                    dense
+                    hide-details
+                    v-model="currentAttributeType"
+                  ></v-select>
+                </div>
+              </v-col>
+
+              <template v-slot:actions>
+                <v-icon >
+                  $expand
+                </v-icon>
+              </template>
+            </v-expansion-panel-header>
+            <v-divider></v-divider>
+            <v-expansion-panel-content class="pa-5">
+              <div v-if="currentAttributeType == 'attributeBook'">
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="ISBN"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Автор"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Видавець"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Поставщик"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Язык"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Перевод"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Количество страниц"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Рік випуску"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6">
+                    <v-text-field
+                      label="Вік"
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </div>
+              <div v-if="currentAttributeType == 'attributeToursExcursion'">
+                <v-row class="d-flex justify-end px-3">
+                  <v-col cols="6" class="d-grid cols-1-1-1 pa-0">
+                    <v-subheader
+                      class="tab-subheader"
+                    >
+                      Базовый
+                    </v-subheader>
+                    <v-subheader
+                      class="tab-subheader"
+                    >
+                      Стандарт
+                    </v-subheader>
+                    <v-subheader
+                      class="tab-subheader"
+                    >
+                      Премиум
+                    </v-subheader>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <draggable v-model="attributesToursExcursionType" group="attributesToursExcursionType" @start="drag=true" @end="drag=false">
+                      <div
+                        class="py-2"
+                        v-for="item in attributesToursExcursionType"
+                        :key="item.id"
+                      >
+                        <div class="d-grid cols-3-1-1-1">
+                          <div class="attribute-class">
+                            <v-icon> mdi-view-headline </v-icon>
+                            <p class="mb-0 mx-12">{{ item.title }}</p>
+                          </div>
+                          <v-checkbox
+                            v-model="item.basic"
+                            color="primary"
+                            hide-details
+                            class="ma-0"
+                          ></v-checkbox>
+                          <v-checkbox
+                            v-model="item.standard"
+                            color="primary"
+                            hide-details
+                            class="ma-0"
+                          ></v-checkbox>
+                          <v-checkbox
+                            v-model="item.premium"
+                            color="primary"
+                            hide-details
+                            class="ma-0"
+                          ></v-checkbox>
+                        </div>
+                      </div>
+                    </draggable>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col>
+                    <v-btn
+                      text
+                      class="attribute-btn"
+                    >
+                      Добавить свой атрибут
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </div>
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -6971,7 +8054,7 @@ import draggable from 'vuedraggable'
 export default {
   data() {
     return ({
-      panel1: [0, 1, 2, 3, 4],
+      panel1: [0, 1, 2, 3, 4, 5, 6, 7],
       panel2: [0, 1, 2, 3, 4, 5],
       panel3: [0, 1, 2, 3, 4, 5, 6],
       dropdown_font: [
@@ -7396,6 +8479,104 @@ export default {
       time68: null,
       menu68: false,
       priceFor: ['Гостя'],
+      attributesTypes: [
+        {
+          text: 'Книга',
+          value: 'attributeBook',
+        },
+        {
+          text: 'Туры и экскурсии',
+          value: 'attributeToursExcursion'
+        }
+      ],
+      currentAttributeType: 'attributeBook',
+      attributesToursExcursionType: [
+        {
+          id: 0,
+          title: 'Проезд',
+          basic: true,
+          standard: true,
+          premium: true,
+        },
+        {
+          id: 1,
+          title: 'Проживание отель 2*',
+          basic: true,
+          standard: false,
+          premium: false,
+        },
+        {
+          id: 2,
+          title: 'Проживание отель 3*',
+          basic: false,
+          standard: true,
+          premium: true,
+        },
+        {
+          id: 3,
+          title: '2х местный номер',
+          basic: false,
+          standard: true,
+          premium: true,
+        },
+        {
+          id: 4,
+          title: 'Екскурсии',
+          basic: false,
+          standard: true,
+          premium: true,
+        },
+        {
+          id: 5,
+          title: 'Праздничный ужин',
+          basic: false,
+          standard: false,
+          premium: true,
+        },
+        {
+          id: 6,
+          title: 'Сувенир в подарок',
+          basic: false,
+          standard: false,
+          premium: true,
+        },
+      ],
+      complexity: ['Минимальная', 'Cреднее', 'Максимальная'],
+      singlePriceDate: false,
+      priceForPerson: true,
+      priceForGroup: false,
+      timedates: null,
+      menudates: false,
+      timedates2: null,
+      menudates2: false,
+      timedates3: null,
+      menudates3: false,
+      timedates4: null,
+      menudates4: false,
+      timedates5: null,
+      menudates5: false,
+      timedates6: null,
+      menudates6: false,
+      timedates7: null,
+      menudates7: false,
+      timedates8: null,
+      menudates8: false,
+      dateslibs1: false,
+      dates1: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs2: false,
+      dates2: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs3: false,
+      dates3: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs4: false,
+      dates4: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs5: false,
+      dates5: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs6: false,
+      dates6: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs7: false,
+      dates7: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+      dateslibs8: false,
+      dates8: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
     })
   },
   components: {
@@ -7536,30 +8717,59 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-overview {
-  background-color: #F9F9F9;
-  padding: 0;
-}
+  .product-overview {
+    background-color: #F9F9F9;
+    padding: 0;
+  }
 
-.v-text-field {
-  padding: 0px !important;
-}
+  .v-text-field {
+    padding: 0px !important;
+  }
 
-.v-subheader {
-  padding: 0px !important;
-}
+  .v-subheader {
+    padding: 0px !important;
+  }
 
-.row {
-  margin-top: 0 !important;
-}
+  .row {
+    margin-top: 0 !important;
+  }
 
-.text-directions {
-  text-align: left;
-}
+  .text-directions {
+    text-align: left;
+  }
 
-.required-field {
-  color: $primary;
-  padding-left: 2px;
-}
+  .required-field {
+    color: $primary;
+    padding-left: 2px;
+  }
 
+  .attribute-class {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-size: 16px;
+    color: $grey !important;
+  }
+
+  .attribute-btn {
+    font-size: 14px;
+    line-height: 16px;
+    color: #6C6C6C !important;
+    text-decoration: underline;
+    text-transform: none;
+    margin: 0px;
+    letter-spacing: normal;
+    padding: 0px !important;
+  }
+
+  .d-grid-product {
+    display: grid;
+    grid-column-gap: 24px;
+    grid-row-gap: 12px;
+
+    &.cols-2-1-2-2-2 {
+      grid-template-columns: 2fr 1fr 2fr 2fr 2fr;
+      align-items: center;
+    }
+  }
 </style>
